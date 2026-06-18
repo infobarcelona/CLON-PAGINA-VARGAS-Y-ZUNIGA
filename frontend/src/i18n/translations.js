@@ -138,7 +138,7 @@ export const translations = {
       emailLabel: "Correo",
       hoursLabel: "Atención",
       hours: "Lunes a Viernes · 09:00 — 18:00",
-      chatHint: "Conversar con el estudio",
+      chatHint: "Conversa en el chat con nuestra asistente",
     },
     footer: {
       tagline: "Justicia y deber.",
@@ -290,7 +290,7 @@ export const translations = {
       emailLabel: "Email",
       hoursLabel: "Hours",
       hours: "Monday to Friday · 09:00 — 18:00",
-      chatHint: "Chat with the studio",
+      chatHint: "Chat with our assistant",
     },
     footer: {
       tagline: "Justice and duty.",
