@@ -1,82 +1,59 @@
 import { useState } from "react";
 import { useLang } from "@/i18n/LanguageContext";
 import { useInView } from "@/hooks/useInView";
-import { Plus, Minus } from "lucide-react";
+import { Plus, Minus, ArrowRight } from "lucide-react";
 
 const PracticeAreas = () => {
   const { t } = useLang();
   const [open, setOpen] = useState("personas");
   const [ref, inView] = useInView();
 
-  const titleLines = t.areas.title.split("\n");
-
   return (
     <section
       id="areas"
-      data-testid="areas-section"
       ref={ref}
-      className="relative"
-      style={{ background: "var(--brand-ivory)", color: "var(--brand-primary-deep)" }}
+      data-testid="areas-section"
+      className="relative dark-overlay"
+      style={{ background: "var(--brand-black)" }}
     >
-      {/* Decorative columns image strip - very faint */}
-      <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
+      {/* Background image */}
+      <div className="absolute inset-0 opacity-30">
         <img
-          src="https://images.pexels.com/photos/8815804/pexels-photo-8815804.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1200&w=1800"
+          src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1920&q=80"
           alt=""
           className="w-full h-full object-cover"
+          style={{ filter: "grayscale(60%) brightness(0.6)" }}
         />
       </div>
 
-      <div className="relative max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16 py-24 md:py-32 lg:py-40">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-16 lg:mb-24">
-          <div className="lg:col-span-5">
-            <div
-              className={`flex items-center gap-3 fade-up ${inView ? "in-view" : ""}`}
-              style={{ color: "var(--brand-primary)" }}
-            >
-              <span
-                className="inline-block w-12 h-px"
-                style={{ background: "var(--brand-accent)" }}
-              />
-              <span
-                className="font-mono uppercase"
-                style={{ fontSize: "11px", letterSpacing: "0.3em" }}
-              >
-                {t.areas.overline}
-              </span>
+      <div className="relative z-10 max-w-[1600px] mx-auto px-6 md:px-12 lg:px-20 py-24 md:py-32 lg:py-40">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-end mb-14">
+          <div className="lg:col-span-7">
+            <div className={`overline mb-4 fade-up ${inView ? "in-view" : ""}`} style={{ color: "var(--brand-blue)" }}>
+              {t.areas.overline}
             </div>
-
             <h2
-              className={`heading-section mt-6 fade-up ${inView ? "in-view" : ""}`}
+              className={`heading-section fade-up ${inView ? "in-view" : ""}`}
               style={{
-                color: "var(--brand-primary-deep)",
-                fontSize: "clamp(2.4rem, 5.5vw, 4.5rem)",
-                transitionDelay: "0.1s",
+                fontSize: "clamp(2.8rem, 7vw, 6rem)",
+                color: "var(--brand-white)",
+                transitionDelay: "0.05s",
               }}
             >
-              {titleLines.map((line, i) => (
-                <span key={i} className="block">
-                  {i === 1 ? (
-                    <span style={{ fontStyle: "italic", color: "var(--brand-primary)" }}>
-                      {line}
-                    </span>
-                  ) : (
-                    line
-                  )}
-                </span>
-              ))}
+              <span className="block">{t.areas.titleA}</span>
+              <span className="block" style={{ color: "var(--brand-blue)" }}>
+                {t.areas.titleB}
+              </span>
             </h2>
           </div>
-
-          <div className="lg:col-span-5 lg:col-start-8 flex items-end">
+          <div className="lg:col-span-5">
             <p
               className={`fade-up ${inView ? "in-view" : ""}`}
               style={{
-                color: "var(--brand-secondary)",
+                color: "rgba(255,255,255,0.75)",
                 fontSize: "16px",
-                lineHeight: 1.75,
-                transitionDelay: "0.2s",
-                fontWeight: 300,
+                lineHeight: 1.65,
+                transitionDelay: "0.15s",
               }}
             >
               {t.areas.lead}
@@ -84,57 +61,55 @@ const PracticeAreas = () => {
           </div>
         </div>
 
-        {/* Accordion list */}
+        {/* Accordion */}
         <div
           className={`fade-up ${inView ? "in-view" : ""}`}
-          style={{ transitionDelay: "0.3s", borderTop: "1px solid var(--brand-border)" }}
+          style={{
+            transitionDelay: "0.25s",
+            borderTop: "1px solid rgba(255,255,255,0.15)",
+          }}
         >
           {t.areas.categories.map((cat) => {
             const isOpen = open === cat.id;
             return (
-              <div
-                key={cat.id}
-                data-testid={`area-${cat.id}`}
-                style={{ borderBottom: "1px solid var(--brand-border)" }}
-              >
+              <div key={cat.id} data-testid={`area-${cat.id}`} className="area-row">
                 <button
                   type="button"
                   onClick={() => setOpen(isOpen ? null : cat.id)}
                   data-testid={`area-toggle-${cat.id}`}
-                  className="w-full flex items-center gap-6 md:gap-12 py-7 md:py-10 group text-left"
+                  className="w-full flex items-center gap-6 md:gap-10 py-7 md:py-9 text-left"
                 >
                   <span
-                    className="font-serif italic"
+                    className="font-condensed"
                     style={{
-                      color: "var(--brand-accent)",
-                      fontSize: "clamp(1.4rem, 2vw, 2rem)",
+                      color: "var(--brand-blue)",
+                      fontSize: "clamp(1.2rem, 1.8vw, 1.6rem)",
                       minWidth: "3ch",
-                      opacity: 0.85,
                     }}
                   >
                     {cat.num}
                   </span>
                   <span
-                    className="font-serif flex-1 transition-all duration-500"
+                    className="font-condensed flex-1 transition-colors duration-400"
                     style={{
-                      fontSize: "clamp(1.7rem, 4vw, 3.2rem)",
-                      color: isOpen ? "var(--brand-primary)" : "var(--brand-primary-deep)",
-                      letterSpacing: "-0.01em",
-                      fontStyle: isOpen ? "italic" : "normal",
-                      fontWeight: 400,
+                      fontSize: "clamp(1.6rem, 3.4vw, 2.8rem)",
+                      color: isOpen ? "var(--brand-blue)" : "var(--brand-white)",
+                      letterSpacing: "0.005em",
+                      fontWeight: 800,
+                      textTransform: "uppercase",
                     }}
                   >
                     {cat.title}
                   </span>
                   <span
-                    className="flex-shrink-0 w-12 h-12 flex items-center justify-center border transition-all duration-500"
+                    className="flex-shrink-0 w-11 h-11 flex items-center justify-center border transition-all duration-400"
                     style={{
-                      borderColor: isOpen ? "var(--brand-primary)" : "var(--brand-border)",
-                      background: isOpen ? "var(--brand-primary)" : "transparent",
-                      color: isOpen ? "var(--brand-ivory)" : "var(--brand-primary-deep)",
+                      borderColor: isOpen ? "var(--brand-blue)" : "rgba(255,255,255,0.3)",
+                      background: isOpen ? "var(--brand-blue)" : "transparent",
+                      color: isOpen ? "var(--brand-white)" : "var(--brand-white)",
                     }}
                   >
-                    {isOpen ? <Minus size={16} strokeWidth={1.5} /> : <Plus size={16} strokeWidth={1.5} />}
+                    {isOpen ? <Minus size={16} strokeWidth={1.6} /> : <Plus size={16} strokeWidth={1.6} />}
                   </span>
                 </button>
 
@@ -146,34 +121,48 @@ const PracticeAreas = () => {
                   }}
                 >
                   <div className="overflow-hidden">
-                    <div className="pb-12 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
-                      <div className="md:col-span-5 md:col-start-1">
+                    <div className="pb-10 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 pl-0 md:pl-[4.5rem]">
+                      <div className="md:col-span-5">
                         <p
                           style={{
-                            color: "var(--brand-secondary)",
+                            color: "rgba(255,255,255,0.7)",
                             fontSize: "15px",
-                            lineHeight: 1.75,
+                            lineHeight: 1.7,
                             maxWidth: "32rem",
                           }}
                         >
                           {cat.desc}
                         </p>
                       </div>
-                      <div className="md:col-span-7 md:col-start-6">
-                        <div className="flex flex-wrap gap-2">
+                      <div className="md:col-span-7">
+                        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8">
                           {cat.items.map((it, idx) => (
-                            <span
+                            <li
                               key={idx}
                               data-testid={`area-item-${cat.id}-${idx}`}
-                              className="inline-block px-4 py-2 transition-all duration-300 area-chip"
+                              className="flex items-center justify-between border-b"
                               style={{
-                                fontSize: "13px",
+                                borderColor: "rgba(255,255,255,0.1)",
+                                padding: "0.9rem 0",
                               }}
                             >
-                              {it}
-                            </span>
+                              <span
+                                style={{
+                                  color: "var(--brand-white)",
+                                  fontSize: "14.5px",
+                                  fontWeight: 500,
+                                }}
+                              >
+                                {it}
+                              </span>
+                              <ArrowRight
+                                size={14}
+                                strokeWidth={1.6}
+                                style={{ color: "var(--brand-blue)" }}
+                              />
+                            </li>
                           ))}
-                        </div>
+                        </ul>
                       </div>
                     </div>
                   </div>

@@ -1,11 +1,47 @@
+import { useEffect, useState, useCallback } from "react";
 import { useLang } from "@/i18n/LanguageContext";
-import { ArrowDownRight, ArrowRight } from "lucide-react";
+import { ArrowDown, ChevronLeft, ChevronRight } from "lucide-react";
+
+const openChat = () => {
+  const launcher = document.getElementById("vyz-widget-launcher");
+  const panel = document.getElementById("vyz-widget-panel");
+  if (panel && panel.classList.contains("vyz-open")) return;
+  if (launcher) {
+    launcher.click();
+    return;
+  }
+  let attempts = 0;
+  const tryOpen = () => {
+    attempts += 1;
+    const l = document.getElementById("vyz-widget-launcher");
+    if (l) l.click();
+    else if (attempts < 10) setTimeout(tryOpen, 300);
+  };
+  tryOpen();
+};
 
 const Hero = () => {
   const { t } = useLang();
+  const slides = t.hero.slides;
+  const [idx, setIdx] = useState(0);
 
-  const scrollTo = (id) => {
-    const el = document.querySelector(id);
+  const go = useCallback((dir) => {
+    setIdx((p) => (p + dir + slides.length) % slides.length);
+  }, [slides.length]);
+
+  useEffect(() => {
+    const id = setInterval(() => setIdx((p) => (p + 1) % slides.length), 7000);
+    return () => clearInterval(id);
+  }, [slides.length]);
+
+  const slide = slides[idx];
+
+  const handleCTA = (target) => {
+    if (target === "chat") {
+      openChat();
+      return;
+    }
+    const el = document.querySelector(target);
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
@@ -13,155 +49,142 @@ const Hero = () => {
     <section
       id="top"
       data-testid="hero-section"
-      className="relative w-full min-h-screen overflow-hidden grain"
+      className="relative w-full hero-dark overflow-hidden"
+      style={{ minHeight: "100vh" }}
     >
-      {/* Background image */}
-      <div className="absolute inset-0">
-        <img
-          src="https://images.pexels.com/photos/10757816/pexels-photo-10757816.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1400&w=2000"
-          alt="Cordillera de Los Andes — Araucanía"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 hero-overlay" />
-      </div>
+      <div className="relative z-10 max-w-[1600px] mx-auto px-6 md:px-12 lg:px-20 min-h-screen flex flex-col justify-center pt-32 pb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          {/* Side arrows desktop */}
+          <button
+            type="button"
+            onClick={() => go(-1)}
+            data-testid="hero-prev"
+            aria-label="Previous"
+            className="hidden lg:flex absolute left-6 top-1/2 -translate-y-1/2 items-center justify-center w-12 h-12 transition-all duration-300 hover:bg-white/5"
+            style={{ color: "rgba(255,255,255,0.7)" }}
+          >
+            <ChevronLeft size={28} strokeWidth={1.2} />
+          </button>
+          <button
+            type="button"
+            onClick={() => go(1)}
+            data-testid="hero-next"
+            aria-label="Next"
+            className="hidden lg:flex absolute right-6 top-1/2 -translate-y-1/2 items-center justify-center w-12 h-12 transition-all duration-300 hover:bg-white/5"
+            style={{ color: "rgba(255,255,255,0.7)" }}
+          >
+            <ChevronRight size={28} strokeWidth={1.2} />
+          </button>
 
-      {/* Top hairline */}
-      <div
-        className="absolute top-0 left-0 right-0 h-px"
-        style={{ background: "rgba(255,255,255,0.12)" }}
-      />
-
-      {/* Side mono labels */}
-      <div
-        className="hidden md:block absolute left-6 top-1/2 -translate-y-1/2 -rotate-90 origin-left font-mono uppercase"
-        style={{ fontSize: "10px", letterSpacing: "0.42em", color: "rgba(255,255,255,0.5)" }}
-      >
-        Vargas &amp; Zúñiga · Est. 2005
-      </div>
-      <div
-        className="hidden md:block absolute right-6 top-1/2 -translate-y-1/2 rotate-90 origin-right font-mono uppercase"
-        style={{ fontSize: "10px", letterSpacing: "0.42em", color: "rgba(255,255,255,0.5)" }}
-      >
-        Temuco · La Araucanía · Chile
-      </div>
-
-      <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16 min-h-screen flex flex-col justify-between pt-40 pb-16">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mt-8">
-          <div className="lg:col-span-9 lg:col-start-1">
+          {/* Slash mark */}
+          <div className="lg:col-span-3 lg:col-start-2 flex justify-center items-center">
             <div
-              className="flex items-center gap-3 mb-8 fade-up in-view"
-              style={{ color: "rgba(255,255,255,0.85)" }}
-            >
-              <span
-                className="inline-block w-12 h-px"
-                style={{ background: "var(--brand-accent)" }}
-              />
-              <span
-                className="font-mono uppercase"
-                style={{ fontSize: "11px", letterSpacing: "0.3em" }}
-              >
-                {t.hero.overline}
-              </span>
-            </div>
-
-            <h1
-              className="heading-display word-rise"
               style={{
-                color: "var(--brand-ivory)",
-                fontSize: "clamp(3.2rem, 11vw, 11rem)",
+                width: "8px",
+                height: "260px",
+                background: "var(--brand-white)",
+                transform: "skewX(-18deg)",
+                transition: "transform 0.6s ease",
               }}
-              data-testid="hero-title"
-            >
-              <span>
-                <span style={{ animationDelay: "0.15s" }}>{t.hero.titleA}</span>
-              </span>
-              <br />
-              <span>
-                <span
-                  style={{
-                    animationDelay: "0.45s",
-                    fontStyle: "italic",
-                    fontWeight: 300,
-                    color: "var(--brand-accent-light)",
-                  }}
-                >
-                  {t.hero.titleB}
-                </span>
-              </span>
-            </h1>
+              key={`slash-${idx}`}
+            />
           </div>
 
-          <div className="lg:col-span-4 lg:col-start-8 lg:mt-auto lg:pb-2">
+          <div className="lg:col-span-7 lg:col-start-5">
+            <div
+              key={`overline-${idx}`}
+              data-testid="hero-overline"
+              className="overline mb-5"
+              style={{ color: "var(--brand-blue)", animation: "fadeUpKey 0.6s ease both" }}
+            >
+              {slide.overline}
+            </div>
+            <h1
+              key={`title-${idx}`}
+              data-testid="hero-title"
+              className="heading-display"
+              style={{
+                fontSize: "clamp(2.6rem, 6.5vw, 6.5rem)",
+                color: "var(--brand-white)",
+                animation: "fadeUpKey 0.7s 0.05s ease both",
+                maxWidth: "16ch",
+              }}
+            >
+              {slide.title}
+            </h1>
             <p
-              className="font-sans fade-up in-view max-w-md"
+              key={`sub-${idx}`}
+              data-testid="hero-sub"
+              className="mt-5 max-w-xl"
               style={{
                 color: "rgba(255,255,255,0.78)",
                 fontSize: "16px",
-                lineHeight: 1.7,
-                fontWeight: 300,
-                transitionDelay: "0.6s",
+                lineHeight: 1.65,
+                fontWeight: 400,
+                animation: "fadeUpKey 0.7s 0.12s ease both",
               }}
             >
-              {t.hero.sub}
+              {slide.sub}
             </p>
-            <div className="mt-8 flex flex-wrap gap-4 fade-up in-view" style={{ transitionDelay: "0.8s" }}>
+            <div
+              key={`cta-${idx}`}
+              className="mt-7"
+              style={{ animation: "fadeUpKey 0.7s 0.2s ease both" }}
+            >
               <button
                 type="button"
-                data-testid="hero-cta-primary"
-                onClick={() => scrollTo("#areas")}
-                className="btn-pill btn-pill-inverted"
+                data-testid="hero-cta"
+                onClick={() => handleCTA(slide.ctaTarget)}
+                className="btn-blue"
               >
-                <span>{t.hero.cta}</span>
-                <ArrowRight size={14} strokeWidth={1.5} />
-              </button>
-              <button
-                type="button"
-                data-testid="hero-cta-secondary"
-                onClick={() => scrollTo("#contacto")}
-                className="btn-pill"
-                style={{ color: "rgba(255,255,255,0.9)", borderColor: "rgba(255,255,255,0.4)" }}
-              >
-                <span>{t.hero.ctaSecondary}</span>
+                <span>{slide.cta}</span>
               </button>
             </div>
           </div>
         </div>
 
-        {/* Bottom row */}
-        <div
-          className="flex items-end justify-between mt-16"
-          style={{ color: "rgba(255,255,255,0.55)" }}
-        >
+        {/* Bottom scroll cue + dots */}
+        <div className="absolute bottom-12 left-0 right-0 flex flex-col items-center gap-6">
           <button
             type="button"
-            onClick={() => scrollTo("#estudio")}
+            onClick={() => handleCTA("#estudio")}
             data-testid="hero-scroll-cue"
-            className="flex items-center gap-3 group cursor-pointer"
+            aria-label="Scroll"
+            className="flex items-center justify-center w-12 h-12 rounded-full border transition-all duration-300 hover:border-white"
+            style={{
+              borderColor: "rgba(255,255,255,0.4)",
+              color: "rgba(255,255,255,0.7)",
+            }}
           >
-            <span
-              className="font-mono uppercase"
-              style={{ fontSize: "10px", letterSpacing: "0.32em" }}
-            >
-              {t.hero.scroll}
-            </span>
-            <span
-              className="inline-block w-12 h-px transition-transform group-hover:scale-x-150 origin-left"
-              style={{ background: "rgba(255,255,255,0.45)" }}
-            />
-            <ArrowDownRight size={14} strokeWidth={1.5} className="float-slow" />
+            <ArrowDown size={16} strokeWidth={1.4} />
           </button>
-          <div
-            className="hidden md:flex items-center gap-6 font-mono uppercase"
-            style={{ fontSize: "10px", letterSpacing: "0.28em" }}
-          >
-            <span>01 / Personas</span>
-            <span style={{ opacity: 0.4 }}>·</span>
-            <span>02 / Litigios</span>
-            <span style={{ opacity: 0.4 }}>·</span>
-            <span>03 / Estado</span>
+          <div className="flex items-center gap-3" data-testid="hero-dots">
+            {slides.map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => setIdx(i)}
+                data-testid={`hero-dot-${i}`}
+                aria-label={`Slide ${i + 1}`}
+                className="rounded-full transition-all duration-400"
+                style={{
+                  width: i === idx ? 12 : 8,
+                  height: i === idx ? 12 : 8,
+                  background: i === idx ? "var(--brand-white)" : "rgba(255,255,255,0.3)",
+                  border: i === idx ? "none" : "1px solid rgba(255,255,255,0.4)",
+                }}
+              />
+            ))}
           </div>
         </div>
       </div>
+
+      <style>{`
+        @keyframes fadeUpKey {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
     </section>
   );
 };

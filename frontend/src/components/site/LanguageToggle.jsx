@@ -3,40 +3,28 @@ import { useLang } from "@/i18n/LanguageContext";
 const LanguageToggle = ({ variant = "light" }) => {
   const { lang, setLang } = useLang();
   const isEN = lang === "en";
+  const isDark = variant === "dark";
 
   return (
-    <div
-      className="lang-toggle"
-      data-testid="lang-toggle"
-      style={{
-        background: variant === "dark" ? "rgba(255,255,255,0.06)" : undefined,
-        borderColor: variant === "dark" ? "rgba(255,255,255,0.18)" : undefined,
-      }}
-    >
-      <span
-        className="lang-pill"
-        style={{
-          left: isEN ? "calc(50% + 1px)" : 3,
-          right: isEN ? 3 : "calc(50% + 1px)",
-        }}
-      />
+    <div className="lang-toggle" data-testid="lang-toggle">
       <button
         type="button"
         className={!isEN ? "active" : ""}
         onClick={() => setLang("es")}
         data-testid="lang-toggle-es"
-        style={{ color: variant === "dark" && isEN ? "rgba(255,255,255,0.65)" : undefined }}
+        style={{ color: isDark && isEN ? "rgba(255,255,255,0.65)" : isDark ? "var(--brand-white)" : undefined }}
       >
-        ES
+        Español
       </button>
+      <span className="sep" style={{ color: isDark ? "rgba(255,255,255,0.4)" : undefined }}>·</span>
       <button
         type="button"
         className={isEN ? "active" : ""}
         onClick={() => setLang("en")}
         data-testid="lang-toggle-en"
-        style={{ color: variant === "dark" && !isEN ? "rgba(255,255,255,0.65)" : undefined }}
+        style={{ color: isDark && !isEN ? "rgba(255,255,255,0.65)" : isDark ? "var(--brand-white)" : undefined }}
       >
-        EN
+        English
       </button>
     </div>
   );
