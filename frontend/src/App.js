@@ -7,7 +7,6 @@ import Philosophy from "@/components/site/Philosophy";
 import PracticeAreas from "@/components/site/PracticeAreas";
 import Team from "@/components/site/Team";
 import Contact from "@/components/site/Contact";
-import FloatingChat from "@/components/site/FloatingChat";
 
 const Home = () => {
   return (
@@ -18,7 +17,6 @@ const Home = () => {
       <PracticeAreas />
       <Team />
       <Contact />
-      <FloatingChat />
     </main>
   );
 };

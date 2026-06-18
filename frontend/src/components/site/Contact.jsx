@@ -81,8 +81,31 @@ const Contact = () => {
               type="button"
               data-testid="contact-chat-cta"
               onClick={() => {
-                const btn = document.querySelector("[data-testid='floating-chat-btn']");
-                if (btn) btn.click();
+                // Try to open external chat widget; fallback to phone
+                const w = window;
+                const triggers = [
+                  "#vargasyzuniga-chat-toggle",
+                  "[data-vyz-chat-toggle]",
+                  ".vyz-chat-launcher",
+                  "#chat-widget-launcher",
+                  ".chat-widget-bubble",
+                ];
+                let opened = false;
+                for (const sel of triggers) {
+                  const el = document.querySelector(sel);
+                  if (el) {
+                    el.click();
+                    opened = true;
+                    break;
+                  }
+                }
+                if (!opened && typeof w.openVargasZunigaChat === "function") {
+                  w.openVargasZunigaChat();
+                  opened = true;
+                }
+                if (!opened) {
+                  window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+                }
               }}
               className={`mt-8 btn-pill btn-pill-inverted fade-up ${inView ? "in-view" : ""}`}
               style={{ transitionDelay: "0.3s" }}
