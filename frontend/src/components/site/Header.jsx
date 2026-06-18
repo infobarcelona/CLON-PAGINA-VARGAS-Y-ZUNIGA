@@ -46,25 +46,25 @@ const Header = () => {
           href="#top"
           onClick={(e) => handleClick(e, "#top")}
           data-testid="logo-link"
-          className="flex items-center gap-3 group"
+          className="flex items-center gap-5 group"
         >
           <div
-            className="w-9 h-9 flex items-center justify-center"
+            className="w-[72px] h-[72px] flex items-center justify-center"
             style={{ background: "var(--brand-primary-deep)", color: "var(--brand-ivory)" }}
           >
-            <span className="font-serif text-xl leading-none italic">V</span>
-            <span className="font-serif text-xl leading-none italic opacity-70">z</span>
+            <span className="font-serif text-4xl leading-none italic">V</span>
+            <span className="font-serif text-4xl leading-none italic opacity-70">z</span>
           </div>
           <div className="leading-tight">
             <div
-              className="font-serif text-[17px] tracking-tight"
-              style={{ color: "var(--brand-primary-deep)" }}
+              className="font-serif tracking-tight"
+              style={{ color: "var(--brand-primary-deep)", fontSize: "34px", lineHeight: 1.05 }}
             >
               Vargas <span className="italic font-light opacity-80">&amp;</span> Zúñiga
             </div>
             <div
-              className="font-mono uppercase tracking-[0.22em]"
-              style={{ fontSize: "9px", color: "var(--brand-secondary)" }}
+              className="font-mono uppercase tracking-[0.22em] mt-1"
+              style={{ fontSize: "13px", color: "var(--brand-secondary)" }}
             >
               Abogados — Temuco
             </div>
