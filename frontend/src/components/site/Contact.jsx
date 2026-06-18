@@ -14,11 +14,11 @@ const Contact = () => {
       id="contacto"
       data-testid="contact-section"
       ref={ref}
-      style={{ background: "var(--brand-primary-deep)", color: "var(--brand-ivory)" }}
+      style={{ background: "var(--brand-paper)", color: "var(--brand-primary-deep)" }}
       className="relative overflow-hidden"
     >
       {/* Background image faded */}
-      <div className="absolute inset-0 opacity-[0.07] pointer-events-none">
+      <div className="absolute inset-0 opacity-[0.05] pointer-events-none">
         <img
           src="https://images.unsplash.com/photo-1764410481612-7544525b2991?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njl8MHwxfHNlYXJjaHwyfHxwcmVtaXVtJTIwb2ZmaWNlJTIwZGVza3xlbnwwfHx8fDE3ODE3NTY4MTV8MA&ixlib=rb-4.1.0&q=85"
           alt=""
@@ -31,7 +31,7 @@ const Contact = () => {
           <div className="lg:col-span-7">
             <div
               className={`flex items-center gap-3 fade-up ${inView ? "in-view" : ""}`}
-              style={{ color: "var(--brand-accent-light)" }}
+              style={{ color: "var(--brand-primary)" }}
             >
               <span
                 className="inline-block w-12 h-px"
@@ -45,7 +45,7 @@ const Contact = () => {
             <h2
               className={`heading-section mt-6 fade-up ${inView ? "in-view" : ""}`}
               style={{
-                color: "var(--brand-ivory)",
+                color: "var(--brand-primary-deep)",
                 fontSize: "clamp(2.6rem, 7vw, 5.5rem)",
                 transitionDelay: "0.1s",
               }}
@@ -53,7 +53,7 @@ const Contact = () => {
               {titleLines.map((line, i) => (
                 <span key={i} className="block">
                   {i === 1 ? (
-                    <span style={{ fontStyle: "italic", color: "var(--brand-accent-light)" }}>
+                    <span style={{ fontStyle: "italic", color: "var(--brand-primary)" }}>
                       {line}
                     </span>
                   ) : (
@@ -66,7 +66,7 @@ const Contact = () => {
             <p
               className={`mt-8 fade-up ${inView ? "in-view" : ""}`}
               style={{
-                color: "rgba(255,255,255,0.7)",
+                color: "var(--brand-secondary)",
                 fontSize: "17px",
                 lineHeight: 1.7,
                 fontWeight: 300,
@@ -81,7 +81,6 @@ const Contact = () => {
               type="button"
               data-testid="contact-chat-cta"
               onClick={() => {
-                // Try to open external chat widget; fallback to phone
                 const w = window;
                 const triggers = [
                   "#vargasyzuniga-chat-toggle",
@@ -107,7 +106,7 @@ const Contact = () => {
                   window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
                 }
               }}
-              className={`mt-8 btn-pill btn-pill-inverted fade-up ${inView ? "in-view" : ""}`}
+              className={`mt-8 btn-pill fade-up ${inView ? "in-view" : ""}`}
               style={{ transitionDelay: "0.3s" }}
             >
               <MessageSquare size={14} strokeWidth={1.5} />
@@ -122,31 +121,31 @@ const Contact = () => {
               className={`fade-up ${inView ? "in-view" : ""}`}
               style={{
                 transitionDelay: "0.35s",
-                borderTop: "1px solid rgba(255,255,255,0.15)",
+                borderTop: "1px solid var(--brand-border)",
               }}
             >
               {/* Address */}
               <div
                 className="py-7 grid grid-cols-12 gap-4"
-                style={{ borderBottom: "1px solid rgba(255,255,255,0.15)" }}
+                style={{ borderBottom: "1px solid var(--brand-border)" }}
               >
                 <div className="col-span-1 pt-1">
-                  <MapPin size={18} strokeWidth={1.4} style={{ color: "var(--brand-accent-light)" }} />
+                  <MapPin size={18} strokeWidth={1.4} style={{ color: "var(--brand-primary)" }} />
                 </div>
                 <div className="col-span-11">
                   <div
                     className="font-mono uppercase"
-                    style={{ fontSize: "10px", letterSpacing: "0.28em", color: "rgba(255,255,255,0.5)" }}
+                    style={{ fontSize: "10px", letterSpacing: "0.28em", color: "var(--brand-secondary)" }}
                   >
                     {t.contact.officeLabel}
                   </div>
                   <div
                     className="font-serif mt-2"
-                    style={{ fontSize: "22px", color: "var(--brand-ivory)" }}
+                    style={{ fontSize: "22px", color: "var(--brand-primary-deep)" }}
                   >
                     {t.contact.address}
                   </div>
-                  <div style={{ color: "rgba(255,255,255,0.7)", fontSize: "14px", marginTop: "4px" }}>
+                  <div style={{ color: "var(--brand-secondary)", fontSize: "14px", marginTop: "4px" }}>
                     {t.contact.tower}
                   </div>
                 </div>
@@ -155,15 +154,15 @@ const Contact = () => {
               {/* Phone */}
               <div
                 className="py-7 grid grid-cols-12 gap-4"
-                style={{ borderBottom: "1px solid rgba(255,255,255,0.15)" }}
+                style={{ borderBottom: "1px solid var(--brand-border)" }}
               >
                 <div className="col-span-1 pt-1">
-                  <Phone size={18} strokeWidth={1.4} style={{ color: "var(--brand-accent-light)" }} />
+                  <Phone size={18} strokeWidth={1.4} style={{ color: "var(--brand-primary)" }} />
                 </div>
                 <div className="col-span-11">
                   <div
                     className="font-mono uppercase"
-                    style={{ fontSize: "10px", letterSpacing: "0.28em", color: "rgba(255,255,255,0.5)" }}
+                    style={{ fontSize: "10px", letterSpacing: "0.28em", color: "var(--brand-secondary)" }}
                   >
                     {t.contact.phoneLabel}
                   </div>
@@ -171,7 +170,7 @@ const Contact = () => {
                     href="tel:+56979873921"
                     data-testid="contact-phone"
                     className="font-serif mt-2 block link-underline"
-                    style={{ fontSize: "22px", color: "var(--brand-ivory)" }}
+                    style={{ fontSize: "22px", color: "var(--brand-primary-deep)" }}
                   >
                     {t.contact.phone}
                   </a>
@@ -181,7 +180,7 @@ const Contact = () => {
               {/* Emails */}
               <div
                 className="py-7 grid grid-cols-12 gap-4"
-                style={{ borderBottom: "1px solid rgba(255,255,255,0.15)" }}
+                style={{ borderBottom: "1px solid var(--brand-border)" }}
               >
                 <div className="col-span-1 pt-1">
                   <svg
@@ -191,7 +190,7 @@ const Contact = () => {
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="1.4"
-                    style={{ color: "var(--brand-accent-light)" }}
+                    style={{ color: "var(--brand-primary)" }}
                   >
                     <rect x="3" y="5" width="18" height="14" />
                     <path d="M3 7l9 6 9-6" />
@@ -200,7 +199,7 @@ const Contact = () => {
                 <div className="col-span-11">
                   <div
                     className="font-mono uppercase"
-                    style={{ fontSize: "10px", letterSpacing: "0.28em", color: "rgba(255,255,255,0.5)" }}
+                    style={{ fontSize: "10px", letterSpacing: "0.28em", color: "var(--brand-secondary)" }}
                   >
                     {t.contact.emailLabel}
                   </div>
@@ -209,7 +208,7 @@ const Contact = () => {
                       href="mailto:avargas@vargasyzuniga.cl"
                       data-testid="contact-email-1"
                       className="font-serif link-underline self-start"
-                      style={{ fontSize: "18px", color: "var(--brand-ivory)" }}
+                      style={{ fontSize: "18px", color: "var(--brand-primary-deep)" }}
                     >
                       avargas@vargasyzuniga.cl
                     </a>
@@ -217,7 +216,7 @@ const Contact = () => {
                       href="mailto:mzuniga@vargasyzuniga.cl"
                       data-testid="contact-email-2"
                       className="font-serif link-underline self-start"
-                      style={{ fontSize: "18px", color: "var(--brand-ivory)" }}
+                      style={{ fontSize: "18px", color: "var(--brand-primary-deep)" }}
                     >
                       mzuniga@vargasyzuniga.cl
                     </a>
@@ -228,16 +227,16 @@ const Contact = () => {
               {/* Hours */}
               <div className="py-7 grid grid-cols-12 gap-4">
                 <div className="col-span-1 pt-1">
-                  <Clock size={18} strokeWidth={1.4} style={{ color: "var(--brand-accent-light)" }} />
+                  <Clock size={18} strokeWidth={1.4} style={{ color: "var(--brand-primary)" }} />
                 </div>
                 <div className="col-span-11">
                   <div
                     className="font-mono uppercase"
-                    style={{ fontSize: "10px", letterSpacing: "0.28em", color: "rgba(255,255,255,0.5)" }}
+                    style={{ fontSize: "10px", letterSpacing: "0.28em", color: "var(--brand-secondary)" }}
                   >
                     {t.contact.hoursLabel}
                   </div>
-                  <div className="font-serif mt-2" style={{ fontSize: "18px", color: "var(--brand-ivory)" }}>
+                  <div className="font-serif mt-2" style={{ fontSize: "18px", color: "var(--brand-primary-deep)" }}>
                     {t.contact.hours}
                   </div>
                 </div>
@@ -249,23 +248,23 @@ const Contact = () => {
         {/* Footer */}
         <div
           className="mt-24 pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6"
-          style={{ borderTop: "1px solid rgba(255,255,255,0.15)" }}
+          style={{ borderTop: "1px solid var(--brand-border)" }}
         >
           <div className="flex items-center gap-5">
             <div
               className="w-10 h-10 flex items-center justify-center"
-              style={{ background: "var(--brand-accent)", color: "var(--brand-primary-deep)" }}
+              style={{ background: "var(--brand-primary-deep)", color: "var(--brand-ivory)" }}
             >
               <span className="font-serif italic text-xl leading-none">V</span>
               <span className="font-serif italic text-xl leading-none opacity-80">z</span>
             </div>
             <div>
-              <div className="font-serif italic" style={{ fontSize: "20px", color: "var(--brand-accent-light)" }}>
+              <div className="font-serif italic" style={{ fontSize: "20px", color: "var(--brand-primary)" }}>
                 {t.footer.tagline}
               </div>
               <div
                 className="font-mono uppercase mt-1"
-                style={{ fontSize: "10px", letterSpacing: "0.28em", color: "rgba(255,255,255,0.55)" }}
+                style={{ fontSize: "10px", letterSpacing: "0.28em", color: "var(--brand-secondary)" }}
               >
                 {t.footer.designedIn}
               </div>
@@ -273,13 +272,13 @@ const Contact = () => {
           </div>
 
           <div className="flex items-center gap-6">
-            <LanguageToggle variant="dark" />
+            <LanguageToggle />
             <button
               type="button"
               data-testid="back-to-top"
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="link-underline font-mono uppercase"
-              style={{ fontSize: "11px", letterSpacing: "0.28em", color: "var(--brand-ivory)" }}
+              style={{ fontSize: "11px", letterSpacing: "0.28em", color: "var(--brand-primary-deep)" }}
             >
               {t.footer.backTop} ↑
             </button>
@@ -288,7 +287,7 @@ const Contact = () => {
 
         <div
           className="mt-6 font-mono uppercase"
-          style={{ fontSize: "10px", letterSpacing: "0.28em", color: "rgba(255,255,255,0.4)" }}
+          style={{ fontSize: "10px", letterSpacing: "0.28em", color: "var(--brand-secondary)" }}
         >
           {t.footer.copy.replace("{year}", year)}
         </div>

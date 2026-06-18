@@ -16,10 +16,10 @@ const PracticeAreas = () => {
       data-testid="areas-section"
       ref={ref}
       className="relative"
-      style={{ background: "var(--brand-primary-deep)", color: "var(--brand-ivory)" }}
+      style={{ background: "var(--brand-ivory)", color: "var(--brand-primary-deep)" }}
     >
-      {/* Decorative columns image strip */}
-      <div className="absolute inset-0 opacity-[0.08] pointer-events-none">
+      {/* Decorative columns image strip - very faint */}
+      <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
         <img
           src="https://images.pexels.com/photos/8815804/pexels-photo-8815804.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1200&w=1800"
           alt=""
@@ -32,7 +32,7 @@ const PracticeAreas = () => {
           <div className="lg:col-span-5">
             <div
               className={`flex items-center gap-3 fade-up ${inView ? "in-view" : ""}`}
-              style={{ color: "var(--brand-accent-light)" }}
+              style={{ color: "var(--brand-primary)" }}
             >
               <span
                 className="inline-block w-12 h-px"
@@ -49,7 +49,7 @@ const PracticeAreas = () => {
             <h2
               className={`heading-section mt-6 fade-up ${inView ? "in-view" : ""}`}
               style={{
-                color: "var(--brand-ivory)",
+                color: "var(--brand-primary-deep)",
                 fontSize: "clamp(2.4rem, 5.5vw, 4.5rem)",
                 transitionDelay: "0.1s",
               }}
@@ -57,7 +57,7 @@ const PracticeAreas = () => {
               {titleLines.map((line, i) => (
                 <span key={i} className="block">
                   {i === 1 ? (
-                    <span style={{ fontStyle: "italic", color: "var(--brand-accent-light)" }}>
+                    <span style={{ fontStyle: "italic", color: "var(--brand-primary)" }}>
                       {line}
                     </span>
                   ) : (
@@ -72,7 +72,7 @@ const PracticeAreas = () => {
             <p
               className={`fade-up ${inView ? "in-view" : ""}`}
               style={{
-                color: "rgba(255,255,255,0.7)",
+                color: "var(--brand-secondary)",
                 fontSize: "16px",
                 lineHeight: 1.75,
                 transitionDelay: "0.2s",
@@ -87,7 +87,7 @@ const PracticeAreas = () => {
         {/* Accordion list */}
         <div
           className={`fade-up ${inView ? "in-view" : ""}`}
-          style={{ transitionDelay: "0.3s", borderTop: "1px solid rgba(255,255,255,0.12)" }}
+          style={{ transitionDelay: "0.3s", borderTop: "1px solid var(--brand-border)" }}
         >
           {t.areas.categories.map((cat) => {
             const isOpen = open === cat.id;
@@ -95,7 +95,7 @@ const PracticeAreas = () => {
               <div
                 key={cat.id}
                 data-testid={`area-${cat.id}`}
-                style={{ borderBottom: "1px solid rgba(255,255,255,0.12)" }}
+                style={{ borderBottom: "1px solid var(--brand-border)" }}
               >
                 <button
                   type="button"
@@ -106,10 +106,10 @@ const PracticeAreas = () => {
                   <span
                     className="font-serif italic"
                     style={{
-                      color: "var(--brand-accent-light)",
+                      color: "var(--brand-accent)",
                       fontSize: "clamp(1.4rem, 2vw, 2rem)",
                       minWidth: "3ch",
-                      opacity: 0.8,
+                      opacity: 0.85,
                     }}
                   >
                     {cat.num}
@@ -118,7 +118,7 @@ const PracticeAreas = () => {
                     className="font-serif flex-1 transition-all duration-500"
                     style={{
                       fontSize: "clamp(1.7rem, 4vw, 3.2rem)",
-                      color: isOpen ? "var(--brand-accent-light)" : "var(--brand-ivory)",
+                      color: isOpen ? "var(--brand-primary)" : "var(--brand-primary-deep)",
                       letterSpacing: "-0.01em",
                       fontStyle: isOpen ? "italic" : "normal",
                       fontWeight: 400,
@@ -129,9 +129,9 @@ const PracticeAreas = () => {
                   <span
                     className="flex-shrink-0 w-12 h-12 flex items-center justify-center border transition-all duration-500"
                     style={{
-                      borderColor: isOpen ? "var(--brand-accent)" : "rgba(255,255,255,0.25)",
-                      background: isOpen ? "var(--brand-accent)" : "transparent",
-                      color: isOpen ? "var(--brand-primary-deep)" : "var(--brand-ivory)",
+                      borderColor: isOpen ? "var(--brand-primary)" : "var(--brand-border)",
+                      background: isOpen ? "var(--brand-primary)" : "transparent",
+                      color: isOpen ? "var(--brand-ivory)" : "var(--brand-primary-deep)",
                     }}
                   >
                     {isOpen ? <Minus size={16} strokeWidth={1.5} /> : <Plus size={16} strokeWidth={1.5} />}
@@ -150,7 +150,7 @@ const PracticeAreas = () => {
                       <div className="md:col-span-5 md:col-start-1">
                         <p
                           style={{
-                            color: "rgba(255,255,255,0.65)",
+                            color: "var(--brand-secondary)",
                             fontSize: "15px",
                             lineHeight: 1.75,
                             maxWidth: "32rem",
@@ -165,12 +165,9 @@ const PracticeAreas = () => {
                             <span
                               key={idx}
                               data-testid={`area-item-${cat.id}-${idx}`}
-                              className="inline-block px-4 py-2 transition-all duration-300"
+                              className="inline-block px-4 py-2 transition-all duration-300 area-chip"
                               style={{
-                                border: "1px solid rgba(255,255,255,0.18)",
                                 fontSize: "13px",
-                                color: "rgba(255,255,255,0.85)",
-                                background: "rgba(255,255,255,0.02)",
                               }}
                             >
                               {it}

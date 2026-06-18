@@ -272,8 +272,8 @@ body {
 /* Hero gradient overlay */
 .hero-overlay {
   background:
-    linear-gradient(180deg, rgba(21,32,38,0.35) 0%, rgba(21,32,38,0.55) 60%, rgba(21,32,38,0.85) 100%),
-    radial-gradient(ellipse at 30% 40%, rgba(72,108,124,0.45) 0%, transparent 60%);
+    linear-gradient(180deg, rgba(72,108,124,0.25) 0%, rgba(21,32,38,0.45) 60%, rgba(21,32,38,0.7) 100%),
+    radial-gradient(ellipse at 30% 40%, rgba(72,108,124,0.35) 0%, transparent 60%);
 }
 
 /* Glass nav */
