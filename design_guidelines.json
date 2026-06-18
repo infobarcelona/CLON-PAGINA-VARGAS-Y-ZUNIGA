@@ -1,0 +1,182 @@
+{
+  "theme_and_archetype": {
+    "domain": "Law Firm, Corporate, Premium Services",
+    "theme": "LIGHT",
+    "archetype": "5 (Luxury)",
+    "description": "A refined, bilingual digital experience for a classic Chilean law firm. The aesthetic merges the gravitas of traditional law (Old Money) with the seamless fluidity of modern tech. It aims to evoke trust, authority, and modern premium service through an 'Editorial Asymmetry' approach, avoiding generic templates.",
+    "emotional_tone": "Elegant, fluid, serious, pleasant, modern yet classic."
+  },
+  "color_palette": {
+    "primary": {
+      "name": "Petroleum Blue",
+      "50": "#eaf2f6",
+      "100": "#cce0e8",
+      "200": "#9cbcd0",
+      "300": "#729eb6",
+      "400": "#486c7c",
+      "500": "#395b6a",
+      "600": "#2f4b59",
+      "700": "#243a45",
+      "800": "#1c2c34",
+      "900": "#152026",
+      "usage": "Brand core. Used for strong emphasis, large typographic moments, and solid background blocks to create contrast."
+    },
+    "secondary": {
+      "name": "Slate Gray",
+      "50": "#f5f5f5",
+      "100": "#e6e6e6",
+      "200": "#cccccc",
+      "300": "#b3b3b3",
+      "400": "#999999",
+      "500": "#5c5c5c",
+      "600": "#4d4d4d",
+      "700": "#3d3d3d",
+      "800": "#2e2e2e",
+      "900": "#1a1a1a",
+      "usage": "Body text, secondary metadata, borders, and subtle structural elements."
+    },
+    "accent": {
+      "name": "Muted Gold",
+      "DEFAULT": "#B69A7A",
+      "usage": "Hover states, subtle underlines, active toggles, and premium details. Creates a high-end contrast against the Petroleum Blue."
+    },
+    "background": {
+      "base": "#FBFBF9",
+      "surface": "#FFFFFF",
+      "inverted": "#152026",
+      "usage": "Base is an Ivory/Pearl tone, never pure white, giving a physical, editorial, 'paper-like' feel."
+    }
+  },
+  "typography": {
+    "fonts": {
+      "headings": {
+        "family": "Cormorant Garamond, serif",
+        "weights": ["400", "500", "600"],
+        "style": "Elegant, highly contrasting, editorial. Used for all main headers and quotes."
+      },
+      "body": {
+        "family": "Outfit, sans-serif",
+        "weights": ["300", "400", "500"],
+        "style": "Clean, highly readable, modern geometric. Used for descriptions, UI elements, and lists."
+      },
+      "mono_labels": {
+        "family": "JetBrains Mono, monospace",
+        "weights": ["400"],
+        "style": "Used sparingly for overlines, sub-navigation, and small technical details to inject a 'modern' touch."
+      }
+    },
+    "scale": {
+      "h1": "text-5xl md:text-6xl+ tracking-tighter leading-none",
+      "h2": "text-3xl md:text-4xl tracking-tight leading-snug",
+      "h3": "text-xl md:text-2xl",
+      "body": "text-base leading-relaxed",
+      "labels": "text-xs uppercase tracking-[0.2em]"
+    }
+  },
+  "spacing_and_layout": {
+    "philosophy": "Generous Spacing (2-3x typical). Asymmetry creates tension. Tension creates interest.",
+    "containers": {
+      "padding": "px-6 md:px-12 lg:px-24",
+      "section_gap": "py-24 md:py-32 lg:py-40"
+    },
+    "grid_system": {
+      "mode": "The 'Tetris' Grid (Mode A)",
+      "columns": "grid-cols-1 md:grid-cols-8 lg:grid-cols-12",
+      "gap": "gap-8 lg:gap-12",
+      "usage": "Used for 'Practice Areas' and 'Team' sections to break away from boring, equal-sized bootstrap cards."
+    }
+  },
+  "surface_strategies": {
+    "glassmorphism": {
+      "usage": "Sticky header and Language Toggle overlay.",
+      "implementation": "backdrop-blur-xl bg-[#FBFBF9]/80 border-b border-[#5c5c5c]/10"
+    },
+    "cards": {
+      "usage": "Practice Areas and Team Bios",
+      "implementation": "Flat surface. bg-white border border-[#5c5c5c]/20 hover:border-accent hover:-translate-y-1 transition-all duration-300 shadow-sm"
+    },
+    "images": {
+      "overlay": "bg-black/40 to bg-black/20 gradient to ensure text readability without killing the asset.",
+      "corners": "rounded-none (sharp edges align with serious, classic tone)"
+    }
+  },
+  "motion_and_interactions": {
+    "scrolling": {
+      "library": "lenis",
+      "feel": "Smooth, momentum-based scrolling. Essential for the 'fluid' and 'premium' requirement."
+    },
+    "reveals": {
+      "library": "framer-motion",
+      "behavior": "Staggered fade-up for practice areas. Word-by-word reveal for the Hero slogan 'Justicia y deber'."
+    },
+    "microinteractions": {
+      "buttons": "Hovering the Language Toggle smoothly glides the active pill background.",
+      "links": "Underline animation that expands from left to right on hover."
+    }
+  },
+  "components": {
+    "header": "Sticky nav with Glassmorphism. Contains Logo (left), links (center), Language Toggle (right).",
+    "language_toggle": "A pill-shaped switch using Radix/Shadcn Tabs logic, styled elegantly. Text changes instantly across the DOM.",
+    "floating_chat": "A refined, circular button placed fixed at bottom-right (`bottom-8 right-8`). Icon: Lucide `MessageSquare`. Hovering opens a '¿En qué podemos ayudarle?' tooltip. Placeholder for future embed.",
+    "practice_area_list": "Instead of basic cards, use a sophisticated Accordion or a Hover-revealed sub-grid. Highlighting the 3 main categories.",
+    "icons": "Use `lucide-react` with thin stroke width (1.5) or `iconoir-react` for a more sophisticated, delicate look."
+  },
+  "media": {
+    "image_urls": {
+      "hero_background": {
+        "url": "https://images.pexels.com/photos/10757816/pexels-photo-10757816.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Majestic Andes mountains in clear skies. Evocative of Araucanía, providing a grand, solid foundation for the 'Justicia y deber' hero text."
+      },
+      "philosophy_section": {
+        "url": "https://images.unsplash.com/photo-1589994965851-a8f479c573a9?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NjV8MHwxfHNlYXJjaHwxfHxzY2FsZXMlMjBvZiUyMGp1c3RpY2V8ZW58MHx8fHwxNzgxNzU2ODE1fDA&ixlib=rb-4.1.0&q=85",
+        "description": "Lady justice statue with scales and sword. Classic symbol, visually rich."
+      },
+      "practice_areas_bg": {
+        "url": "https://images.pexels.com/photos/8815804/pexels-photo-8815804.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Elegant neoclassical columns. Parallax background to separate sections."
+      },
+      "contact_footer": {
+        "url": "https://images.unsplash.com/photo-1764410481612-7544525b2991?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njl8MHwxfHNlYXJjaHwyfHxwcmVtaXVtJTIwb2ZmaWNlJTIwZGVza3xlbnwwfHx8fDE3ODE3NTY4MTV8MA&ixlib=rb-4.1.0&q=85",
+        "description": "Elegant office desk. Subdued, professional backdrop for contact information."
+      }
+    }
+  },
+  "page_structure": {
+    "sections": [
+      {
+        "id": "hero",
+        "layout": "Full viewport height (100vh). Background image of Andes with dark gradient overlay. Large typography centered or left-aligned.",
+        "content_es": "Justicia y deber",
+        "content_en": "Justice and Duty"
+      },
+      {
+        "id": "philosophy",
+        "layout": "Two-column asymmetric layout. Image on left overlapping text on right.",
+        "content": "Sobre el Estudio / Filosofía"
+      },
+      {
+        "id": "practice-areas",
+        "layout": "Bento Grid or Custom Accordion List. 3 main categories: 1. Personas y Empresas 2. Tramitación de Litigios 3. Solicitudes ante Servicios del Estado."
+      },
+      {
+        "id": "team",
+        "layout": "Grid-cols-12. Alejandro G. Vargas Casas spans 6 cols, Mónica P. Zúñiga Lillo spans 6 cols. High-contrast typography for their extensive credentials."
+      },
+      {
+        "id": "contact-and-footer",
+        "layout": "Dark background (Petroleum 900). Minimalist typography showing Antonio Varas 687, Torre Sinergia, Temuco. No contact form, just elegant text blocks and email links."
+      }
+    ]
+  },
+  "testing_rules": {
+    "attributes": "All interactive elements MUST include a `data-testid` attribute (e.g., `data-testid=\"lang-toggle-en\"`, `data-testid=\"nav-link-equipo\"`, `data-testid=\"floating-chat-btn\"`)."
+  },
+  "instructions_to_main_agent": [
+    "Use standard HTML + Tailwind for structural layouts to achieve the required asymmetric/editorial look. Avoid locking layouts inside strict Shadcn wrapper components.",
+    "Implement language translation state (ES/EN) at a global level (React Context or Zustand) so the toggle works instantly across all text.",
+    "Use Lenis for smooth scrolling.",
+    "Embed Google Fonts: 'Cormorant Garamond' and 'Outfit' in index.css or Next/Vite config.",
+    "Strictly follow the color palette, using the #486c7c (Petroleum) and #5c5c5c (Gray) as defining brand markers, accented by Ivory backgrounds.",
+    "Use the exact image URLs provided in the `media` node."
+  ]
+}
