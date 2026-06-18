@@ -44,10 +44,7 @@ const FloatingChat = () => {
             className="mt-3"
             style={{ fontSize: "13px", color: "var(--brand-secondary)", lineHeight: 1.6 }}
           >
-            {/* Placeholder while real chat widget is embedded */}
-            {t === undefined
-              ? ""
-              : "El chat se conectará en breve. Mientras tanto, contáctenos al +56 9 7987 3921."}
+            {t.chat.placeholder}
           </p>
         </div>
       )}

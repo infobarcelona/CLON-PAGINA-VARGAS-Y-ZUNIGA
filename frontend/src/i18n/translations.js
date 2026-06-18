@@ -148,6 +148,7 @@ export const translations = {
     },
     chat: {
       tooltip: "¿En qué podemos ayudarle?",
+      placeholder: "El chat se conectará en breve. Mientras tanto, contáctenos al +56 9 7987 3921.",
     },
   },
   en: {
@@ -299,6 +300,7 @@ export const translations = {
     },
     chat: {
       tooltip: "How can we help?",
+      placeholder: "The chat will connect shortly. In the meantime, call us at +56 9 7987 3921.",
     },
   },
 };
