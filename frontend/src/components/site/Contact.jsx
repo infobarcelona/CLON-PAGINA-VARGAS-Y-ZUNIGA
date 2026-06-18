@@ -81,30 +81,26 @@ const Contact = () => {
               type="button"
               data-testid="contact-chat-cta"
               onClick={() => {
-                const w = window;
-                const triggers = [
-                  "#vargasyzuniga-chat-toggle",
-                  "[data-vyz-chat-toggle]",
-                  ".vyz-chat-launcher",
-                  "#chat-widget-launcher",
-                  ".chat-widget-bubble",
-                ];
-                let opened = false;
-                for (const sel of triggers) {
-                  const el = document.querySelector(sel);
-                  if (el) {
-                    el.click();
-                    opened = true;
-                    break;
+                const launcher = document.getElementById("vyz-widget-launcher");
+                const panel = document.getElementById("vyz-widget-panel");
+                // If panel already open, do nothing; else trigger launcher.
+                if (panel && panel.classList.contains("vyz-open")) return;
+                if (launcher) {
+                  launcher.click();
+                  return;
+                }
+                // Fallback: widget may not be loaded yet — retry briefly.
+                let attempts = 0;
+                const tryOpen = () => {
+                  attempts += 1;
+                  const l = document.getElementById("vyz-widget-launcher");
+                  if (l) {
+                    l.click();
+                  } else if (attempts < 10) {
+                    setTimeout(tryOpen, 300);
                   }
-                }
-                if (!opened && typeof w.openVargasZunigaChat === "function") {
-                  w.openVargasZunigaChat();
-                  opened = true;
-                }
-                if (!opened) {
-                  window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
-                }
+                };
+                tryOpen();
               }}
               className={`mt-8 btn-pill fade-up ${inView ? "in-view" : ""}`}
               style={{ transitionDelay: "0.3s" }}
