@@ -415,3 +415,13 @@ body {
     display: contents !important;
   }
 }
+
+/* Hide platform badge */
+#emergent-badge,
+a[href*="emergent.sh"][id*="badge"],
+a[id="emergent-badge"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
