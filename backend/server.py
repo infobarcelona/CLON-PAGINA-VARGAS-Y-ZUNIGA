@@ -66,6 +66,33 @@ async def get_status_checks():
     
     return status_checks
 
+
+class ContactMessage(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    name: str
+    email: str
+    subject: str
+    message: str
+    timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+
+class ContactCreate(BaseModel):
+    name: str = Field(min_length=1, max_length=120)
+    email: str = Field(min_length=3, max_length=200)
+    subject: str = Field(min_length=1, max_length=200)
+    message: str = Field(min_length=1, max_length=4000)
+
+
+@api_router.post("/contact", response_model=ContactMessage)
+async def create_contact_message(payload: ContactCreate):
+    msg = ContactMessage(**payload.model_dump())
+    doc = msg.model_dump()
+    doc['timestamp'] = doc['timestamp'].isoformat()
+    await db.contact_messages.insert_one(doc)
+    return msg
+
 # Include the router in the main app
 app.include_router(api_router)
 
