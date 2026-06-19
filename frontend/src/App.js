@@ -71,7 +71,7 @@ const Site = () => {
           onNext={goNext}
         />
       </main>
-      <Footer sectionIndex={idx} totalSections={SECTIONS.length} />
+      <Footer sectionIndex={idx} totalSections={SECTIONS.length} onNavigate={goTo} />
     </div>
   );
 };

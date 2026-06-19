@@ -149,6 +149,13 @@ export const translations = {
     footer: {
       copy: "© {year} Vargas & Zúñiga Abogados",
       slim: "Antonio Varas 687, of. 1010 · Torre Sinergia · Temuco",
+      col2Title: "Otros contenidos",
+      col2Item1: "Pensamiento Jurídico",
+      col2Item2: "Pro Bono",
+      col2Item3: "Selección de talentos",
+      col2Item4: "Canal de denuncias",
+      col2Item5: "Política de privacidad",
+      phoneLabel: "Tel:",
     },
   },
   en: {
@@ -284,6 +291,13 @@ export const translations = {
     footer: {
       copy: "© {year} Vargas & Zúñiga Lawyers",
       slim: "Antonio Varas 687, suite 1010 · Torre Sinergia · Temuco",
+      col2Title: "Other content",
+      col2Item1: "Legal Insights",
+      col2Item2: "Pro Bono",
+      col2Item3: "Careers",
+      col2Item4: "Whistleblower channel",
+      col2Item5: "Privacy policy",
+      phoneLabel: "Phone:",
     },
   },
 };

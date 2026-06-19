@@ -170,18 +170,33 @@ body {
   letter-spacing: 0.005em;
   color: var(--ink);
   position: relative;
-  padding: 12px 4px;
+  padding: 12px 4px 12px 10px;
   background: transparent;
   border: none;
   cursor: pointer;
   transition: color 0.3s ease;
 }
+.nav-link::before {
+  content: '/';
+  position: absolute;
+  left: -2px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--accent);
+  font-family: 'PT Sans', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
 .nav-link:hover { color: var(--accent); }
+.nav-link:hover::before { opacity: 1; }
 .nav-link.active { color: var(--accent); }
+.nav-link.active::before { opacity: 1; }
 .nav-link.active::after {
   content: '';
   position: absolute;
-  left: 0;
+  left: 10px;
   right: 0;
   bottom: 4px;
   height: 2px;

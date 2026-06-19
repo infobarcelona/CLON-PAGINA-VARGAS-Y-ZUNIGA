@@ -34,9 +34,10 @@ const SectionNav = ({ index, total, onPrev, onNext }) => {
 
       <div
         className="hidden md:flex items-center gap-2"
-        style={{ fontFamily: "'Inter', sans-serif", fontSize: "10px", letterSpacing: "0.32em", textTransform: "uppercase", color: "var(--ink-mute)" }}
+        style={{ fontFamily: "'Nunito Sans', sans-serif", fontSize: "11px", letterSpacing: "0.12em", color: "var(--ink-mute)", fontWeight: 700 }}
         data-testid="section-progress"
       >
+        <span style={{ color: "var(--accent)", fontWeight: 700, fontFamily: "'PT Sans', sans-serif" }}>/</span>
         <span style={{ fontVariantNumeric: "tabular-nums" }}>
           {String(index + 1).padStart(2, "0")}
         </span>
