@@ -10,8 +10,15 @@ const Home = ({ onNavigate }) => {
         <div className="grid grid-cols-12 gap-8 lg:gap-12 items-center">
           <div className="col-span-12 lg:col-span-8 stagger">
             <div className="eyebrow flex items-center gap-2">
-              <span className="slash-red">/</span>
-              <span>{t.home.eyebrow}</span>
+              <span className="bar-red" />
+              <span>
+                {t.home.eyebrow.split(" · ").map((part, i, arr) => (
+                  <span key={i}>
+                    {part}
+                    {i < arr.length - 1 && <span className="dot-red">·</span>}
+                  </span>
+                ))}
+              </span>
             </div>
             <h1
               className="display-xl mt-5"
@@ -35,7 +42,12 @@ const Home = ({ onNavigate }) => {
               }}
               data-testid="home-slogan"
             >
-              {t.slogan}
+              {t.slogan.split(" · ").map((part, i, arr) => (
+                <span key={i}>
+                  <span style={{ color: "var(--ink)" }}>{part}</span>
+                  {i < arr.length - 1 && <span style={{ color: "var(--accent)", margin: "0 0.4em" }}>·</span>}
+                </span>
+              ))}
             </div>
             <p
               className="mt-6 max-w-2xl"

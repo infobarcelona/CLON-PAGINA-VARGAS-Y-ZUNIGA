@@ -117,6 +117,37 @@ body {
   font-weight: 700;
 }
 
+/* Decorative red bar (used in place of slashes) */
+.bar-red {
+  display: inline-block;
+  width: 5px;
+  height: 1em;
+  background: var(--accent);
+  transform: skewX(-18deg);
+  border-radius: 1px;
+  vertical-align: middle;
+  margin-right: 0.55em;
+  flex-shrink: 0;
+}
+.bar-red-sm {
+  display: inline-block;
+  width: 3px;
+  height: 0.85em;
+  background: var(--accent);
+  transform: skewX(-18deg);
+  border-radius: 1px;
+  vertical-align: middle;
+  margin-right: 0.45em;
+  flex-shrink: 0;
+}
+
+/* Red middle-dot separator */
+.dot-red {
+  color: var(--accent);
+  font-weight: 700;
+  margin: 0 0.25em;
+}
+
 /* Layout */
 .app-shell {
   display: flex;
@@ -170,22 +201,22 @@ body {
   letter-spacing: 0.005em;
   color: var(--ink);
   position: relative;
-  padding: 12px 4px 12px 10px;
+  padding: 12px 4px 12px 14px;
   background: transparent;
   border: none;
   cursor: pointer;
   transition: color 0.3s ease;
 }
 .nav-link::before {
-  content: '/';
+  content: '';
   position: absolute;
-  left: -2px;
+  left: 0;
   top: 50%;
-  transform: translateY(-50%);
-  color: var(--accent);
-  font-family: 'PT Sans', sans-serif;
-  font-weight: 700;
-  font-size: 14px;
+  transform: translateY(-50%) skewX(-18deg);
+  width: 4px;
+  height: 18px;
+  background: var(--accent);
+  border-radius: 1px;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -196,7 +227,7 @@ body {
 .nav-link.active::after {
   content: '';
   position: absolute;
-  left: 10px;
+  left: 14px;
   right: 0;
   bottom: 4px;
   height: 2px;

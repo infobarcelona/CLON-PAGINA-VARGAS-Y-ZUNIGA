@@ -32,7 +32,17 @@ const Header = ({ sectionKey, onNavigate, sections }) => {
             className="inline-flex items-center gap-2 transition-colors"
             style={{ color: "rgba(255,255,255,0.92)" }}
           >
-            <span style={{ color: "var(--accent)", fontWeight: 700 }}>/</span>
+            <span
+              aria-hidden="true"
+              style={{
+                display: "inline-block",
+                width: 3,
+                height: 14,
+                background: "var(--accent)",
+                transform: "skewX(-18deg)",
+                borderRadius: 1,
+              }}
+            />
             <Phone size={12} strokeWidth={1.7} />
             <span style={{ fontSize: "12.5px", fontWeight: 500 }}>{t.contact.phone}</span>
           </a>
@@ -48,20 +58,21 @@ const Header = ({ sectionKey, onNavigate, sections }) => {
             type="button"
             onClick={() => go("home")}
             data-testid="logo-link"
-            className="flex items-center gap-2 group flex-shrink-0"
+            className="flex items-center gap-3 group flex-shrink-0"
           >
+            {/* Decorative red bar instead of slash */}
             <span
+              aria-hidden="true"
               style={{
-                color: "var(--accent)",
-                fontFamily: "'PT Sans', sans-serif",
-                fontWeight: 700,
-                fontSize: "28px",
-                lineHeight: 1,
-                fontStyle: "italic",
+                display: "inline-block",
+                width: 6,
+                height: 42,
+                background: "var(--accent)",
+                transform: "skewX(-18deg)",
+                borderRadius: 2,
+                flexShrink: 0,
               }}
-            >
-              /
-            </span>
+            />
             <div className="leading-tight text-left">
               <div
                 style={{
@@ -83,11 +94,11 @@ const Header = ({ sectionKey, onNavigate, sections }) => {
                   letterSpacing: "0.3em",
                   color: "var(--ink-faint)",
                   textTransform: "uppercase",
-                  marginTop: "3px",
+                  marginTop: "4px",
                   fontWeight: 700,
                 }}
               >
-                Abogados · Temuco
+                Abogados <span style={{ color: "var(--accent)" }}>·</span> Temuco
               </div>
             </div>
           </button>

@@ -21,11 +21,16 @@ const Studio = () => {
                 fontFamily: "'PT Sans', sans-serif",
                 fontStyle: "italic",
                 fontSize: "clamp(1rem, 1.4vw, 1.25rem)",
-                color: "var(--accent)",
+                color: "var(--ink)",
                 fontWeight: 700,
               }}
             >
-              {t.slogan}
+              {t.slogan.split(" · ").map((part, i, arr) => (
+                <span key={i}>
+                  <span>{part}</span>
+                  {i < arr.length - 1 && <span style={{ color: "var(--accent)", margin: "0 0.4em" }}>·</span>}
+                </span>
+              ))}
             </div>
           </div>
 
