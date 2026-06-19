@@ -12,17 +12,19 @@ const LanguageToggle = ({ variant = "light" }) => {
         className={!isEN ? "active" : ""}
         onClick={() => setLang("es")}
         data-testid="lang-toggle-es"
-        style={{ color: isDark && isEN ? "rgba(255,255,255,0.65)" : isDark ? "var(--brand-white)" : undefined }}
+        style={{ color: isDark && isEN ? "rgba(255,255,255,0.6)" : isDark ? "var(--brand-white)" : undefined }}
       >
         Español
       </button>
-      <span className="sep" style={{ color: isDark ? "rgba(255,255,255,0.4)" : undefined }}>·</span>
+      <span className="sep" style={{ color: isDark ? "rgba(255,255,255,0.35)" : undefined }}>
+        |
+      </span>
       <button
         type="button"
         className={isEN ? "active" : ""}
         onClick={() => setLang("en")}
         data-testid="lang-toggle-en"
-        style={{ color: isDark && !isEN ? "rgba(255,255,255,0.65)" : isDark ? "var(--brand-white)" : undefined }}
+        style={{ color: isDark && !isEN ? "rgba(255,255,255,0.6)" : isDark ? "var(--brand-white)" : undefined }}
       >
         English
       </button>

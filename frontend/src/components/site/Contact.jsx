@@ -1,30 +1,14 @@
 import { useLang } from "@/i18n/LanguageContext";
 import { useInView } from "@/hooks/useInView";
 import { MapPin, Phone, Clock, MessageSquare } from "lucide-react";
-import LanguageToggle from "./LanguageToggle";
-
-const openChat = () => {
-  const launcher = document.getElementById("vyz-widget-launcher");
-  const panel = document.getElementById("vyz-widget-panel");
-  if (panel && panel.classList.contains("vyz-open")) return;
-  if (launcher) {
-    launcher.click();
-    return;
-  }
-  let attempts = 0;
-  const tryOpen = () => {
-    attempts += 1;
-    const l = document.getElementById("vyz-widget-launcher");
-    if (l) l.click();
-    else if (attempts < 10) setTimeout(tryOpen, 300);
-  };
-  tryOpen();
-};
+import { openChat, scrollToId } from "@/lib/site-utils";
 
 const Contact = () => {
   const { t } = useLang();
   const [ref, inView] = useInView();
   const year = new Date().getFullYear();
+
+  const social = ["Linkedin", "Spotify", "Facebook"];
 
   return (
     <>
@@ -32,40 +16,28 @@ const Contact = () => {
         id="contacto"
         ref={ref}
         data-testid="contact-section"
-        className="relative"
-        style={{ background: "var(--brand-black)" }}
+        className="section relative"
+        style={{ background: "var(--brand-cream-deep)" }}
       >
-        <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-20 py-24 md:py-32 lg:py-40">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-            {/* Left: title + CTA */}
-            <div className="lg:col-span-6">
-              <div
-                className={`overline mb-4 fade-up ${inView ? "in-view" : ""}`}
-                style={{ color: "var(--brand-blue)" }}
-              >
-                {t.contact.overline}
-              </div>
+        <div className="max-w-[1380px] mx-auto px-5 md:px-8 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12">
+            <div className="lg:col-span-5">
+              <div className={`overline fade-up ${inView ? "in-view" : ""}`}>{t.contact.kicker}</div>
               <h2
-                className={`heading-section fade-up ${inView ? "in-view" : ""}`}
-                style={{
-                  fontSize: "clamp(2.8rem, 7vw, 6rem)",
-                  color: "var(--brand-white)",
-                  transitionDelay: "0.05s",
-                }}
+                className={`heading-section mt-2 fade-up ${inView ? "in-view" : ""}`}
+                style={{ fontSize: "clamp(2rem, 3.6vw, 3rem)", transitionDelay: "0.05s" }}
               >
-                <span className="block">{t.contact.titleA}</span>
-                <span className="block" style={{ color: "var(--brand-blue)" }}>
-                  {t.contact.titleB}
-                </span>
+                <span className="slash-red mr-1">/</span>
+                {t.contact.title}
               </h2>
               <p
-                className={`mt-7 fade-up ${inView ? "in-view" : ""}`}
+                className={`mt-5 fade-up ${inView ? "in-view" : ""}`}
                 style={{
-                  color: "rgba(255,255,255,0.75)",
-                  fontSize: "16.5px",
+                  color: "var(--brand-gray)",
+                  fontSize: "15.5px",
                   lineHeight: 1.65,
-                  maxWidth: "32rem",
-                  transitionDelay: "0.15s",
+                  maxWidth: "36rem",
+                  transitionDelay: "0.12s",
                 }}
               >
                 {t.contact.lead}
@@ -74,62 +46,49 @@ const Contact = () => {
                 type="button"
                 data-testid="contact-chat-cta"
                 onClick={openChat}
-                className={`mt-8 btn-blue fade-up ${inView ? "in-view" : ""}`}
-                style={{ transitionDelay: "0.25s" }}
+                className={`btn-red mt-6 fade-up ${inView ? "in-view" : ""}`}
+                style={{ transitionDelay: "0.2s" }}
               >
-                <MessageSquare size={14} strokeWidth={1.6} />
-                <span>{t.contact.chatHint}</span>
+                <MessageSquare size={14} strokeWidth={1.7} />
+                <span>{t.chatBand.cta}</span>
               </button>
             </div>
 
-            {/* Right: info */}
-            <div className={`lg:col-span-5 lg:col-start-8 fade-up ${inView ? "in-view" : ""}`} style={{ transitionDelay: "0.3s" }}>
-              <div style={{ borderTop: "1px solid rgba(255,255,255,0.15)" }}>
+            <div className={`lg:col-span-6 lg:col-start-7 fade-up ${inView ? "in-view" : ""}`} style={{ transitionDelay: "0.25s" }}>
+              <div style={{ borderTop: "1px solid var(--brand-line)" }}>
                 {/* Office */}
-                <div
-                  className="py-6 grid grid-cols-12 gap-4"
-                  style={{ borderBottom: "1px solid rgba(255,255,255,0.15)" }}
-                >
+                <div className="py-6 grid grid-cols-12 gap-4" style={{ borderBottom: "1px solid var(--brand-line)" }}>
                   <div className="col-span-1 pt-1">
-                    <MapPin size={18} strokeWidth={1.4} style={{ color: "var(--brand-blue)" }} />
+                    <MapPin size={18} strokeWidth={1.6} style={{ color: "var(--brand-red)" }} />
                   </div>
                   <div className="col-span-11">
-                    <div className="overline" style={{ color: "rgba(255,255,255,0.55)" }}>
-                      {t.contact.officeLabel}
-                    </div>
-                    <div
-                      className="mt-1"
-                      style={{ fontSize: "17px", color: "var(--brand-white)", fontWeight: 500 }}
-                    >
+                    <div className="overline" style={{ color: "var(--brand-gray)" }}>{t.contact.officeLabel}</div>
+                    <div className="font-pt mt-1" style={{ fontSize: "18px", fontWeight: 700, color: "var(--brand-black)" }}>
                       {t.contact.address}
                     </div>
-                    <div style={{ color: "rgba(255,255,255,0.65)", fontSize: "14px", marginTop: "3px" }}>
+                    <div style={{ color: "var(--brand-gray)", fontSize: "14px", marginTop: "3px" }}>
                       {t.contact.tower}
                     </div>
                   </div>
                 </div>
                 {/* Phone */}
-                <div
-                  className="py-6 grid grid-cols-12 gap-4"
-                  style={{ borderBottom: "1px solid rgba(255,255,255,0.15)" }}
-                >
+                <div className="py-6 grid grid-cols-12 gap-4" style={{ borderBottom: "1px solid var(--brand-line)" }}>
                   <div className="col-span-1 pt-1">
-                    <Phone size={18} strokeWidth={1.4} style={{ color: "var(--brand-blue)" }} />
+                    <Phone size={18} strokeWidth={1.6} style={{ color: "var(--brand-red)" }} />
                   </div>
                   <div className="col-span-11">
-                    <div className="overline" style={{ color: "rgba(255,255,255,0.55)" }}>
-                      {t.contact.phoneLabel}
-                    </div>
+                    <div className="overline" style={{ color: "var(--brand-gray)" }}>{t.contact.phoneLabel}</div>
                     <a
-                      href="tel:+56979873921"
+                      href={`tel:${t.contact.phone.replace(/\s/g, "")}`}
                       data-testid="contact-phone"
                       className="link-underline"
                       style={{
                         display: "inline-block",
                         marginTop: "4px",
-                        fontSize: "17px",
-                        color: "var(--brand-white)",
-                        fontWeight: 500,
+                        fontSize: "18px",
+                        fontWeight: 700,
+                        fontFamily: "'PT Sans', sans-serif",
+                        color: "var(--brand-black)",
                       }}
                     >
                       {t.contact.phone}
@@ -137,26 +96,21 @@ const Contact = () => {
                   </div>
                 </div>
                 {/* Emails */}
-                <div
-                  className="py-6 grid grid-cols-12 gap-4"
-                  style={{ borderBottom: "1px solid rgba(255,255,255,0.15)" }}
-                >
+                <div className="py-6 grid grid-cols-12 gap-4" style={{ borderBottom: "1px solid var(--brand-line)" }}>
                   <div className="col-span-1 pt-1">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" style={{ color: "var(--brand-blue)" }}>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" style={{ color: "var(--brand-red)" }}>
                       <rect x="3" y="5" width="18" height="14" />
                       <path d="M3 7l9 6 9-6" />
                     </svg>
                   </div>
                   <div className="col-span-11">
-                    <div className="overline" style={{ color: "rgba(255,255,255,0.55)" }}>
-                      {t.contact.emailLabel}
-                    </div>
+                    <div className="overline" style={{ color: "var(--brand-gray)" }}>{t.contact.emailLabel}</div>
                     <div className="mt-1 flex flex-col gap-1">
                       <a
                         href="mailto:avargas@vargasyzuniga.cl"
                         data-testid="contact-email-1"
                         className="link-underline self-start"
-                        style={{ fontSize: "15.5px", color: "var(--brand-white)" }}
+                        style={{ fontSize: "15px", color: "var(--brand-black)" }}
                       >
                         avargas@vargasyzuniga.cl
                       </a>
@@ -164,7 +118,7 @@ const Contact = () => {
                         href="mailto:mzuniga@vargasyzuniga.cl"
                         data-testid="contact-email-2"
                         className="link-underline self-start"
-                        style={{ fontSize: "15.5px", color: "var(--brand-white)" }}
+                        style={{ fontSize: "15px", color: "var(--brand-black)" }}
                       >
                         mzuniga@vargasyzuniga.cl
                       </a>
@@ -174,13 +128,11 @@ const Contact = () => {
                 {/* Hours */}
                 <div className="py-6 grid grid-cols-12 gap-4">
                   <div className="col-span-1 pt-1">
-                    <Clock size={18} strokeWidth={1.4} style={{ color: "var(--brand-blue)" }} />
+                    <Clock size={18} strokeWidth={1.6} style={{ color: "var(--brand-red)" }} />
                   </div>
                   <div className="col-span-11">
-                    <div className="overline" style={{ color: "rgba(255,255,255,0.55)" }}>
-                      {t.contact.hoursLabel}
-                    </div>
-                    <div className="mt-1" style={{ fontSize: "15.5px", color: "var(--brand-white)" }}>
+                    <div className="overline" style={{ color: "var(--brand-gray)" }}>{t.contact.hoursLabel}</div>
+                    <div className="mt-1" style={{ fontSize: "15px", color: "var(--brand-black)" }}>
                       {t.contact.hours}
                     </div>
                   </div>
@@ -194,65 +146,148 @@ const Contact = () => {
       {/* Footer */}
       <footer
         data-testid="site-footer"
-        className="relative"
-        style={{ background: "var(--brand-black)", borderTop: "1px solid rgba(255,255,255,0.08)" }}
+        style={{ background: "var(--brand-black)", color: "var(--brand-white)" }}
       >
-        <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-20 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-          <div className="flex items-center gap-3">
-            <span
-              style={{
-                color: "var(--brand-white)",
-                fontFamily: "'Barlow Condensed', sans-serif",
-                fontSize: "26px",
-                lineHeight: 1,
-                fontWeight: 400,
-              }}
+        <div className="max-w-[1380px] mx-auto px-5 md:px-8 lg:px-12 py-14 grid grid-cols-1 md:grid-cols-12 gap-8">
+          {/* logo + tagline */}
+          <div className="md:col-span-3">
+            <div className="flex items-center gap-2">
+              <span style={{ color: "var(--brand-red)", fontSize: "28px", fontWeight: 700, fontFamily: "'PT Sans', sans-serif" }}>/</span>
+              <div>
+                <div
+                  style={{
+                    color: "var(--brand-white)",
+                    fontFamily: "'PT Sans', sans-serif",
+                    fontWeight: 700,
+                    fontSize: "16px",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.05em",
+                  }}
+                >
+                  Vargas <span style={{ color: "var(--brand-red)" }}>y</span> Zúñiga
+                </div>
+                <div
+                  style={{
+                    fontSize: "10px",
+                    letterSpacing: "0.25em",
+                    color: "rgba(255,255,255,0.55)",
+                    textTransform: "uppercase",
+                    marginTop: "2px",
+                  }}
+                >
+                  Abogados
+                </div>
+              </div>
+            </div>
+            <p
+              className="mt-4 italic"
+              style={{ color: "rgba(255,255,255,0.6)", fontSize: "13px" }}
             >
-              /
-            </span>
-            <span
-              className="italic"
-              style={{
-                color: "var(--brand-white)",
-                fontFamily: "'Barlow Condensed', sans-serif",
-                fontSize: "22px",
-                fontWeight: 500,
-                letterSpacing: "-0.01em",
-              }}
-            >
-              Vargas y Zúñiga
-            </span>
-            <span
-              className="hidden md:inline ml-3"
-              style={{
-                color: "rgba(255,255,255,0.55)",
-                fontSize: "13px",
-                fontStyle: "italic",
-              }}
-            >
-              — {t.footer.tagline}
-            </span>
+              {t.footer.tagline}
+            </p>
+            <div className="mt-5 flex gap-3">
+              {social.map((s) => (
+                <span
+                  key={s}
+                  className="w-9 h-9 rounded-full flex items-center justify-center"
+                  style={{ background: "rgba(255,255,255,0.08)", color: "var(--brand-white)", fontSize: "11px" }}
+                >
+                  {s[0]}
+                </span>
+              ))}
+            </div>
           </div>
 
-          <div className="flex items-center gap-6">
-            <LanguageToggle variant="dark" />
-            <button
-              type="button"
-              data-testid="back-to-top"
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="link-underline"
+          {/* col1 */}
+          <div className="md:col-span-3">
+            <div
+              className="font-pt mb-4"
+              style={{ fontSize: "15px", fontWeight: 700, color: "var(--brand-white)" }}
+            >
+              {t.footer.col1Title}
+            </div>
+            <ul className="space-y-2.5">
+              {t.footer.col1Items.map((it) => (
+                <li key={it.label}>
+                  <a
+                    href={it.target}
+                    data-testid={`footer-${it.target.replace("#", "")}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      scrollToId(it.target);
+                    }}
+                    className="flex items-center gap-2 transition-colors"
+                    style={{ fontSize: "14px", color: "rgba(255,255,255,0.78)" }}
+                  >
+                    <span style={{ color: "var(--brand-red)" }}>•</span>
+                    <span className="link-underline">{it.label}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* col2 */}
+          <div className="md:col-span-3">
+            <div
+              className="font-pt mb-4"
+              style={{ fontSize: "15px", fontWeight: 700, color: "var(--brand-white)" }}
+            >
+              {t.footer.col2Title}
+            </div>
+            <ul className="space-y-2.5">
+              {t.footer.col2Items.map((it) => (
+                <li key={it}>
+                  <span
+                    className="flex items-center gap-2"
+                    style={{ fontSize: "14px", color: "rgba(255,255,255,0.78)" }}
+                  >
+                    <span style={{ color: "var(--brand-red)" }}>•</span>
+                    <span>{it}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* col3 address */}
+          <div className="md:col-span-3 md:text-right">
+            <div
+              className="font-pt"
               style={{
-                fontSize: "13px",
+                fontSize: "18px",
+                fontWeight: 700,
                 color: "var(--brand-white)",
-                fontWeight: 500,
+                lineHeight: 1.3,
               }}
             >
-              {t.footer.backTop} ↑
-            </button>
+              {t.footer.address1}
+            </div>
+            <div
+              className="font-pt"
+              style={{
+                fontSize: "16px",
+                fontWeight: 400,
+                color: "rgba(255,255,255,0.75)",
+                marginTop: "4px",
+              }}
+            >
+              {t.footer.address2}
+            </div>
+            <div className="mt-4" style={{ fontSize: "13px", color: "rgba(255,255,255,0.7)" }}>
+              <span>{t.footer.phoneLabel} </span>
+              <a
+                href={`tel:${t.contact.phone.replace(/\s/g, "")}`}
+                className="link-underline"
+                style={{ color: "var(--brand-red)" }}
+              >
+                {t.contact.phone}
+              </a>
+            </div>
           </div>
         </div>
         <div
-          className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-20 py-4"
+          className="max-w-[1380px] mx-auto px-5 md:px-8 lg:px-12 py-4"
           style={{
             borderTop: "1px solid rgba(255,255,255,0.08)",
             fontSize: "12px",
@@ -264,7 +299,15 @@ const Contact = () => {
           }}
         >
           <span>{t.footer.copy.replace("{year}", year)}</span>
-          <span>{t.footer.designedIn}</span>
+          <button
+            type="button"
+            data-testid="back-to-top"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="link-underline"
+            style={{ color: "rgba(255,255,255,0.75)" }}
+          >
+            ↑ Top
+          </button>
         </div>
       </footer>
     </>

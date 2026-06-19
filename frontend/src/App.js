@@ -3,23 +3,27 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "@/i18n/LanguageContext";
 import Header from "@/components/site/Header";
 import Hero from "@/components/site/Hero";
+import News from "@/components/site/News";
 import Studio from "@/components/site/Studio";
-import Stats from "@/components/site/Stats";
 import PracticeAreas from "@/components/site/PracticeAreas";
+import Experience from "@/components/site/Experience";
 import Team from "@/components/site/Team";
-import Insights from "@/components/site/Insights";
+import Recent from "@/components/site/Recent";
+import CtaBands from "@/components/site/CtaBands";
 import Contact from "@/components/site/Contact";
 
 const Home = () => {
   return (
-    <main data-testid="home-page" style={{ background: "var(--brand-white)" }}>
+    <main data-testid="home-page" style={{ background: "var(--brand-cream)" }}>
       <Header />
       <Hero />
+      <News />
       <Studio />
-      <Stats />
       <PracticeAreas />
+      <Experience />
       <Team />
-      <Insights />
+      <Recent />
+      <CtaBands />
       <Contact />
     </main>
   );

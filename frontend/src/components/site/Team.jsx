@@ -1,209 +1,194 @@
+import { useState, useEffect, useRef } from "react";
 import { useLang } from "@/i18n/LanguageContext";
 import { useInView } from "@/hooks/useInView";
-import { Mail } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { scrollToId } from "@/lib/site-utils";
 
 const Team = () => {
   const { t } = useLang();
   const [ref, inView] = useInView();
+  const [pageIdx, setPageIdx] = useState(0);
+  const timerRef = useRef(null);
+  const trackRef = useRef(null);
 
-  const handleCTA = () => {
-    const el = document.getElementById("equipo-detalle");
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  };
+  const members = t.team.members;
+  // Pages of 4 visible cards
+  const perPage = 4;
+  const totalPages = Math.max(1, Math.ceil(members.length / perPage));
+
+  useEffect(() => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      setPageIdx((p) => (p + 1) % totalPages);
+    }, 7000);
+    return () => clearInterval(timerRef.current);
+  }, [totalPages]);
 
   return (
     <>
-      {/* Quote / Team teaser section (carey-style) */}
       <section
         id="equipo"
         ref={ref}
-        data-testid="team-quote-section"
-        className="relative"
-        style={{ background: "var(--brand-white)" }}
+        data-testid="team-section"
+        className="section relative"
+        style={{ background: "var(--brand-cream)" }}
       >
-        <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-20 py-24 md:py-32 lg:py-40">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-            {/* Left: portrait */}
-            <div className={`lg:col-span-5 fade-up ${inView ? "in-view" : ""}`}>
-              <div
-                className="relative overflow-hidden"
-                style={{ background: "var(--brand-bg-soft)", aspectRatio: "4/5", maxWidth: 520 }}
-              >
-                <img
-                  src={t.team.members[0].img}
-                  alt={t.team.members[0].name}
-                  className="absolute inset-0 w-full h-full object-cover object-top"
-                  style={{ filter: "grayscale(8%) contrast(1.04)" }}
-                />
-              </div>
-            </div>
-
-            {/* Right: title + quote */}
-            <div className="lg:col-span-7">
-              <div className={`overline fade-up ${inView ? "in-view" : ""}`} style={{ transitionDelay: "0.1s" }}>
-                {t.team.overline}
-              </div>
+        <div className="max-w-[1380px] mx-auto px-5 md:px-8 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            <div className="lg:col-span-4">
               <h2
-                className={`heading-section mt-4 fade-up ${inView ? "in-view" : ""}`}
+                className={`heading-section fade-up ${inView ? "in-view" : ""}`}
+                style={{ fontSize: "clamp(1.7rem, 2.8vw, 2.4rem)" }}
+              >
+                <span className="slash-red mr-1">/</span>
+                {t.team.kicker}
+              </h2>
+              <p
+                className={`mt-5 fade-up ${inView ? "in-view" : ""}`}
                 style={{
-                  fontSize: "clamp(2.8rem, 6vw, 5.5rem)",
-                  color: "var(--brand-black)",
-                  transitionDelay: "0.15s",
+                  color: "var(--brand-gray)",
+                  fontSize: "14.5px",
+                  lineHeight: 1.65,
+                  maxWidth: "36ch",
+                  transitionDelay: "0.1s",
                 }}
               >
-                <span className="block">{t.team.titleA}</span>
-                <span className="block" style={{ color: "var(--brand-blue)" }}>
-                  {t.team.titleB}
-                </span>
-              </h2>
+                {t.team.lead}
+              </p>
+              <button
+                type="button"
+                data-testid="team-cta"
+                onClick={() => scrollToId(t.team.ctaTarget)}
+                className={`ver-mas mt-5 fade-up ${inView ? "in-view" : ""}`}
+                style={{ transitionDelay: "0.2s" }}
+              >
+                {t.team.cta} <ArrowRight size={14} strokeWidth={2} />
+              </button>
+            </div>
 
-              <div className="mt-10 relative">
-                <div
-                  className={`quote-mark absolute fade-up ${inView ? "in-view" : ""}`}
-                  style={{
-                    right: 0,
-                    top: -40,
-                    fontSize: "8rem",
-                    transitionDelay: "0.25s",
-                    transform: "scaleX(-1)",
-                  }}
-                  aria-hidden="true"
-                >
-                  &rdquo;
-                </div>
-                <p
-                  className={`fade-up ${inView ? "in-view" : ""}`}
-                  style={{
-                    fontSize: "17px",
-                    lineHeight: 1.65,
-                    color: "var(--brand-graphite)",
-                    fontWeight: 400,
-                    maxWidth: "44rem",
-                    transitionDelay: "0.25s",
-                  }}
-                >
-                  {t.team.quote}
-                </p>
-                <p
-                  className={`mt-5 italic fade-up ${inView ? "in-view" : ""}`}
-                  style={{
-                    color: "var(--brand-graphite-light)",
-                    fontSize: "14px",
-                    transitionDelay: "0.3s",
-                  }}
-                >
-                  {t.team.author}
-                </p>
+            <div className="lg:col-span-8 overflow-hidden" data-testid="team-carousel">
+              <div
+                ref={trackRef}
+                className="flex transition-transform duration-700 ease-out"
+                style={{
+                  transform: `translateX(-${pageIdx * 100}%)`,
+                  width: `${totalPages * 100}%`,
+                }}
+              >
+                {Array.from({ length: totalPages }).map((_, pIdx) => (
+                  <div
+                    key={pIdx}
+                    className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-5"
+                    style={{ width: `${100 / totalPages}%`, flex: `0 0 ${100 / totalPages}%` }}
+                  >
+                    {members.slice(pIdx * perPage, pIdx * perPage + perPage).map((m, i) => (
+                      <article
+                        key={i}
+                        data-testid={`team-card-${pIdx * perPage + i}`}
+                        className="team-card"
+                      >
+                        <div className="portrait">
+                          <img src={m.img} alt={m.name} />
+                        </div>
+                        <div className="name">{m.name}</div>
+                        <div className="role">{m.role}</div>
+                      </article>
+                    ))}
+                  </div>
+                ))}
               </div>
 
-              <div className={`mt-8 fade-up ${inView ? "in-view" : ""}`} style={{ transitionDelay: "0.35s" }}>
-                <button
-                  type="button"
-                  data-testid="team-cta"
-                  onClick={handleCTA}
-                  className="btn-blue"
-                >
-                  {t.team.cta}
-                </button>
+              <div className="mt-7 flex justify-center dots" data-testid="team-dots">
+                {Array.from({ length: totalPages }).map((_, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    data-testid={`team-dot-${i}`}
+                    onClick={() => setPageIdx(i)}
+                    className={`dot ${i === pageIdx ? "active" : ""}`}
+                    aria-label={`Page ${i + 1}`}
+                  />
+                ))}
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Detail: partners cards */}
+      {/* Detail */}
       <section
         id="equipo-detalle"
         data-testid="team-detail-section"
-        className="relative"
-        style={{ background: "var(--brand-bg-soft)" }}
+        className="section relative"
+        style={{ background: "var(--brand-cream-deep)" }}
       >
-        <div className="max-w-[1600px] mx-auto px-6 md:px-12 lg:px-20 py-24 md:py-28">
-          <div className="overline mb-3">{t.team.detailOverline}</div>
+        <div className="max-w-[1380px] mx-auto px-5 md:px-8 lg:px-12">
+          <div className="overline">{t.team.detailKicker}</div>
           <h3
-            className="heading-section mb-12"
-            style={{
-              fontSize: "clamp(2rem, 4.5vw, 3.4rem)",
-              color: "var(--brand-black)",
-            }}
+            className="heading-section mt-2 mb-10"
+            style={{ fontSize: "clamp(1.7rem, 2.6vw, 2.2rem)" }}
           >
+            <span className="slash-red mr-1">/</span>
             {t.team.detailTitle}
           </h3>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-            {t.team.members.map((m, i) => (
+            {t.team.socios.map((m, i) => (
               <article
                 key={m.name}
-                data-testid={`team-card-${i}`}
+                data-testid={`socio-card-${i}`}
                 className="bg-white"
-                style={{ padding: 0 }}
+                style={{ boxShadow: "0 1px 0 rgba(0,0,0,0.04)" }}
               >
-                <div
-                  className="relative overflow-hidden"
-                  style={{ background: "#e7e7e7", aspectRatio: "4/3" }}
-                >
-                  <img
-                    src={m.img}
-                    alt={m.name}
-                    className="absolute inset-0 w-full h-full object-cover object-top"
-                    style={{ filter: "grayscale(10%) contrast(1.05)" }}
-                  />
-                </div>
-                <div className="p-6 md:p-8">
+                <div className="grid grid-cols-1 sm:grid-cols-5">
                   <div
-                    className="overline"
-                    style={{ color: "var(--brand-blue)", fontSize: "11px" }}
+                    className="sm:col-span-2 relative overflow-hidden"
+                    style={{ background: "var(--brand-cream-deep)", aspectRatio: "3/4" }}
                   >
-                    {m.role}
+                    <img
+                      src={m.img}
+                      alt={m.name}
+                      className="absolute inset-0 w-full h-full object-cover object-top"
+                    />
                   </div>
-                  <h4
-                    className="heading-sub mt-2"
-                    style={{
-                      fontSize: "clamp(1.5rem, 2.4vw, 2rem)",
-                      color: "var(--brand-black)",
-                    }}
-                  >
-                    {m.name}
-                  </h4>
-                  <div
-                    className="mt-2"
-                    style={{
-                      fontSize: "13px",
-                      color: "var(--brand-graphite-light)",
-                      letterSpacing: "0.02em",
-                    }}
-                  >
-                    {m.spec}
+                  <div className="sm:col-span-3 p-6 md:p-7">
+                    <div className="overline" style={{ color: "var(--brand-red)" }}>
+                      {m.role}
+                    </div>
+                    <h4
+                      className="heading-sub mt-1"
+                      style={{ fontSize: "clamp(1.3rem, 2vw, 1.6rem)" }}
+                    >
+                      {m.name}
+                    </h4>
+                    <div
+                      className="mt-1"
+                      style={{ fontSize: "13px", color: "var(--brand-gray)" }}
+                    >
+                      {m.spec}
+                    </div>
+                    <ul className="mt-4 space-y-2">
+                      {m.bio.map((p, k) => (
+                        <li
+                          key={k}
+                          style={{
+                            color: "var(--brand-graphite)",
+                            fontSize: "13.5px",
+                            lineHeight: 1.6,
+                          }}
+                        >
+                          {p}
+                        </li>
+                      ))}
+                    </ul>
+                    <a
+                      href={`mailto:${m.email}`}
+                      data-testid={`socio-email-${i}`}
+                      className="ver-mas mt-5"
+                    >
+                      {m.email}
+                    </a>
                   </div>
-
-                  <div className="mt-5 space-y-2.5">
-                    {m.bio.map((p, k) => (
-                      <p
-                        key={k}
-                        style={{
-                          color: "var(--brand-graphite)",
-                          fontSize: "14.5px",
-                          lineHeight: 1.65,
-                        }}
-                      >
-                        {p}
-                      </p>
-                    ))}
-                  </div>
-
-                  <a
-                    href={`mailto:${m.email}`}
-                    data-testid={`team-email-${i}`}
-                    className="inline-flex items-center gap-2 mt-5 link-underline"
-                    style={{
-                      color: "var(--brand-blue)",
-                      fontSize: "14px",
-                      fontWeight: 500,
-                    }}
-                  >
-                    <Mail size={14} strokeWidth={1.6} />
-                    {m.email}
-                  </a>
                 </div>
               </article>
             ))}
