@@ -51,13 +51,13 @@ END:VCARD`;
         <div className="grid grid-cols-12 gap-8 lg:gap-12 stagger">
           {/* Heading + info */}
           <div className="col-span-12 lg:col-span-5">
-            <div className="eyebrow">05 / {t.nav.contact}</div>
+            <div className="eyebrow">05 · {t.nav.contact}</div>
             <h2
-              className="display mt-5"
-              style={{ fontSize: "clamp(2.2rem, 4.5vw, 4rem)" }}
+              className="display mt-4"
+              style={{ fontSize: "clamp(2rem, 4vw, 3.4rem)" }}
               data-testid="contact-title"
             >
-              {t.contact.title}
+              <span className="slash-red mr-1">/</span>{t.contact.title}
             </h2>
 
             <div className="mt-7" style={{ borderTop: "1px solid var(--bone-edge)" }}>

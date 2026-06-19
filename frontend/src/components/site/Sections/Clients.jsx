@@ -7,13 +7,13 @@ const Clients = () => {
       <div className="container-x">
         <div className="grid grid-cols-12 gap-8 lg:gap-12 items-start stagger">
           <div className="col-span-12 lg:col-span-4">
-            <div className="eyebrow">02 / {t.nav.clients}</div>
+            <div className="eyebrow">02 · {t.nav.clients}</div>
             <h2
-              className="display mt-5"
-              style={{ fontSize: "clamp(2.2rem, 4.5vw, 4rem)" }}
+              className="display mt-4"
+              style={{ fontSize: "clamp(2rem, 4vw, 3.4rem)" }}
               data-testid="clients-title"
             >
-              {t.clients.title}
+              <span className="slash-red mr-1">/</span>{t.clients.title}
             </h2>
             <p
               className="mt-5 max-w-md"
@@ -24,10 +24,10 @@ const Clients = () => {
             <p
               className="mt-5 max-w-md"
               style={{
-                fontFamily: "'Cormorant Garamond', serif",
+                fontFamily: "'PT Sans', sans-serif",
                 fontStyle: "italic",
                 color: "var(--ink-faint)",
-                fontSize: "14.5px",
+                fontSize: "14px",
                 lineHeight: 1.55,
               }}
             >

@@ -9,47 +9,44 @@ const Footer = ({ sectionIndex, totalSections }) => {
     <footer data-testid="site-footer" className="site-footer">
       <div className="container-x px-5 md:px-10 lg:px-14 py-3 flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-4 flex-1 min-w-0">
-          {/* Small QR */}
           <div
             className="hidden md:flex items-center justify-center flex-shrink-0"
-            style={{ width: 40, height: 40, background: "var(--bone)" }}
+            style={{ width: 42, height: 42, background: "#fff", borderRadius: 8, padding: 3 }}
             aria-label="QR"
             data-testid="footer-qr"
           >
             <img
               src={buildQrUrl("https://vargasyzuniga.cl/", 96)}
               alt="QR"
-              width="36"
-              height="36"
-              style={{ display: "block" }}
+              style={{ width: 36, height: 36, display: "block" }}
             />
           </div>
 
           <div className="flex flex-col min-w-0">
             <span
               style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "11px",
-                letterSpacing: "0.04em",
-                color: "rgba(245,241,234,0.85)",
+                fontFamily: "'Nunito Sans', sans-serif",
+                fontSize: "12px",
+                color: "rgba(255,255,255,0.92)",
                 whiteSpace: "nowrap",
                 overflow: "hidden",
                 textOverflow: "ellipsis",
+                fontWeight: 600,
               }}
               data-testid="footer-address"
             >
-              {t.footer.slim}
+              <span style={{ color: "var(--accent)", fontWeight: 700 }}>/</span> {t.footer.slim}
             </span>
             <span
               style={{
-                fontSize: "10.5px",
-                letterSpacing: "0.02em",
-                color: "rgba(245,241,234,0.6)",
+                fontSize: "11.5px",
+                color: "rgba(255,255,255,0.65)",
+                marginTop: "1px",
               }}
             >
               <a
                 href={`tel:${t.contact.phone.replace(/\s/g, "")}`}
-                style={{ color: "rgba(245,241,234,0.85)" }}
+                style={{ color: "rgba(255,255,255,0.85)" }}
                 data-testid="footer-phone"
               >
                 {t.contact.phone}
@@ -57,7 +54,7 @@ const Footer = ({ sectionIndex, totalSections }) => {
               {"  ·  "}
               <a
                 href="mailto:avargas@vargasyzuniga.cl"
-                style={{ color: "rgba(245,241,234,0.85)" }}
+                style={{ color: "rgba(255,255,255,0.85)" }}
                 data-testid="footer-email"
               >
                 avargas@vargasyzuniga.cl
@@ -70,21 +67,20 @@ const Footer = ({ sectionIndex, totalSections }) => {
           <span
             data-testid="footer-section-counter"
             style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "10px",
-              letterSpacing: "0.32em",
-              textTransform: "uppercase",
-              color: "rgba(245,241,234,0.55)",
+              fontFamily: "'Nunito Sans', sans-serif",
+              fontSize: "11px",
+              letterSpacing: "0.12em",
+              color: "rgba(255,255,255,0.55)",
               fontVariantNumeric: "tabular-nums",
+              fontWeight: 600,
             }}
           >
             {String(sectionIndex + 1).padStart(2, "0")} / {String(totalSections).padStart(2, "0")}
           </span>
           <span
             style={{
-              fontSize: "10.5px",
-              letterSpacing: "0.02em",
-              color: "rgba(245,241,234,0.5)",
+              fontSize: "11px",
+              color: "rgba(255,255,255,0.5)",
             }}
           >
             {t.footer.copy.replace("{year}", year)}

@@ -12,17 +12,21 @@ const Lawyers = () => {
       <div className="container-x">
         <div className="grid grid-cols-12 gap-8 lg:gap-12 items-start stagger">
           <div className="col-span-12 lg:col-span-3">
-            <div className="eyebrow">03 / {t.nav.lawyers}</div>
+            <div className="eyebrow">03 · {t.nav.lawyers}</div>
             <h2
-              className="display mt-5"
-              style={{ fontSize: "clamp(2rem, 4vw, 3.4rem)" }}
+              className="display mt-4"
+              style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)" }}
               data-testid="lawyers-title"
             >
-              {t.lawyers.title}
+              <span className="slash-red mr-1">/</span>{t.lawyers.title}
             </h2>
 
-            {/* Selector list */}
-            <div className="mt-7 flex flex-col" style={{ borderTop: "1px solid var(--bone-edge)" }}>
+            <div
+              className="mt-7 flex flex-col"
+              style={{
+                borderTop: "1px solid var(--cream-edge)",
+              }}
+            >
               {t.lawyers.members.map((m, i) => (
                 <button
                   key={m.initials}
@@ -31,17 +35,16 @@ const Lawyers = () => {
                   onClick={() => setActiveIdx(i)}
                   className="text-left py-4 flex items-center justify-between transition-colors"
                   style={{
-                    borderBottom: "1px solid var(--bone-edge)",
+                    borderBottom: "1px solid var(--cream-edge)",
                     color: i === activeIdx ? "var(--ink)" : "var(--ink-mute)",
                   }}
                 >
                   <div>
                     <div
                       style={{
-                        fontFamily: "'Cormorant Garamond', serif",
-                        fontWeight: 500,
-                        fontSize: "18px",
-                        letterSpacing: "0.005em",
+                        fontFamily: "'PT Sans', sans-serif",
+                        fontWeight: 700,
+                        fontSize: "16px",
                       }}
                     >
                       {m.name}
@@ -50,10 +53,10 @@ const Lawyers = () => {
                   </div>
                   <span
                     style={{
-                      width: 6,
-                      height: 6,
+                      width: 8,
+                      height: 8,
                       borderRadius: "50%",
-                      background: i === activeIdx ? "var(--accent)" : "var(--bone-edge)",
+                      background: i === activeIdx ? "var(--accent)" : "var(--cream-edge)",
                       display: "inline-block",
                       flexShrink: 0,
                     }}
@@ -63,23 +66,20 @@ const Lawyers = () => {
             </div>
           </div>
 
-          {/* Profile */}
           <div className="col-span-12 lg:col-span-4">
             <div className="monogram" data-testid={`lawyer-monogram-${activeIdx}`}>
               <div className="letters">
-                {active.initials[0]}
-                <span style={{ color: "var(--accent-soft)" }}>·</span>
-                {active.initials[1]}
+                {active.initials[0]}<span style={{ color: "var(--accent)" }}>·</span>{active.initials[1]}
               </div>
               <div className="full-name">{active.name}</div>
             </div>
           </div>
 
           <div className="col-span-12 lg:col-span-5">
-            <div className="label">{active.role}</div>
+            <div className="label" style={{ color: "var(--accent)" }}>{active.role}</div>
             <h3
-              className="display mt-2"
-              style={{ fontSize: "clamp(1.6rem, 2.4vw, 2.2rem)" }}
+              className="display mt-1"
+              style={{ fontSize: "clamp(1.5rem, 2.3vw, 2rem)" }}
               data-testid="lawyer-name"
             >
               {active.name}
@@ -93,8 +93,8 @@ const Lawyers = () => {
                 >
                   <span
                     style={{
-                      width: 4,
-                      height: 4,
+                      width: 5,
+                      height: 5,
                       borderRadius: "50%",
                       background: "var(--accent)",
                       marginTop: 9,
@@ -108,16 +108,9 @@ const Lawyers = () => {
             <a
               href={`mailto:${active.email}`}
               data-testid="lawyer-email"
-              className="inline-flex items-center gap-2 mt-6"
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: "13px",
-                color: "var(--ink)",
-                borderBottom: "1px solid var(--ink)",
-                paddingBottom: 2,
-              }}
+              className="ver-mas mt-6 inline-flex"
             >
-              <Mail size={13} strokeWidth={1.6} />
+              <Mail size={13} strokeWidth={1.8} />
               {active.email}
             </a>
           </div>

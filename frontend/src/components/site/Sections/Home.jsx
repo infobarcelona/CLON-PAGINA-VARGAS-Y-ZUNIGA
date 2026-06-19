@@ -9,36 +9,36 @@ const Home = ({ onNavigate }) => {
       <div className="container-x">
         <div className="grid grid-cols-12 gap-8 lg:gap-12 items-center">
           <div className="col-span-12 lg:col-span-8 stagger">
-            <div className="eyebrow">{t.home.eyebrow}</div>
+            <div className="eyebrow flex items-center gap-2">
+              <span className="slash-red">/</span>
+              <span>{t.home.eyebrow}</span>
+            </div>
             <h1
-              className="display-xl mt-6"
-              style={{
-                fontSize: "clamp(2.6rem, 7vw, 6.5rem)",
-                fontWeight: 500,
-              }}
+              className="display-xl mt-5"
+              style={{ fontSize: "clamp(2.4rem, 6vw, 5.4rem)" }}
               data-testid="home-title"
             >
               {t.brand.name.split(" & ")[0]}
-              <span style={{ color: "var(--accent)", fontStyle: "italic", fontWeight: 400, margin: "0 0.18em" }}>
+              <span style={{ color: "var(--accent)", margin: "0 0.15em", fontStyle: "italic", fontWeight: 700 }}>
                 &amp;
               </span>
               {t.brand.name.split(" & ")[1]}
             </h1>
             <div
-              className="mt-6"
+              className="mt-5"
               style={{
-                fontFamily: "'Cormorant Garamond', serif",
+                fontFamily: "'PT Sans', sans-serif",
                 fontStyle: "italic",
-                fontSize: "clamp(1.2rem, 1.8vw, 1.65rem)",
-                color: "var(--ink-soft)",
-                letterSpacing: "0.02em",
+                fontSize: "clamp(1.2rem, 1.8vw, 1.6rem)",
+                color: "var(--accent)",
+                fontWeight: 700,
               }}
               data-testid="home-slogan"
             >
               {t.slogan}
             </div>
             <p
-              className="mt-7 max-w-2xl"
+              className="mt-6 max-w-2xl"
               style={{
                 color: "var(--ink-mute)",
                 fontSize: "15.5px",
@@ -47,14 +47,14 @@ const Home = ({ onNavigate }) => {
             >
               {t.home.lead}
             </p>
-            <div className="mt-10 flex flex-wrap items-center gap-4">
+            <div className="mt-9 flex flex-wrap items-center gap-4">
               <button
                 type="button"
                 onClick={openChat}
                 data-testid="home-cta-chat"
                 className="btn-primary"
               >
-                <MessageSquare size={13} strokeWidth={1.7} />
+                <MessageSquare size={14} strokeWidth={1.8} />
                 <span>{t.home.ctaChat}</span>
               </button>
               <button
@@ -64,12 +64,12 @@ const Home = ({ onNavigate }) => {
                 className="btn-line"
               >
                 <span>{t.home.ctaSections}</span>
-                <ArrowRight size={13} strokeWidth={1.7} />
+                <ArrowRight size={14} strokeWidth={1.8} />
               </button>
             </div>
           </div>
 
-          {/* Right ornament */}
+          {/* Right ornament — rounded card */}
           <div className="hidden lg:flex col-span-4 items-center justify-center">
             <div
               className="relative"
@@ -78,55 +78,51 @@ const Home = ({ onNavigate }) => {
                 maxWidth: 320,
                 aspectRatio: "3/4",
                 background: "var(--ink)",
-                color: "var(--bone)",
+                color: "#fff",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                position: "relative",
+                borderRadius: 22,
+                overflow: "hidden",
               }}
             >
-              <div
-                style={{
-                  position: "absolute",
-                  inset: 16,
-                  border: "1px solid rgba(245,241,234,0.18)",
-                  pointerEvents: "none",
-                }}
-              />
               <div className="text-center">
                 <div
-                  className="display"
                   style={{
-                    fontSize: "5.2rem",
+                    fontFamily: "'PT Sans', sans-serif",
+                    fontSize: "5.4rem",
                     fontStyle: "italic",
-                    color: "var(--bone)",
+                    fontWeight: 700,
+                    color: "#fff",
                     lineHeight: 1,
-                    fontWeight: 400,
+                    letterSpacing: "-0.02em",
                   }}
                 >
-                  V<span style={{ color: "var(--accent-soft)" }}>&amp;</span>Z
+                  V<span style={{ color: "var(--accent)" }}>&amp;</span>Z
                 </div>
                 <div
                   className="mt-6"
                   style={{
-                    fontSize: "9.5px",
-                    letterSpacing: "0.38em",
+                    fontSize: "10px",
+                    letterSpacing: "0.3em",
                     textTransform: "uppercase",
-                    color: "rgba(245,241,234,0.7)",
+                    color: "rgba(255,255,255,0.65)",
+                    fontWeight: 700,
                   }}
                 >
-                  Estudio jurídico
+                  Estudio Jurídico
                 </div>
                 <div
                   className="mt-2"
                   style={{
-                    fontSize: "9.5px",
-                    letterSpacing: "0.38em",
+                    fontSize: "10px",
+                    letterSpacing: "0.3em",
                     textTransform: "uppercase",
-                    color: "rgba(245,241,234,0.45)",
+                    color: "rgba(255,255,255,0.45)",
+                    fontWeight: 700,
                   }}
                 >
-                  Est. Temuco
+                  Temuco · Chile
                 </div>
               </div>
             </div>
