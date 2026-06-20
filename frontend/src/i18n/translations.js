@@ -58,6 +58,7 @@ export const translations = {
       members: [
         {
           initials: "AV",
+          photo: "/images/team/alejandro-vargas.jpg",
           name: "Alejandro G. Vargas Casas",
           role: "Socio fundador",
           email: "avargas@vargasyzuniga.cl",
@@ -71,6 +72,7 @@ export const translations = {
         },
         {
           initials: "MZ",
+          photo: "/images/team/monica-zuniga.jpg",
           name: "Mónica P. Zúñiga Lillo",
           role: "Socia fundadora",
           email: "mzuniga@vargasyzuniga.cl",
@@ -206,6 +208,7 @@ export const translations = {
       members: [
         {
           initials: "AV",
+          photo: "/images/team/alejandro-vargas.jpg",
           name: "Alejandro G. Vargas Casas",
           role: "Founding partner",
           email: "avargas@vargasyzuniga.cl",
@@ -219,6 +222,7 @@ export const translations = {
         },
         {
           initials: "MZ",
+          photo: "/images/team/monica-zuniga.jpg",
           name: "Mónica P. Zúñiga Lillo",
           role: "Founding partner",
           email: "mzuniga@vargasyzuniga.cl",

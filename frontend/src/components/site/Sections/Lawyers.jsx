@@ -68,9 +68,18 @@ const Lawyers = () => {
 
           <div className="col-span-12 lg:col-span-4">
             <div className="monogram" data-testid={`lawyer-monogram-${activeIdx}`}>
-              <div className="letters">
-                {active.initials[0]}<span style={{ color: "var(--accent)" }}>·</span>{active.initials[1]}
-              </div>
+              {active.photo ? (
+                <img
+                  src={active.photo}
+                  alt={active.name}
+                  className="monogram-photo"
+                  data-testid={`lawyer-photo-${activeIdx}`}
+                />
+              ) : (
+                <div className="letters">
+                  {active.initials[0]}<span style={{ color: "var(--accent)" }}>·</span>{active.initials[1]}
+                </div>
+              )}
               <div className="full-name">{active.name}</div>
             </div>
           </div>
