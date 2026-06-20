@@ -30,7 +30,7 @@
   --secondary-foreground: 0 0% 100%;
   --muted: 24 14% 88%;
   --muted-foreground: 60 2% 36%;
-  --accent: 350 76% 49%;
+  --accent-hsl: 350 76% 49%;
   --accent-foreground: 0 0% 100%;
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
@@ -72,11 +72,12 @@ body {
 .font-nunito { font-family: 'Nunito Sans', sans-serif; }
 
 .display-xl {
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'Cinzel', serif;
   font-weight: 700;
   letter-spacing: -0.005em;
   line-height: 1.05;
   color: var(--ink);
+  text-transform: uppercase;
 }
 
 .display {
@@ -195,9 +196,9 @@ body {
 }
 
 .nav-link {
-  font-family: 'Nunito Sans', sans-serif;
-  font-size: 14.5px;
-  font-weight: 600;
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
   letter-spacing: 0.005em;
   color: var(--ink);
   position: relative;
@@ -207,24 +208,7 @@ body {
   cursor: pointer;
   transition: color 0.3s ease;
 }
-.nav-link::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%) skewX(-18deg);
-  width: 4px;
-  height: 18px;
-  background: var(--accent);
-  border-radius: 1px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-.nav-link:hover { color: var(--accent); }
-.nav-link:hover::before { opacity: 1; }
-.nav-link.active { color: var(--accent); }
-.nav-link.active::before { opacity: 1; }
-.nav-link.active::after {
+.nav-link::after {
   content: '';
   position: absolute;
   left: 14px;
@@ -233,7 +217,14 @@ body {
   height: 2px;
   background: var(--accent);
   border-radius: 1px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
+.nav-link:hover { color: var(--accent); }
+.nav-link:hover::after { transform: scaleX(1); }
+.nav-link.active { color: var(--accent); }
+.nav-link.active::after { transform: scaleX(1); }
 
 /* Buttons (rounded, Alessandri-style) */
 .btn-primary {

@@ -76,11 +76,11 @@ const Header = ({ sectionKey, onNavigate, sections }) => {
             <div className="leading-tight text-left">
               <div
                 style={{
-                  fontFamily: "'PT Sans', sans-serif",
-                  fontWeight: 700,
+                  fontFamily: "'Cinzel', serif",
+                  fontWeight: 600,
                   fontSize: "20px",
                   color: "var(--ink)",
-                  letterSpacing: "0.04em",
+                  letterSpacing: "0.02em",
                   textTransform: "uppercase",
                   lineHeight: 1,
                 }}
@@ -89,7 +89,7 @@ const Header = ({ sectionKey, onNavigate, sections }) => {
               </div>
               <div
                 style={{
-                  fontFamily: "'Nunito Sans', sans-serif",
+                  fontFamily: "'Cinzel', serif",
                   fontSize: "9.5px",
                   letterSpacing: "0.3em",
                   color: "var(--ink-faint)",

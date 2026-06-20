@@ -25,7 +25,7 @@ const Footer = ({ sectionIndex, totalSections, onNavigate }) => {
   return (
     <footer data-testid="site-footer" className="site-footer">
       {/* Thick body */}
-      <div className="container-x px-5 md:px-10 lg:px-14 pt-5 pb-3 grid grid-cols-12 gap-6 lg:gap-8">
+      <div className="container-x px-5 md:px-10 lg:px-14 pt-14 md:pt-16 pb-8 grid grid-cols-12 gap-8 lg:gap-10">
         {/* Col 1: Brand + tagline + social */}
         <div className="col-span-12 md:col-span-3" data-testid="footer-brand-col">
           <div className="flex items-baseline gap-1">
@@ -240,7 +240,7 @@ const Footer = ({ sectionIndex, totalSections, onNavigate }) => {
 
       {/* Bottom bar */}
       <div
-        className="container-x px-5 md:px-10 lg:px-14 py-2.5 flex flex-wrap items-center justify-between gap-2"
+        className="container-x px-5 md:px-10 lg:px-14 py-4 flex flex-wrap items-center justify-between gap-2"
         style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
       >
         <span
