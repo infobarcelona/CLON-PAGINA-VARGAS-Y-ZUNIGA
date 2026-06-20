@@ -171,6 +171,7 @@ body {
   justify-content: center;
   min-height: 0;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   padding: 2.5rem clamp(1.25rem, 4vw, 4rem);
 }
 .container-x {
@@ -588,4 +589,19 @@ a[id="emergent-badge"] {
 
 @layer base {
   [data-debug-wrapper="true"] { display: contents !important; }
+}
+
+
+/* Mobile: permitir scroll natural del documento cuando el contenido
+   de una seccion es mas alto que la pantalla (en desktop se mantiene
+   el efecto de pagina completa con flechitas, intacto) */
+@media (max-width: 768px) {
+  body {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .section-shell {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 }
