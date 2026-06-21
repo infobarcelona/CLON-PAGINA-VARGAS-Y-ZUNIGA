@@ -1,5 +1,5 @@
 import { useLang } from "@/i18n/LanguageContext";
-import { buildQrUrl, scrollToId } from "@/lib/site-utils";
+import { scrollToId, openChat } from "@/lib/site-utils";
 import { Facebook, Linkedin, Instagram } from "lucide-react";
 
 const Footer = ({ sectionIndex, totalSections, onNavigate }) => {
@@ -168,71 +168,51 @@ const Footer = ({ sectionIndex, totalSections, onNavigate }) => {
           </ul>
         </div>
 
-        {/* Col 4: Address + QR */}
+        {/* Col 4: Address */}
         <div className="col-span-12 md:col-span-3" data-testid="footer-address-col">
-          <div className="flex items-start gap-3">
+          <div className="flex-1 min-w-0">
             <div
-              className="flex-shrink-0"
               style={{
-                width: 60,
-                height: 60,
-                background: "#fff",
-                padding: 4,
-                borderRadius: 8,
+                fontFamily: "'PT Sans', sans-serif",
+                fontWeight: 700,
+                fontSize: "15px",
+                color: "#fff",
+                lineHeight: 1.25,
               }}
-              data-testid="footer-qr"
+              data-testid="footer-address"
             >
-              <img
-                src={buildQrUrl("https://vargasyzuniga.cl/", 140)}
-                alt="QR"
-                style={{ width: "100%", height: "100%", display: "block" }}
-              />
+              Antonio Varas 687, of. 1010
             </div>
-            <div className="flex-1 min-w-0">
-              <div
+            <div
+              style={{
+                fontSize: "12.5px",
+                color: "rgba(255,255,255,0.7)",
+                marginTop: 2,
+              }}
+            >
+              Torre Sinergia · Temuco — Chile
+            </div>
+            <div
+              className="mt-1.5"
+              style={{ fontSize: "12.5px", color: "rgba(255,255,255,0.7)" }}
+            >
+              <span className="slash-red mr-1">/</span>
+              <button
+                type="button"
+                onClick={openChat}
+                data-testid="footer-chat-link"
                 style={{
-                  fontFamily: "'PT Sans', sans-serif",
+                  color: "var(--accent)",
                   fontWeight: 700,
-                  fontSize: "15px",
-                  color: "#fff",
-                  lineHeight: 1.25,
-                }}
-                data-testid="footer-address"
-              >
-                Antonio Varas 687, of. 1010
-              </div>
-              <div
-                style={{
+                  background: "transparent",
+                  border: "none",
+                  padding: 0,
+                  cursor: "pointer",
                   fontSize: "12.5px",
-                  color: "rgba(255,255,255,0.7)",
-                  marginTop: 2,
                 }}
               >
-                Torre Sinergia · Temuco — Chile
-              </div>
-              <div
-                className="mt-1.5"
-                style={{ fontSize: "12.5px", color: "rgba(255,255,255,0.7)" }}
-              >
-                <span className="slash-red mr-1">/</span>
-                {t.footer.phoneLabel || "Tel:"}{" "}
-                <a
-                  href={`tel:${t.contact.phone.replace(/\s/g, "")}`}
-                  style={{ color: "var(--accent)", fontWeight: 700 }}
-                  data-testid="footer-phone"
-                >
-                  {t.contact.phone}
-                </a>
-              </div>
-              <div style={{ fontSize: "12.5px" }}>
-                <a
-                  href="mailto:avargas@vargasyzuniga.cl"
-                  style={{ color: "rgba(255,255,255,0.85)" }}
-                  data-testid="footer-email"
-                >
-                  avargas@vargasyzuniga.cl
-                </a>
-              </div>
+                Converse con nuestra asistente
+              </button>
             </div>
           </div>
         </div>
