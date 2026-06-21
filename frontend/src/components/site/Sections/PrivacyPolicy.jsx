@@ -6,7 +6,9 @@ const PrivacyPolicy = () => {
     <div
       data-testid="privacy-policy-page"
       style={{
-        minHeight: "100vh",
+        height: "100vh",
+        overflowY: "auto",
+        WebkitOverflowScrolling: "touch",
         background: "var(--paper)",
         display: "flex",
         flexDirection: "column",
