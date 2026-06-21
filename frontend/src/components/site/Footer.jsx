@@ -1,4 +1,5 @@
 import { useLang } from "@/i18n/LanguageContext";
+import { Link } from "react-router-dom";
 import { scrollToId, openChat } from "@/lib/site-utils";
 import { Facebook, Linkedin, Instagram } from "lucide-react";
 
@@ -153,18 +154,32 @@ const Footer = ({ sectionIndex, totalSections, onNavigate }) => {
             {t.footer.col2Title}
           </div>
           <ul className="space-y-1">
-            {otherLinks.map((it, i) => (
-              <li key={i}>
-                <span
-                  className="flex items-center gap-2"
-                  style={{ fontSize: "13px", color: "rgba(255,255,255,0.78)" }}
-                  data-testid={`footer-other-${i}`}
-                >
-                  <span style={{ color: "var(--accent)", fontSize: 9 }}>●</span>
-                  <span>{it}</span>
-                </span>
-              </li>
-            ))}
+            {otherLinks.map((it, i) =>
+              i === 4 ? (
+                <li key={i}>
+                  <Link
+                    to="/privacidad"
+                    className="flex items-center gap-2 transition-colors"
+                    style={{ fontSize: "13px", color: "rgba(255,255,255,0.78)", textDecoration: "none" }}
+                    data-testid={`footer-other-${i}`}
+                  >
+                    <span style={{ color: "var(--accent)", fontSize: 9 }}>●</span>
+                    <span>{it}</span>
+                  </Link>
+                </li>
+              ) : (
+                <li key={i}>
+                  <span
+                    className="flex items-center gap-2"
+                    style={{ fontSize: "13px", color: "rgba(255,255,255,0.78)" }}
+                    data-testid={`footer-other-${i}`}
+                  >
+                    <span style={{ color: "var(--accent)", fontSize: 9 }}>●</span>
+                    <span>{it}</span>
+                  </span>
+                </li>
+              )
+            )}
           </ul>
         </div>
 
