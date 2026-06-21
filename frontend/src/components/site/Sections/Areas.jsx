@@ -1,4 +1,7 @@
 import { useLang } from "@/i18n/LanguageContext";
+import { Users, Gavel, FileStack } from "lucide-react";
+
+const AREA_ICONS = [Users, Gavel, FileStack];
 
 const Areas = () => {
   const { t } = useLang();
@@ -33,12 +36,27 @@ const Areas = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 stagger">
-          {t.areas.groups.map((g, i) => (
+          {t.areas.groups.map((g, i) => {
+            const Icon = AREA_ICONS[i];
+            return (
             <div key={g.num} className="area-block" data-testid={`area-block-${i}`}>
-              <div className="flex items-baseline justify-between">
-                <span className="num">{g.num}</span>
-                <span className="label">{String(i + 1).padStart(2, "0")}</span>
-              </div>
+              {Icon && (
+                <div
+                  style={{
+                    width: 36,
+                    height: 36,
+                    borderRadius: 9,
+                    border: "1.5px solid var(--accent)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginBottom: 8,
+                    flexShrink: 0,
+                  }}
+                >
+                  <Icon size={18} strokeWidth={1.6} style={{ color: "var(--accent)" }} />
+                </div>
+              )}
               <h3
                 className="heading"
                 style={{ fontSize: "clamp(1.1rem, 1.4vw, 1.4rem)" }}
@@ -53,7 +71,8 @@ const Areas = () => {
                 ))}
               </ul>
             </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>

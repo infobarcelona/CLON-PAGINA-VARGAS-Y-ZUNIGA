@@ -1,6 +1,6 @@
 import { useLang } from "@/i18n/LanguageContext";
 import { openChat } from "@/lib/site-utils";
-import { MapPin, Phone, Clock, ArrowRight } from "lucide-react";
+import { MapPin, Phone, Clock, ArrowRight, MessageSquare } from "lucide-react";
 
 const Contact = () => {
   const { t } = useLang();
@@ -57,28 +57,80 @@ const Contact = () => {
           </div>
 
           {/* Chat CTA */}
-          <div className="col-span-12 lg:col-span-7 flex flex-col items-start justify-center">
-            <p
+          <div className="col-span-12 lg:col-span-7 flex flex-col items-center justify-center">
+            <h3
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
-                fontSize: "clamp(1.4rem, 2.4vw, 2rem)",
+                fontWeight: 700,
+                fontSize: "58px",
                 color: "var(--ink)",
-                lineHeight: 1.4,
-                maxWidth: "480px",
+                margin: "0 0 28px",
+                textAlign: "center",
+                letterSpacing: "0.01em",
+                lineHeight: 1.1,
+                whiteSpace: "nowrap",
               }}
-              data-testid="contact-chat-text"
+              data-testid="contact-chat-wordmark"
             >
-              Para contactarnos o reservar una reunión, por favor converse con nuestra asistente
-            </p>
-            <button
-              type="button"
-              onClick={openChat}
-              data-testid="contact-chat-button"
-              className="btn-primary mt-6"
+              VARGAS <span style={{ color: "var(--accent)" }}>&amp;</span> ZÚÑIGA
+            </h3>
+            <div
+              style={{
+                background: "linear-gradient(135deg, #e8526a 0%, var(--accent) 50%, #a8172f 100%)",
+                borderRadius: 16,
+                padding: "40px 32px",
+                textAlign: "center",
+                width: "100%",
+                maxWidth: 480,
+              }}
             >
-              <span>Conversar</span>
-              <ArrowRight size={13} strokeWidth={1.7} />
-            </button>
+              <h3
+                style={{
+                  fontFamily: "'Cinzel', serif",
+                  fontSize: "clamp(1.3rem, 2vw, 1.5rem)",
+                  fontWeight: 600,
+                  color: "#ffffff",
+                  margin: "0 0 14px",
+                }}
+                data-testid="contact-chat-title"
+              >
+                ¿Necesita contactarnos?
+              </h3>
+              <p
+                style={{
+                  fontSize: "14.5px",
+                  color: "rgba(255,255,255,0.92)",
+                  lineHeight: 1.6,
+                  margin: "0 0 26px",
+                }}
+                data-testid="contact-chat-text"
+              >
+                Para contactarnos o reservar una reunión, por favor converse con nuestra asistente
+              </p>
+              <button
+                type="button"
+                onClick={openChat}
+                data-testid="contact-chat-button"
+                style={{
+                  background: "#ffffff",
+                  color: "var(--accent)",
+                  border: "none",
+                  padding: "14px 30px",
+                  borderRadius: 10,
+                  fontSize: "13.5px",
+                  fontWeight: 700,
+                  letterSpacing: "0.02em",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  cursor: "pointer",
+                  boxShadow: "0 8px 24px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.1)",
+                }}
+              >
+                <MessageSquare size={16} strokeWidth={1.9} />
+                <span>Conversar con la asistente</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>

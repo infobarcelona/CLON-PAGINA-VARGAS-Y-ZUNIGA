@@ -1,4 +1,7 @@
 import { useLang } from "@/i18n/LanguageContext";
+import { Columns3, ShieldCheck, Zap } from "lucide-react";
+
+const VALUE_ICONS = [Columns3, ShieldCheck, Zap];
 
 const Studio = () => {
   const { t } = useLang();
@@ -52,7 +55,9 @@ const Studio = () => {
             </div>
 
             <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-              {t.studio.values.map((v, i) => (
+              {t.studio.values.map((v, i) => {
+                const Icon = VALUE_ICONS[i];
+                return (
                 <div
                   key={v.k}
                   data-testid={`studio-value-${i}`}
@@ -63,8 +68,26 @@ const Studio = () => {
                     padding: "18px 18px 20px",
                   }}
                 >
-                  <div className="label" style={{ color: "var(--accent)" }}>
-                    {String(i + 1).padStart(2, "0")}
+                  <div className="flex items-center justify-between">
+                    <div className="label" style={{ color: "var(--accent)" }}>
+                      {String(i + 1).padStart(2, "0")}
+                    </div>
+                    {Icon && (
+                      <div
+                        style={{
+                          width: 40,
+                          height: 40,
+                          borderRadius: 10,
+                          border: "1.5px solid var(--accent)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          flexShrink: 0,
+                        }}
+                      >
+                        <Icon size={20} strokeWidth={1.6} style={{ color: "var(--accent)" }} />
+                      </div>
+                    )}
                   </div>
                   <h3
                     className="heading mt-2"
@@ -83,7 +106,8 @@ const Studio = () => {
                     {v.d}
                   </p>
                 </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
