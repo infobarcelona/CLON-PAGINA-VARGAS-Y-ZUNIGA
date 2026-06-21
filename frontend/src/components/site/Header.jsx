@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import LanguageToggle from "./LanguageToggle";
 import { useLang } from "@/i18n/LanguageContext";
+import { openChat } from "@/lib/site-utils";
 
 const Header = ({ sectionKey, onNavigate, sections }) => {
   const { t } = useLang();
@@ -26,11 +27,12 @@ const Header = ({ sectionKey, onNavigate, sections }) => {
       {/* Dark topbar */}
       <div className="topbar">
         <div className="container-x px-5 md:px-10 lg:px-14 py-2 flex items-center justify-between">
-          <a
-            href={`tel:${t.contact.phone.replace(/\s/g, "")}`}
-            data-testid="topbar-phone"
+          <button
+            type="button"
+            onClick={openChat}
+            data-testid="topbar-chat-link"
             className="inline-flex items-center gap-2 transition-colors"
-            style={{ color: "rgba(255,255,255,0.92)" }}
+            style={{ color: "rgba(255,255,255,0.92)", background: "transparent", border: "none", cursor: "pointer", padding: 0 }}
           >
             <span
               aria-hidden="true"
@@ -43,9 +45,8 @@ const Header = ({ sectionKey, onNavigate, sections }) => {
                 borderRadius: 1,
               }}
             />
-            <Phone size={12} strokeWidth={1.7} />
-            <span style={{ fontSize: "12.5px", fontWeight: 500 }}>{t.contact.phone}</span>
-          </a>
+            <span style={{ fontSize: "12.5px", fontWeight: 500 }}>Converse con nuestra asistente</span>
+          </button>
           <LanguageToggle />
         </div>
       </div>
