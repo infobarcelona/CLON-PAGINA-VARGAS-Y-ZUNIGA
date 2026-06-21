@@ -15,24 +15,13 @@ const Footer = ({ sectionIndex, totalSections, onNavigate }) => {
     { key: "contact", label: t.nav.contact },
   ];
 
-  const otherLinks = [
-    t.footer.col2Item1 || "Pensamiento Jurídico",
-    t.footer.col2Item2 || "Pro Bono",
-    t.footer.col2Item3 || "Selección de talentos",
-    t.footer.col2Item4 || "Canal de denuncias",
-    t.footer.col2Item5 || "Política de privacidad",
-  ];
-
   return (
     <footer data-testid="site-footer" className="site-footer">
       {/* Thick body */}
       <div className="container-x px-5 md:px-10 lg:px-14 pt-14 md:pt-16 pb-8 grid grid-cols-12 gap-8 lg:gap-10">
         {/* Col 1: Brand + tagline + social */}
-        <div className="col-span-12 md:col-span-3" data-testid="footer-brand-col">
+        <div className="col-span-12 md:col-span-4" data-testid="footer-brand-col">
           <div className="flex items-baseline gap-1">
-            <span style={{ color: "var(--accent)", fontFamily: "'PT Sans', sans-serif", fontWeight: 700, fontSize: 22, fontStyle: "italic", lineHeight: 1 }}>
-              /
-            </span>
             <span
               style={{
                 fontFamily: "'PT Sans', sans-serif",
@@ -100,7 +89,7 @@ const Footer = ({ sectionIndex, totalSections, onNavigate }) => {
         </div>
 
         {/* Col 2: Nav */}
-        <div className="col-span-6 md:col-span-3" data-testid="footer-nav-col">
+        <div className="col-span-12 md:col-span-4 md:text-center" data-testid="footer-nav-col">
           <div
             className="mb-2"
             style={{
@@ -110,10 +99,9 @@ const Footer = ({ sectionIndex, totalSections, onNavigate }) => {
               color: "#fff",
             }}
           >
-            <span className="slash-red mr-1">/</span>
             Vargas y Zúñiga
           </div>
-          <ul className="space-y-1">
+          <ul className="space-y-1 md:inline-flex md:flex-col md:mx-auto md:text-left">
             {navLinks.map((l) => (
               <li key={l.key}>
                 <button
@@ -140,51 +128,8 @@ const Footer = ({ sectionIndex, totalSections, onNavigate }) => {
         </div>
 
         {/* Col 3: Other content */}
-        <div className="col-span-6 md:col-span-3" data-testid="footer-other-col">
-          <div
-            className="mb-2"
-            style={{
-              fontFamily: "'PT Sans', sans-serif",
-              fontWeight: 700,
-              fontSize: "14px",
-              color: "#fff",
-            }}
-          >
-            <span className="slash-red mr-1">/</span>
-            {t.footer.col2Title}
-          </div>
-          <ul className="space-y-1">
-            {otherLinks.map((it, i) =>
-              i === 4 ? (
-                <li key={i}>
-                  <Link
-                    to="/privacidad"
-                    className="flex items-center gap-2 transition-colors"
-                    style={{ fontSize: "13px", color: "rgba(255,255,255,0.78)", textDecoration: "none" }}
-                    data-testid={`footer-other-${i}`}
-                  >
-                    <span style={{ color: "var(--accent)", fontSize: 9 }}>●</span>
-                    <span>{it}</span>
-                  </Link>
-                </li>
-              ) : (
-                <li key={i}>
-                  <span
-                    className="flex items-center gap-2"
-                    style={{ fontSize: "13px", color: "rgba(255,255,255,0.78)" }}
-                    data-testid={`footer-other-${i}`}
-                  >
-                    <span style={{ color: "var(--accent)", fontSize: 9 }}>●</span>
-                    <span>{it}</span>
-                  </span>
-                </li>
-              )
-            )}
-          </ul>
-        </div>
-
         {/* Col 4: Address */}
-        <div className="col-span-12 md:col-span-3" data-testid="footer-address-col">
+        <div className="col-span-12 md:col-span-4 md:text-right" data-testid="footer-address-col">
           <div className="flex-1 min-w-0">
             <div
               style={{
@@ -211,7 +156,6 @@ const Footer = ({ sectionIndex, totalSections, onNavigate }) => {
               className="mt-1.5"
               style={{ fontSize: "12.5px", color: "rgba(255,255,255,0.7)" }}
             >
-              <span className="slash-red mr-1">/</span>
               <button
                 type="button"
                 onClick={openChat}
@@ -238,14 +182,27 @@ const Footer = ({ sectionIndex, totalSections, onNavigate }) => {
         className="container-x px-5 md:px-10 lg:px-14 py-4 flex flex-wrap items-center justify-between gap-2"
         style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
       >
-        <span
-          style={{
-            fontSize: "11px",
-            color: "rgba(255,255,255,0.5)",
-          }}
-        >
-          {t.footer.copy.replace("{year}", year)}
-        </span>
+        <div className="flex items-center gap-4">
+          <span
+            style={{
+              fontSize: "11px",
+              color: "rgba(255,255,255,0.5)",
+            }}
+          >
+            {t.footer.copy.replace("{year}", year)}
+          </span>
+          <Link
+            to="/privacidad"
+            data-testid="footer-bottom-privacy-link"
+            style={{
+              fontSize: "11px",
+              color: "rgba(255,255,255,0.5)",
+              textDecoration: "none",
+            }}
+          >
+            Política de privacidad
+          </Link>
+        </div>
         <span
           data-testid="footer-section-counter"
           style={{
@@ -257,7 +214,6 @@ const Footer = ({ sectionIndex, totalSections, onNavigate }) => {
             fontWeight: 700,
           }}
         >
-          <span className="slash-red mr-2">/</span>
           {String(sectionIndex + 1).padStart(2, "0")} / {String(totalSections).padStart(2, "0")}
         </span>
       </div>

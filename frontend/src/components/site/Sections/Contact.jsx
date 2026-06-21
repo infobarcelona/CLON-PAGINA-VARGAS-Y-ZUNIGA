@@ -17,13 +17,13 @@ const Contact = () => {
               style={{ fontSize: "clamp(2rem, 4vw, 3.4rem)" }}
               data-testid="contact-title"
             >
-              <span className="slash-red mr-1">/</span>{t.contact.title}
+              {t.contact.title}
             </h2>
 
             <div className="mt-7" style={{ borderTop: "1px solid var(--bone-edge)" }}>
               <div className="py-4 grid grid-cols-12 gap-3" style={{ borderBottom: "1px solid var(--bone-edge)" }}>
                 <div className="col-span-1 pt-1">
-                  <MapPin size={15} strokeWidth={1.6} style={{ color: "var(--accent)" }} />
+                  <MapPin size={15} strokeWidth={1.6} style={{ color: "var(--accent-dark)" }} />
                 </div>
                 <div className="col-span-11">
                   <div className="label">{t.contact.officeLabel}</div>
@@ -44,7 +44,7 @@ const Contact = () => {
               </div>
               <div className="py-4 grid grid-cols-12 gap-3">
                 <div className="col-span-1 pt-1">
-                  <Clock size={15} strokeWidth={1.6} style={{ color: "var(--accent)" }} />
+                  <Clock size={15} strokeWidth={1.6} style={{ color: "var(--accent-dark)" }} />
                 </div>
                 <div className="col-span-11">
                   <div className="label">{t.contact.hoursLabel}</div>
@@ -72,11 +72,11 @@ const Contact = () => {
               }}
               data-testid="contact-chat-wordmark"
             >
-              VARGAS <span style={{ color: "var(--accent)" }}>&amp;</span> ZÚÑIGA
+              VARGAS <span style={{ color: "var(--accent-dark)" }}>&amp;</span> ZÚÑIGA
             </h3>
             <div
               style={{
-                background: "linear-gradient(135deg, #e8526a 0%, var(--accent) 50%, #a8172f 100%)",
+                background: "linear-gradient(135deg, #4984e0 0%, #24398c 55%, #101849 100%)",
                 borderRadius: 16,
                 padding: "40px 32px",
                 textAlign: "center",
@@ -113,7 +113,7 @@ const Contact = () => {
                 data-testid="contact-chat-button"
                 style={{
                   background: "#ffffff",
-                  color: "var(--accent)",
+                  color: "var(--accent-dark)",
                   border: "none",
                   padding: "14px 30px",
                   borderRadius: 10,

@@ -16,7 +16,7 @@ const Studio = () => {
               style={{ fontSize: "clamp(2rem, 4vw, 3.4rem)" }}
               data-testid="studio-title"
             >
-              <span className="slash-red mr-1">/</span>{t.studio.title}
+              {t.studio.title}
             </h2>
             <div
               className="mt-4"
@@ -31,7 +31,7 @@ const Studio = () => {
               {t.slogan.split(" · ").map((part, i, arr) => (
                 <span key={i}>
                   <span>{part}</span>
-                  {i < arr.length - 1 && <span style={{ color: "var(--accent)", margin: "0 0.4em" }}>·</span>}
+                  {i < arr.length - 1 && <span style={{ color: "var(--accent-dark)", margin: "0 0.4em" }}>·</span>}
                 </span>
               ))}
             </div>
@@ -69,7 +69,7 @@ const Studio = () => {
                   }}
                 >
                   <div className="flex items-center justify-between">
-                    <div className="label" style={{ color: "var(--accent)" }}>
+                    <div className="label" style={{ color: "var(--accent-dark)" }}>
                       {String(i + 1).padStart(2, "0")}
                     </div>
                     {Icon && (
@@ -78,14 +78,14 @@ const Studio = () => {
                           width: 40,
                           height: 40,
                           borderRadius: 10,
-                          border: "1.5px solid var(--accent)",
+                          border: "1.5px solid var(--accent-dark)",
                           display: "flex",
                           alignItems: "center",
                           justifyContent: "center",
                           flexShrink: 0,
                         }}
                       >
-                        <Icon size={20} strokeWidth={1.6} style={{ color: "var(--accent)" }} />
+                        <Icon size={20} strokeWidth={1.6} style={{ color: "var(--accent-dark)" }} />
                       </div>
                     )}
                   </div>

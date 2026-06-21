@@ -16,7 +16,7 @@ const Clients = () => {
               style={{ fontSize: "clamp(2rem, 4vw, 3.4rem)" }}
               data-testid="clients-title"
             >
-              <span className="slash-red mr-1">/</span>{t.clients.title}
+              {t.clients.title}
             </h2>
             <p
               className="mt-5 max-w-md"
@@ -54,7 +54,7 @@ const Clients = () => {
                         width: 36,
                         height: 36,
                         borderRadius: 9,
-                        border: "1.5px solid var(--accent)",
+                        border: "1.5px solid var(--accent-dark)",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
@@ -62,7 +62,7 @@ const Clients = () => {
                         flexShrink: 0,
                       }}
                     >
-                      <Icon size={18} strokeWidth={1.6} style={{ color: "var(--accent)" }} />
+                      <Icon size={18} strokeWidth={1.6} style={{ color: "var(--accent-dark)" }} />
                     </div>
                   )}
                   <div className="client-name">{g.name}</div>

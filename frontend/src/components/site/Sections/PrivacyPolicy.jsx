@@ -23,17 +23,6 @@ const PrivacyPolicy = () => {
             className="inline-flex items-center gap-2 transition-colors"
             style={{ color: "rgba(255,255,255,0.92)", textDecoration: "none" }}
           >
-            <span
-              aria-hidden="true"
-              style={{
-                display: "inline-block",
-                width: 3,
-                height: 14,
-                background: "var(--accent)",
-                transform: "skewX(-18deg)",
-                borderRadius: 1,
-              }}
-            />
             <span style={{ fontSize: "12.5px", fontWeight: 500 }}>Volver al sitio</span>
           </Link>
         </div>
@@ -42,18 +31,6 @@ const PrivacyPolicy = () => {
       <div className="main-nav">
         <div className="container-x px-5 md:px-10 lg:px-14 py-3 lg:py-4 flex items-center">
           <Link to="/" data-testid="privacy-logo-link" className="flex items-center gap-3 group flex-shrink-0" style={{ textDecoration: "none" }}>
-            <span
-              aria-hidden="true"
-              style={{
-                display: "inline-block",
-                width: 6,
-                height: 42,
-                background: "var(--accent)",
-                transform: "skewX(-18deg)",
-                borderRadius: 2,
-                flexShrink: 0,
-              }}
-            />
             <div className="leading-tight text-left">
               <div
                 style={{
@@ -66,7 +43,7 @@ const PrivacyPolicy = () => {
                   lineHeight: 1,
                 }}
               >
-                Vargas <span style={{ color: "var(--accent)" }}>&amp;</span> Zúñiga
+                Vargas <span style={{ color: "var(--accent-dark)" }}>&amp;</span> Zúñiga
               </div>
               <div
                 style={{
@@ -79,7 +56,7 @@ const PrivacyPolicy = () => {
                   fontWeight: 700,
                 }}
               >
-                Abogados <span style={{ color: "var(--accent)" }}>·</span> Temuco
+                Abogados <span style={{ color: "var(--accent-dark)" }}>·</span> Temuco
               </div>
             </div>
           </Link>
@@ -95,7 +72,7 @@ const PrivacyPolicy = () => {
             style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)" }}
             data-testid="privacy-title"
           >
-            <span className="slash-red mr-1">/</span>Política de Privacidad
+            Política de Privacidad
           </h1>
           <p style={{ color: "var(--ink-mute)", fontSize: "13px", marginTop: 10 }}>
             Última actualización: junio de 2026
@@ -209,7 +186,7 @@ const PrivacyPolicy = () => {
             <p style={{ marginBottom: 4 }}>Vargas &amp; Zúñiga Abogados</p>
             <p style={{ marginBottom: 4 }}>Antonio Varas 687, of. 1010, Torre Sinergia, Temuco, Chile</p>
             <p style={{ marginBottom: 30 }}>
-              <a href="mailto:avargas@vargasyzuniga.cl" style={{ color: "var(--accent)" }}>
+              <a href="mailto:avargas@vargasyzuniga.cl" style={{ color: "var(--accent-dark)" }}>
                 avargas@vargasyzuniga.cl
               </a>
             </p>

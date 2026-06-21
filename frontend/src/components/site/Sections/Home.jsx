@@ -8,9 +8,8 @@ const Home = ({ onNavigate }) => {
     <div className="section-content section-enter" data-testid="section-home">
       <div className="container-x">
         <div className="grid grid-cols-12 gap-8 lg:gap-12 items-center">
-          <div className="col-span-12 lg:col-span-8 stagger">
+          <div className="col-span-12 stagger">
             <div className="eyebrow flex items-center gap-2">
-              <span className="bar-red" />
               <span>
                 {t.home.eyebrow.split(" · ").map((part, i, arr) => (
                   <span key={i}>
@@ -26,7 +25,7 @@ const Home = ({ onNavigate }) => {
               data-testid="home-title"
             >
               {t.brand.name.split(" & ")[0]}
-              <span style={{ color: "var(--accent)", margin: "0 0.15em", fontStyle: "italic", fontWeight: 700 }}>
+              <span style={{ color: "var(--accent-dark)", margin: "0 0.15em", fontStyle: "italic", fontWeight: 700 }}>
                 &amp;
               </span>
               {t.brand.name.split(" & ")[1]}
@@ -37,7 +36,7 @@ const Home = ({ onNavigate }) => {
                 fontFamily: "'PT Sans', sans-serif",
                 fontStyle: "italic",
                 fontSize: "clamp(1.2rem, 1.8vw, 1.6rem)",
-                color: "var(--accent)",
+                color: "var(--accent-dark)",
                 fontWeight: 700,
               }}
               data-testid="home-slogan"
@@ -45,7 +44,7 @@ const Home = ({ onNavigate }) => {
               {t.slogan.split(" · ").map((part, i, arr) => (
                 <span key={i}>
                   <span style={{ color: "var(--ink)" }}>{part}</span>
-                  {i < arr.length - 1 && <span style={{ color: "var(--accent)", margin: "0 0.4em" }}>·</span>}
+                  {i < arr.length - 1 && <span style={{ color: "var(--accent-dark)", margin: "0 0.4em" }}>·</span>}
                 </span>
               ))}
             </div>
@@ -81,64 +80,6 @@ const Home = ({ onNavigate }) => {
             </div>
           </div>
 
-          {/* Right ornament — rounded card */}
-          <div className="hidden lg:flex col-span-4 items-center justify-center">
-            <div
-              className="relative"
-              style={{
-                width: "100%",
-                maxWidth: 320,
-                aspectRatio: "3/4",
-                background: "var(--ink)",
-                color: "#fff",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                borderRadius: 22,
-                overflow: "hidden",
-              }}
-            >
-              <div className="text-center">
-                <div
-                  style={{
-                    fontFamily: "'PT Sans', sans-serif",
-                    fontSize: "5.4rem",
-                    fontStyle: "italic",
-                    fontWeight: 700,
-                    color: "#fff",
-                    lineHeight: 1,
-                    letterSpacing: "-0.02em",
-                  }}
-                >
-                  V<span style={{ color: "var(--accent)" }}>&amp;</span>Z
-                </div>
-                <div
-                  className="mt-6"
-                  style={{
-                    fontSize: "10px",
-                    letterSpacing: "0.3em",
-                    textTransform: "uppercase",
-                    color: "rgba(255,255,255,0.65)",
-                    fontWeight: 700,
-                  }}
-                >
-                  Estudio Jurídico
-                </div>
-                <div
-                  className="mt-2"
-                  style={{
-                    fontSize: "10px",
-                    letterSpacing: "0.3em",
-                    textTransform: "uppercase",
-                    color: "rgba(255,255,255,0.45)",
-                    fontWeight: 700,
-                  }}
-                >
-                  Temuco · Chile
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>

@@ -34,17 +34,6 @@ const Header = ({ sectionKey, onNavigate, sections }) => {
             className="inline-flex items-center gap-2 transition-colors"
             style={{ color: "rgba(255,255,255,0.92)", background: "transparent", border: "none", cursor: "pointer", padding: 0 }}
           >
-            <span
-              aria-hidden="true"
-              style={{
-                display: "inline-block",
-                width: 3,
-                height: 14,
-                background: "var(--accent)",
-                transform: "skewX(-18deg)",
-                borderRadius: 1,
-              }}
-            />
             <span style={{ fontSize: "12.5px", fontWeight: 500 }}>Converse con nuestra asistente</span>
           </button>
           <LanguageToggle />
@@ -61,19 +50,6 @@ const Header = ({ sectionKey, onNavigate, sections }) => {
             data-testid="logo-link"
             className="flex items-center gap-3 group flex-shrink-0"
           >
-            {/* Decorative red bar instead of slash */}
-            <span
-              aria-hidden="true"
-              style={{
-                display: "inline-block",
-                width: 6,
-                height: 42,
-                background: "var(--accent)",
-                transform: "skewX(-18deg)",
-                borderRadius: 2,
-                flexShrink: 0,
-              }}
-            />
             <div className="leading-tight text-left">
               <div
                 style={{
@@ -86,7 +62,7 @@ const Header = ({ sectionKey, onNavigate, sections }) => {
                   lineHeight: 1,
                 }}
               >
-                Vargas <span style={{ color: "var(--accent)" }}>&amp;</span> Zúñiga
+                Vargas <span style={{ color: "var(--accent-dark)" }}>&amp;</span> Zúñiga
               </div>
               <div
                 style={{
@@ -99,7 +75,7 @@ const Header = ({ sectionKey, onNavigate, sections }) => {
                   fontWeight: 700,
                 }}
               >
-                Abogados <span style={{ color: "var(--accent)" }}>·</span> Temuco
+                Abogados <span style={{ color: "var(--accent-dark)" }}>·</span> Temuco
               </div>
             </div>
           </button>

@@ -19,7 +19,7 @@ const Lawyers = () => {
               style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)" }}
               data-testid="lawyers-title"
             >
-              <span className="slash-red mr-1">/</span>{t.lawyers.title}
+              {t.lawyers.title}
             </h2>
 
             <div
@@ -57,7 +57,7 @@ const Lawyers = () => {
                       width: 8,
                       height: 8,
                       borderRadius: "50%",
-                      background: i === activeIdx ? "var(--accent)" : "var(--cream-edge)",
+                      background: i === activeIdx ? "var(--accent-dark)" : "var(--cream-edge)",
                       display: "inline-block",
                       flexShrink: 0,
                     }}
@@ -86,7 +86,7 @@ const Lawyers = () => {
           </div>
 
           <div className="col-span-12 lg:col-span-5">
-            <div className="label" style={{ color: "var(--accent)" }}>{active.role}</div>
+            <div className="label" style={{ color: "var(--accent-dark)" }}>{active.role}</div>
             <h3
               className="display mt-1"
               style={{ fontSize: "clamp(1.5rem, 2.3vw, 2rem)" }}
@@ -106,7 +106,7 @@ const Lawyers = () => {
                       width: 5,
                       height: 5,
                       borderRadius: "50%",
-                      background: "var(--accent)",
+                      background: "var(--accent-dark)",
                       marginTop: 9,
                       flexShrink: 0,
                     }}
