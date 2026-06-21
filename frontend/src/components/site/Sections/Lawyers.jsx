@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLang } from "@/i18n/LanguageContext";
+import { openChat } from "@/lib/site-utils";
 import { Mail } from "lucide-react";
 
 const Lawyers = () => {
@@ -114,14 +115,16 @@ const Lawyers = () => {
                 </li>
               ))}
             </ul>
-            <a
-              href={`mailto:${active.email}`}
-              data-testid="lawyer-email"
+            <button
+              type="button"
+              onClick={openChat}
+              data-testid="lawyer-chat-link"
               className="ver-mas mt-6 inline-flex"
+              style={{ background: "transparent", border: "none", cursor: "pointer" }}
             >
               <Mail size={13} strokeWidth={1.8} />
-              {active.email}
-            </a>
+              Para reservar una reunión converse con nuestra asistente
+            </button>
           </div>
         </div>
       </div>
