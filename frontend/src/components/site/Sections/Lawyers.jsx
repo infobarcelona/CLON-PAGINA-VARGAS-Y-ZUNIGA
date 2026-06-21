@@ -50,7 +50,6 @@ const Lawyers = () => {
                     >
                       {m.name}
                     </div>
-                    <div className="label mt-1">{m.role}</div>
                   </div>
                   <span
                     style={{
@@ -86,7 +85,6 @@ const Lawyers = () => {
           </div>
 
           <div className="col-span-12 lg:col-span-5">
-            <div className="label" style={{ color: "var(--accent-dark)" }}>{active.role}</div>
             <h3
               className="display mt-1"
               style={{ fontSize: "clamp(1.5rem, 2.3vw, 2rem)" }}
