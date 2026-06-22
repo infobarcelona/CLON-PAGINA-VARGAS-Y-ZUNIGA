@@ -64,19 +64,7 @@ const Header = ({ sectionKey, onNavigate, sections }) => {
               >
                 Vargas <span style={{ color: "var(--accent-dark)" }}>&amp;</span> Zúñiga
               </div>
-              <div
-                style={{
-                  fontFamily: "'Cinzel', serif",
-                  fontSize: "9.5px",
-                  letterSpacing: "0.3em",
-                  color: "var(--ink-faint)",
-                  textTransform: "uppercase",
-                  marginTop: "4px",
-                  fontWeight: 700,
-                }}
-              >
-                Abogados <span style={{ color: "var(--accent-dark)" }}>·</span> Temuco
-              </div>
+
             </div>
           </button>
 
