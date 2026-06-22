@@ -121,7 +121,7 @@ const Lawyers = () => {
               style={{ background: "transparent", border: "none", cursor: "pointer" }}
             >
               <Mail size={13} strokeWidth={1.8} />
-              Para reservar una reunión, por favor converse con nuestra asistente
+              Reserva una reunión contactando a nuestra asistente
             </button>
           </div>
         </div>
