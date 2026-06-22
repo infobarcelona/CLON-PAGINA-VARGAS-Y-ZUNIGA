@@ -50,7 +50,7 @@ export const translations = {
         { name: "Frontel", kind: "" },
         { name: "SAESA", kind: "" },
         { name: "DRS Ltda.", kind: "" },
-        { name: "Capual", kind: "" },
+        { name: "Conavicoop", kind: "" },
       ],
     },
     lawyers: {
@@ -74,7 +74,7 @@ export const translations = {
         {
           initials: "MZ",
           photo: "/images/team/monica-zuniga.jpg",
-          name: "Mónica P. Zúñiga Lillo",
+          name: "Mónica Zúñiga Lillo",
           role: "Socia fundadora",
           email: "mzuniga@vargasyzuniga.cl",
           experience: [
@@ -236,7 +236,7 @@ export const translations = {
         {
           initials: "MZ",
           photo: "/images/team/monica-zuniga.jpg",
-          name: "Mónica P. Zúñiga Lillo",
+          name: "Mónica Zúñiga Lillo",
           role: "Founding partner",
           email: "mzuniga@vargasyzuniga.cl",
           experience: [

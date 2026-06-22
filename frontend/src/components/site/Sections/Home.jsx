@@ -12,7 +12,7 @@ const Home = ({ onNavigate }) => {
 
             <h1
               className="display-xl mt-5"
-              style={{ fontSize: "clamp(2.4rem, 6vw, 5.4rem)" }}
+              style={{ fontSize: "clamp(1.8rem, 4.5vw, 4rem)" }}
               data-testid="home-title"
             >
               {t.brand.name.split(" & ")[0]}
@@ -21,6 +21,19 @@ const Home = ({ onNavigate }) => {
               </span>
               {t.brand.name.split(" & ")[1]}
             </h1>
+            <div
+              style={{
+                fontFamily: "'Cinzel', serif",
+                fontSize: "clamp(0.9rem, 1.2vw, 1.1rem)",
+                letterSpacing: "0.15em",
+                textTransform: "uppercase",
+                color: "var(--ink-faint)",
+                marginTop: "6px",
+                fontWeight: 600,
+              }}
+            >
+              Abogados Ltda.
+            </div>
             <div
               className="mt-5"
               style={{

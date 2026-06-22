@@ -62,7 +62,7 @@ const Contact = () => {
               style={{
                 fontFamily: "'Cormorant Garamond', serif",
                 fontWeight: 700,
-                fontSize: "58px",
+                fontSize: "clamp(1.8rem, 3.2vw, 2.8rem)",
                 color: "var(--ink)",
                 margin: "0 0 28px",
                 textAlign: "center",
@@ -110,17 +110,7 @@ const Contact = () => {
               >
                 AGENDA TU HORA — CUÉNTANOS TU CASO
               </h3>
-              <p
-                style={{
-                  fontSize: "14.5px",
-                  color: "rgba(255,255,255,0.92)",
-                  lineHeight: 1.6,
-                  margin: "0 0 26px",
-                }}
-                data-testid="contact-chat-text"
-              >
-                Para contactarnos o reservar una reunión, por favor converse con nuestra asistente
-              </p>
+
               <button
                 type="button"
                 onClick={openChat}
