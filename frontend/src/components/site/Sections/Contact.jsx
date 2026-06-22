@@ -76,6 +76,20 @@ const Contact = () => {
             </h3>
             <div
               style={{
+                fontFamily: "'Cinzel', serif",
+                fontSize: "13px",
+                letterSpacing: "0.15em",
+                textTransform: "uppercase",
+                color: "var(--ink-faint)",
+                textAlign: "center",
+                marginBottom: 16,
+                marginTop: -8,
+              }}
+            >
+              Abogados Ltda.
+            </div>
+            <div
+              style={{
                 background: "linear-gradient(135deg, #4984e0 0%, #24398c 55%, #101849 100%)",
                 borderRadius: 16,
                 padding: "40px 32px",
@@ -94,7 +108,7 @@ const Contact = () => {
                 }}
                 data-testid="contact-chat-title"
               >
-                ¿Necesita contactarnos?
+                AGENDA TU HORA — CUÉNTANOS TU CASO
               </h3>
               <p
                 style={{

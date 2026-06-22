@@ -63,11 +63,12 @@ export const translations = {
           role: "Socio fundador",
           email: "avargas@vargasyzuniga.cl",
           experience: [
-            "Universidad Católica de Temuco — egresado con distinción, 2003.",
-            "Estudio Franco & Cía., 2005: civil bancario y procesos corporativos regionales.",
-            "Abogado Regional, Tesorería General de la República — La Araucanía, 2006–2010. Más de 7.000 cobros ejecutivos patrocinados.",
-            "Profesor de Derecho Procesal Civil, UC Temuco.",
-            "Candidato a Magíster en Derecho Privado, Universidad Autónoma de Chile.",
+            "Abogado Universidad Católica de Temuco, titulado en Septiembre de 2005.",
+            "Magíster en Derecho Privado y Corporativo.",
+            "Diplomado en Peritajes Laborales, mención Acoso Laboral, Sexual, Equidad de Género e Inclusión.",
+            "Ex Abogado Regional de la Tesorería General de la República.",
+            "Profesor de la cátedra de Derecho Procesal Civil, Universidad Católica de Temuco, año 2010.",
+            "Áreas de conocimiento: Derecho Civil · Juicio Ejecutivo Tributario · Derecho Laboral y Corporativo.",
           ],
         },
         {
@@ -77,18 +78,29 @@ export const translations = {
           role: "Socia fundadora",
           email: "mzuniga@vargasyzuniga.cl",
           experience: [
-            "Universidad Católica de Temuco, 2003.",
-            "Diplomados en Reforma Procesal Penal y Derecho Empresarial, UC Temuco, 2005.",
-            "Profesora de Derecho Político, Universidad Arturo Prat — sede Victoria, 2006–2008.",
-            "Asesora de Compañías de Seguros en litigios de tránsito infraccional, civil y criminal — 13+ años.",
-            "Candidata a Magíster en Derecho Privado, Universidad Autónoma de Chile.",
+            "Abogada Universidad Católica de Temuco, titulada en Noviembre de 2005.",
+            "Magíster en Derecho Privado y Corporativo.",
+            "Diplomado en Peritajes Laborales, mención Acoso Laboral, Sexual, Equidad de Género e Inclusión.",
+            "Profesora de la cátedra de Derecho Civil, Universidad de la Frontera, año 2024.",
+            "Áreas de conocimiento: Derecho de Familia · Seguridad Social · Seguros · Derecho del Consumidor · Derecho Laboral y Corporativo.",
+          ],
+        },
+        {
+          initials: "NM",
+          photo: "/images/team/nicole-munoz.jpg",
+          name: "Nicole Muñoz Poblete",
+          role: "",
+          email: "secretaria@vargasyzuniga.cl",
+          experience: [
+            "Abogada Universidad Católica de Temuco, titulada en Diciembre de 2025.",
+            "Áreas de conocimiento: Derecho Civil · Regulación de Deuda Tributaria · Derecho Laboral y Corporativo.",
           ],
         },
       ],
     },
     areas: {
       title: "Áreas de Práctica",
-      lead: "Tres frentes complementarios. Cobertura integral en derecho privado y administrativo.",
+      lead: "",
       groups: [
         {
           num: "I",
@@ -127,6 +139,7 @@ export const translations = {
     },
     contact: {
       title: "Contacto",
+      subtitle: "Abogados Ltda.",
       officeLabel: "Oficina",
       address: "Antonio Varas 687, oficina 1010",
       tower: "Torre Sinergia · Temuco",
