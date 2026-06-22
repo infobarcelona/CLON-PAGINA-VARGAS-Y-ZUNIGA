@@ -1,7 +1,13 @@
 import { useLang } from "@/i18n/LanguageContext";
-import { Landmark, Umbrella, Droplets, Building2, Scale, User } from "lucide-react";
 
-const CLIENT_ICONS = [Landmark, Umbrella, Droplets, Building2, Scale, User];
+const CLIENT_LOGOS = [
+  "/images/clients/plaenge.png",
+  "/images/clients/massmann.png",
+  "/images/clients/frontel.png",
+  "/images/clients/saesa.png",
+  "/images/clients/drs.png",
+  "/images/clients/conavicoop.png",
+];
 
 const Clients = () => {
   const { t } = useLang();
@@ -41,32 +47,26 @@ const Clients = () => {
           <div className="col-span-12 lg:col-span-8">
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               {t.clients.groups.map((g, i) => {
-                const Icon = CLIENT_ICONS[i];
+                const logo = CLIENT_LOGOS[i];
                 return (
                 <div
                   key={g.name}
                   data-testid={`client-tile-${i}`}
                   className="client-tile"
                 >
-                  {Icon && (
-                    <div
+                  {logo && (
+                    <img
+                      src={logo}
+                      alt={g.name}
                       style={{
-                        width: 36,
-                        height: 36,
-                        borderRadius: 9,
-                        border: "1.5px solid var(--accent-dark)",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
+                        width: "80%",
+                        height: "80px",
+                        objectFit: "contain",
                         marginBottom: 10,
-                        flexShrink: 0,
                       }}
-                    >
-                      <Icon size={18} strokeWidth={1.6} style={{ color: "var(--accent-dark)" }} />
-                    </div>
+                    />
                   )}
                   <div className="client-name">{g.name}</div>
-                  <div className="client-kind">{g.kind}</div>
                 </div>
                 );
               })}

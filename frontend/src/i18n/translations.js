@@ -20,8 +20,8 @@ export const translations = {
     studio: {
       title: "Estudio Jurídico",
       paragraphs: [
-        "Fundado en Temuco, Vargas & Zúñiga reúne a dos abogados titulados en la Universidad Católica de Temuco y candidatos a Magíster en Derecho Privado por la Universidad Autónoma de Chile.",
-        "Trabajamos con un equipo reducido y especializado, lo que nos permite atender personalmente cada caso y mantener una relación de confianza con quienes nos consultan.",
+        "Vargas & Zúñiga Abogados es una oficina fundada el año 2005 por los Abogados y Magíster en Derecho Alejandro Vargas C. y Mónica Zúñiga, ambos egresados el año 2003 de la Universidad Católica de Temuco. Desde sus inicios, la visión de sus fundadores fue la prestación de servicios especializados y personalizados.",
+        "A la fecha, el estudio ha patrocinado más de 2.000 clientes con exitosos resultados en un altísimo porcentaje. En más de 20 años de ejercicio, los Abogados del Estudio cuentan con un gran número de alegatos en la mayoría de las Cortes de Apelaciones del País, Excma. Corte Suprema de Justicia y Tribunal Constitucional.",
       ],
       values: [
         {
@@ -41,16 +41,16 @@ export const translations = {
     clients: {
       title: "Clientes",
       lead:
-        "Asesoramos a personas naturales, pequeñas y medianas empresas y a instituciones del sector privado y público.",
+        "Asesoramos personas, empresas y entidades sin fines de lucro en todas las áreas de experticia del Estudio.",
       note:
         "El listado completo está sujeto a confidencialidad. Las referencias pueden coordinarse en una reunión.",
       groups: [
-        { name: "Tesorería General de la República", kind: "Institución pública · Período 2006–2010" },
-        { name: "Compañías de Seguros", kind: "Litigios de tránsito · 13+ años" },
-        { name: "Operadores hidroeléctricos", kind: "Derechos de aprovechamiento de aguas" },
-        { name: "Empresas regionales", kind: "Recupero de valores · Cobranza" },
-        { name: "Estudios de abogados", kind: "Patrocinio judicial en La Araucanía" },
-        { name: "Personas naturales", kind: "Familia · Sucesiones · Tributario" },
+        { name: "Grupo Plange", kind: "" },
+        { name: "Grupo Massmann", kind: "" },
+        { name: "Frontel", kind: "" },
+        { name: "SAESA", kind: "" },
+        { name: "DRS Ltda.", kind: "" },
+        { name: "Capual", kind: "" },
       ],
     },
     lawyers: {
