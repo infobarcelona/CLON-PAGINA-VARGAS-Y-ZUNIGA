@@ -9,16 +9,7 @@ const Home = ({ onNavigate }) => {
       <div className="container-x">
         <div className="grid grid-cols-12 gap-8 lg:gap-12 items-center">
           <div className="col-span-12 lg:col-span-7 stagger">
-            <div className="eyebrow flex items-center gap-2">
-              <span>
-                {t.home.eyebrow.split(" · ").map((part, i, arr) => (
-                  <span key={i}>
-                    {part}
-                    {i < arr.length - 1 && <span className="dot-red">·</span>}
-                  </span>
-                ))}
-              </span>
-            </div>
+
             <h1
               className="display-xl mt-5"
               style={{ fontSize: "clamp(2.4rem, 6vw, 5.4rem)" }}
@@ -35,7 +26,7 @@ const Home = ({ onNavigate }) => {
               style={{
                 fontFamily: "'PT Sans', sans-serif",
                 fontStyle: "italic",
-                fontSize: "clamp(1.2rem, 1.8vw, 1.6rem)",
+                fontSize: "clamp(1.6rem, 2.5vw, 2.4rem)",
                 color: "var(--accent-dark)",
                 fontWeight: 700,
               }}
@@ -121,13 +112,13 @@ const Home = ({ onNavigate }) => {
                 <h4
                   style={{
                     fontFamily: "'Cinzel', serif",
-                    fontSize: "18px",
+                    fontSize: "24px",
                     fontWeight: 600,
                     color: "#fff",
                     margin: "0 0 10px",
                   }}
                 >
-                  Conoce a Renata
+                  Contacta a Renata
                 </h4>
                 <p
                   style={{
@@ -141,26 +132,7 @@ const Home = ({ onNavigate }) => {
                   saber del estudio: experiencia, áreas de práctica,
                   honorarios o cómo agendar tu reunión.
                 </p>
-                <button
-                  type="button"
-                  onClick={openChat}
-                  data-testid="home-renata-cta"
-                  style={{
-                    background: "#ffffff",
-                    color: "var(--accent-dark)",
-                    border: "none",
-                    padding: "13px 22px",
-                    borderRadius: 10,
-                    fontSize: "12.5px",
-                    fontWeight: 700,
-                    letterSpacing: "0.03em",
-                    width: "100%",
-                    cursor: "pointer",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  Conversa con nuestra asistente
-                </button>
+
               </div>
             </div>
           </div>
