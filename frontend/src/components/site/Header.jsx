@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import LanguageToggle from "./LanguageToggle";
+import { Link } from "react-router-dom";
 import { useLang } from "@/i18n/LanguageContext";
 import { openChat } from "@/lib/site-utils";
 
@@ -36,7 +37,37 @@ const Header = ({ sectionKey, onNavigate, sections }) => {
           >
             <span style={{ fontSize: "12.5px", fontWeight: 500 }}>Converse con nuestra asistente</span>
           </button>
-          <LanguageToggle />
+          <div className="flex items-center gap-4">
+            <LanguageToggle />
+            <div className="flex items-center gap-3">
+              <span
+                style={{
+                  fontSize: "12.5px",
+                  color: "var(--accent)",
+                  fontWeight: 600,
+                }}
+              >
+                Acceso Abogados
+              </span>
+              <Link
+                to="/portal"
+                data-testid="topbar-portal-link"
+                style={{
+                  fontSize: "12.5px",
+                  fontWeight: 700,
+                  color: "#ffffff",
+                  textDecoration: "none",
+                  background: "linear-gradient(135deg, #4984e0 0%, #1746a0 100%)",
+                  padding: "6px 16px",
+                  borderRadius: 8,
+                  letterSpacing: "0.02em",
+                  boxShadow: "0 2px 8px rgba(23,70,160,0.35)",
+                }}
+              >
+                Ingresar
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
 

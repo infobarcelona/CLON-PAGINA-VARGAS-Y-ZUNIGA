@@ -12,6 +12,7 @@ import Lawyers from "@/components/site/Sections/Lawyers";
 import Areas from "@/components/site/Sections/Areas";
 import Contact from "@/components/site/Sections/Contact";
 import PrivacyPolicy from "@/components/site/Sections/PrivacyPolicy";
+import PortalLogin from "@/components/site/Sections/PortalLogin";
 
 const SECTIONS = ["home", "studio", "clients", "lawyers", "areas", "contact"];
 
@@ -84,6 +85,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Site />} />
         <Route path="/privacidad" element={<PrivacyPolicy />} />
+        <Route path="/portal" element={<PortalLogin />} />
       </Routes>
     </LanguageProvider>
   );
