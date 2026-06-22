@@ -43,7 +43,7 @@ export const translations = {
       lead:
         "Asesoramos personas, empresas y entidades sin fines de lucro en todas las áreas de experticia del Estudio.",
       note:
-        "El listado completo está sujeto a confidencialidad. Las referencias pueden coordinarse en una reunión.",
+        "Algunos de nuestros clientes representativos",
       groups: [
         { name: "Grupo Plange", kind: "" },
         { name: "Grupo Massmann", kind: "" },
