@@ -202,7 +202,7 @@ const PortalOficina = () => {
           </p>
           <button
             type="button"
-            onClick={() => window.open("https://www.icloud.com/iclouddrive/0690iHaTN1mP3PHUt0gl7ledg#CAUSAS", "_blank")}
+            onClick={() => window.open("https://drive.google.com/drive/folders/1A_pJ-3Nqe1_1r0zzX7KwZKNp4mN9oNYs?usp=sharing", "_blank")}
             style={{
               display: "inline-flex",
               alignItems: "center",
