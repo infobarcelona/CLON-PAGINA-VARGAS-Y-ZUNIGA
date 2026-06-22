@@ -20,7 +20,7 @@ export const translations = {
     studio: {
       title: "Estudio Jurídico",
       paragraphs: [
-        "Vargas & Zúñiga Abogados es una oficina fundada el año 2005 por los Abogados y Magíster en Derecho Alejandro Vargas C. y Mónica Zúñiga, ambos egresados el año 2003 de la Universidad Católica de Temuco. Desde sus inicios, la visión de sus fundadores fue la prestación de servicios especializados y personalizados.",
+        "Vargas & Zúñiga Abogados es una oficina fundada el año 2005 por los Abogados y Magíster en Derecho Alejandro Vargas C. y Mónica Zúñiga L., ambos egresados el año 2003 de la Universidad Católica de Temuco. Desde sus inicios, la visión de sus fundadores fue la prestación de servicios especializados y personalizados.",
         "A la fecha, el estudio ha patrocinado más de 2.000 clientes con exitosos resultados en un altísimo porcentaje. En más de 20 años de ejercicio, los Abogados del Estudio cuentan con un gran número de alegatos en la mayoría de las Cortes de Apelaciones del País, Excma. Corte Suprema de Justicia y Tribunal Constitucional.",
       ],
       values: [

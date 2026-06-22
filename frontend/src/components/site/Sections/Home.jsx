@@ -30,6 +30,11 @@ const Home = ({ onNavigate }) => {
                 color: "var(--ink-faint)",
                 marginTop: "6px",
                 fontWeight: 600,
+                width: "fit-content",
+                marginLeft: "auto",
+                marginRight: "auto",
+                position: "relative",
+                left: "-10%",
               }}
             >
               Abogados Ltda.
