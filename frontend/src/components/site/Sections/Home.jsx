@@ -79,12 +79,14 @@ const Home = ({ onNavigate }) => {
           <div className="hidden lg:flex col-span-5 items-center justify-center">
             <div
               className="w-full"
+              onClick={openChat}
               style={{
                 maxWidth: 420,
                 marginLeft: "60px",
                 borderRadius: 22,
                 overflow: "hidden",
                 boxShadow: "0 10px 40px rgba(0,0,0,0.12)",
+                cursor: "pointer",
               }}
               data-testid="home-renata-card"
             >
