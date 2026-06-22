@@ -108,7 +108,9 @@ const Contact = () => {
                 }}
                 data-testid="contact-chat-title"
               >
-                AGENDA TU HORA — CUÉNTANOS TU CASO
+                AGENDA TU HORA
+                <br />
+                CUÉNTANOS TU CASO
               </h3>
 
               <button

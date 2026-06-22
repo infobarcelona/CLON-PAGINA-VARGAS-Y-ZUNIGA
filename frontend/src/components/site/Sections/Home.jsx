@@ -63,15 +63,7 @@ const Home = ({ onNavigate }) => {
               {t.home.lead}
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-4">
-              <button
-                type="button"
-                onClick={openChat}
-                data-testid="home-cta-chat"
-                className="btn-primary"
-              >
-                <MessageSquare size={14} strokeWidth={1.8} />
-                <span>{t.home.ctaChat}</span>
-              </button>
+
               <button
                 type="button"
                 onClick={() => onNavigate("studio")}
