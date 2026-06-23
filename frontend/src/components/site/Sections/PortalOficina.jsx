@@ -44,6 +44,9 @@ const PortalOficina = () => {
   const [creando, setCreando] = useState(false);
   const [mensaje, setMensaje] = useState(null);
   const [contextMenu, setContextMenu] = useState(null);
+  const [contextMenuItem, setContextMenuItem] = useState(null);
+  const [modalRenombrar, setModalRenombrar] = useState(null);
+  const [nuevoNombreItem, setNuevoNombreItem] = useState("");
   const [modalCarpeta, setModalCarpeta] = useState(false);
   const [nombreCarpeta, setNombreCarpeta] = useState("");
 
@@ -56,7 +59,7 @@ const PortalOficina = () => {
     const prevent = (e) => e.preventDefault();
     window.addEventListener("dragover", prevent);
     window.addEventListener("drop", prevent);
-    const cerrarMenu = () => setContextMenu(null);
+    const cerrarMenu = () => { setContextMenu(null); setContextMenuItem(null); };
     window.addEventListener("click", cerrarMenu);
     return () => {
       window.removeEventListener("dragover", prevent);
@@ -221,9 +224,41 @@ const PortalOficina = () => {
     } catch { mostrarMensaje("Error al crear carpeta", "error"); }
   };
 
+  const renombrarItem = async () => {
+    if (!nuevoNombreItem.trim() || !modalRenombrar) return;
+    try {
+      const token = sessionStorage.getItem("portal_token");
+      const res = await fetch(`${BACKEND}/api/drive/renombrar/${modalRenombrar.id}`, {
+        method: "PATCH",
+        headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+        body: JSON.stringify({ nombre: nuevoNombreItem }),
+      });
+      const data = await res.json();
+      if (data.ok) {
+        mostrarMensaje(`✓ Renombrado a "${nuevoNombreItem}"`);
+        setModalRenombrar(null);
+        setNuevoNombreItem("");
+        if (carpetaActual) cargarArchivos(carpetaActual);
+        else {
+          const r = await fetch(`${BACKEND}/api/drive/carpetas`, { headers: { Authorization: `Bearer ${token}` } });
+          const d = await r.json();
+          if (d.ok) setCarpetas(d.carpetas);
+        }
+      } else mostrarMensaje(`Error: ${data.error}`, "error");
+    } catch { mostrarMensaje("Error al renombrar", "error"); }
+  };
+
   const handleContextMenu = (e) => {
     e.preventDefault();
     setContextMenu({ x: e.clientX, y: e.clientY });
+    setContextMenuItem(null);
+  };
+
+  const handleItemContextMenu = (e, item) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setContextMenuItem({ x: e.clientX, y: e.clientY, item });
+    setContextMenu(null);
   };
 
   const handleDrop = (e) => { e.preventDefault(); setDragOver(false); const files = Array.from(e.dataTransfer.files); if (files.length > 0) subirArchivo(files[0]); };
@@ -333,7 +368,47 @@ const PortalOficina = () => {
         </div>
       )}
 
-      {/* Modal confirmar eliminar */}
+      {/* Menu contextual de item */}
+      {contextMenuItem && (
+        <div style={{ position: "fixed", top: contextMenuItem.y, left: contextMenuItem.x, background: "#fff", borderRadius: 10, boxShadow: "0 4px 24px rgba(0,0,0,0.15)", border: "1px solid rgba(23,70,160,0.1)", zIndex: 999, minWidth: 180, overflow: "hidden" }}
+          onClick={e => e.stopPropagation()}>
+          <button type="button" onClick={() => { setNuevoNombreItem(contextMenuItem.item.name); setModalRenombrar(contextMenuItem.item); setContextMenuItem(null); }}
+            style={{ display: "flex", alignItems: "center", gap: 10, width: "100%", padding: "10px 16px", background: "transparent", border: "none", cursor: "pointer", fontSize: "13px", color: "var(--ink)", textAlign: "left" }}>
+            ✏️ Renombrar
+          </button>
+          <a href={`https://vargasyzuniga.onrender.com/api/onlyoffice/download/${contextMenuItem.item.id}`} target="_blank" rel="noopener noreferrer"
+            style={{ display: "flex", alignItems: "center", gap: 10, width: "100%", padding: "10px 16px", textDecoration: "none", fontSize: "13px", color: "var(--ink)" }}
+            onClick={() => setContextMenuItem(null)}>
+            ⬇️ Descargar
+          </a>
+          <div style={{ height: 1, background: "rgba(23,70,160,0.08)", margin: "4px 0" }} />
+          <button type="button" onClick={() => { setModalEliminar(contextMenuItem.item); setContextMenuItem(null); }}
+            style={{ display: "flex", alignItems: "center", gap: 10, width: "100%", padding: "10px 16px", background: "transparent", border: "none", cursor: "pointer", fontSize: "13px", color: "#c0392b", textAlign: "left" }}>
+            🗑️ Eliminar
+          </button>
+        </div>
+      )}
+
+      {/* Modal renombrar */}
+      {modalRenombrar && (
+        <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.4)", zIndex: 998, display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <div style={{ background: "#fff", borderRadius: 16, padding: "32px", width: "100%", maxWidth: 380, boxShadow: "0 8px 40px rgba(0,0,0,0.15)" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 20 }}>
+              <h3 style={{ fontFamily: "'Cinzel', serif", fontSize: "16px", color: "var(--ink)", margin: 0 }}>Renombrar</h3>
+              <button type="button" onClick={() => setModalRenombrar(null)} style={{ background: "none", border: "none", cursor: "pointer", color: "var(--ink-faint)" }}><X size={18} /></button>
+            </div>
+            <input type="text" value={nuevoNombreItem} onChange={e => setNuevoNombreItem(e.target.value)}
+              onKeyDown={e => e.key === "Enter" && renombrarItem()}
+              style={{ width: "100%", padding: "10px 14px", border: "1.5px solid rgba(23,70,160,0.2)", borderRadius: 8, fontSize: "14px", boxSizing: "border-box", outline: "none", marginBottom: 20 }} />
+            <button type="button" onClick={renombrarItem} disabled={!nuevoNombreItem.trim()}
+              style={{ width: "100%", padding: "12px", background: "linear-gradient(135deg, #4984e0 0%, #1746a0 100%)", color: "#fff", border: "none", borderRadius: 10, fontSize: "13.5px", fontWeight: 700, cursor: "pointer" }}>
+              Guardar
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Modal confirmar eliminar */}}
       {modalEliminar && (
         <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.4)", zIndex: 998, display: "flex", alignItems: "center", justifyContent: "center" }}>
           <div style={{ background: "#fff", borderRadius: 16, padding: "32px", width: "100%", maxWidth: 380, boxShadow: "0 8px 40px rgba(0,0,0,0.15)" }}>
@@ -441,6 +516,7 @@ const PortalOficina = () => {
               {elementosFiltrados.map(item => (
                 <div key={item.id} style={{ position: "relative" }} className="portal-item">
                   <button type="button"
+                    onContextMenu={(e) => handleItemContextMenu(e, item)}
                     onClick={() => carpetaActual ? (item.mimeType === "application/vnd.google-apps.folder" ? abrirCarpeta(item) : abrirEditor(item)) : abrirCarpeta(item)}
                     style={{
                       width: "100%", background: archivoVisor?.id === item.id ? "rgba(23,70,160,0.08)" : "#fff",
