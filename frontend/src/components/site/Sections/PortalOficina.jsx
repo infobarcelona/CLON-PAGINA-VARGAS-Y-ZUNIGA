@@ -421,9 +421,18 @@ const PortalOficina = () => {
                       textAlign: vistaGrid ? "center" : "left", cursor: "pointer",
                       display: "flex", flexDirection: vistaGrid ? "column" : "row", alignItems: "center", gap: vistaGrid ? 8 : 10,
                     }}>
-                    <span style={{ fontSize: vistaGrid ? "28px" : "16px" }}>
-                      {item.mimeType === "application/vnd.google-apps.folder" ? "📁" : (MIME_ICONS[item.mimeType] || "📄")}
-                    </span>
+                    {item.mimeType === "application/vnd.google-apps.folder" ? (
+                      <svg width={vistaGrid ? 48 : 22} height={vistaGrid ? 38 : 18} viewBox="0 0 120 95" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0" y="18" width="120" height="77" rx="6" fill="#1746a0"/>
+                        <rect x="0" y="10" width="48" height="22" rx="5" fill="#1746a0"/>
+                        <rect x="2" y="20" width="116" height="73" rx="5" fill="#4984e0"/>
+                        <rect x="8" y="34" width="104" height="4" rx="2" fill="rgba(255,255,255,0.3)"/>
+                        <rect x="8" y="44" width="80" height="4" rx="2" fill="rgba(255,255,255,0.2)"/>
+                        <rect x="8" y="54" width="90" height="4" rx="2" fill="rgba(255,255,255,0.2)"/>
+                      </svg>
+                    ) : (
+                      <span style={{ fontSize: vistaGrid ? "28px" : "16px" }}>{MIME_ICONS[item.mimeType] || "📄"}</span>
+                    )}
                     <div style={{ flex: vistaGrid ? "none" : 1, minWidth: 0 }}>
                       <div style={{ fontSize: "12px", fontWeight: 600, color: "var(--ink)", lineHeight: 1.3, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: vistaGrid ? "normal" : "nowrap", wordBreak: vistaGrid ? "break-word" : "normal" }}>{item.name}</div>
                       <div style={{ fontSize: "10.5px", color: "var(--ink-faint)", marginTop: 2 }}>{new Date(item.modifiedTime).toLocaleDateString("es-CL")}</div>
