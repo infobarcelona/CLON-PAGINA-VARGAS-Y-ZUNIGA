@@ -591,9 +591,13 @@ const PortalOficina = () => {
             </div>
             {onlyofficeConfig ? (
               <OnlyOfficeEditor config={onlyofficeConfig} onClose={() => setOnlyofficeConfig(null)} />
-            ) : (
-              <iframe src={getViewerUrl(archivoVisor)} style={{ flex: 1, border: "none", width: "100%", height: "100%" }} title={archivoVisor.name} allow="autoplay" />
-            )}
+            ) : loadingEditor ? (
+              <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: 16, background: "#fff" }}>
+                <div style={{ width: 40, height: 40, border: "3px solid rgba(23,70,160,0.15)", borderTop: "3px solid #1746a0", borderRadius: "50%", animation: "spin 0.8s linear infinite" }} />
+                <div style={{ fontSize: "13px", color: "var(--ink-faint)" }}>Cargando editor...</div>
+                <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+              </div>
+            ) : null}
           </div>
         )}
       </div>
