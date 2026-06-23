@@ -69,6 +69,23 @@ const PortalOficina = () => {
     };
   }, []);
 
+  // Enviar token al widget de Renata via postMessage
+  useEffect(() => {
+    const token = sessionStorage.getItem("portal_token");
+    if (!token) return;
+    const enviarToken = () => {
+      const iframe = document.getElementById("vyz-widget-iframe");
+      if (iframe && iframe.contentWindow) {
+        iframe.contentWindow.postMessage({ type: "VYZ_PORTAL_TOKEN", token }, "https://vargasyzuniga.onrender.com");
+      }
+      // También enviarlo al widget launcher por si el iframe no está abierto aún
+      window.postMessage({ type: "VYZ_PORTAL_TOKEN", token }, "*");
+    };
+    enviarToken();
+    const interval = setInterval(enviarToken, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
   useEffect(() => {
     const token = sessionStorage.getItem("portal_token");
     if (!token) { navigate("/portal"); return; }
