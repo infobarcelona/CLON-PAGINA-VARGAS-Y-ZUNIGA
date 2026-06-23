@@ -186,8 +186,8 @@ const PrivacyPolicy = () => {
             <p style={{ marginBottom: 4 }}>Vargas &amp; Zúñiga Abogados</p>
             <p style={{ marginBottom: 4 }}>Antonio Varas 687, of. 1010, Torre Sinergia, Temuco, Chile</p>
             <p style={{ marginBottom: 30 }}>
-              <a href="mailto:avargas@vargasyzuniga.cl" style={{ color: "var(--accent-dark)" }}>
-                avargas@vargasyzuniga.cl
+              <a href="mailto:secretaria@vargasyzuniga.cl" style={{ color: "var(--accent-dark)" }}>
+                secretaria@vargasyzuniga.cl
               </a>
             </p>
           </div>
