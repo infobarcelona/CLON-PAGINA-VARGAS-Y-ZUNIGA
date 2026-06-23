@@ -9,23 +9,36 @@ const OnlyOfficeEditor = ({ config, onClose }) => {
   useEffect(() => {
     const containerId = "onlyoffice-editor-container";
 
+    // Destruir instancia anterior y limpiar el contenedor
+    if (instanceRef.current) {
+      try { instanceRef.current.destroyEditor(); } catch {}
+      instanceRef.current = null;
+    }
+    const container = document.getElementById(containerId);
+    if (container) container.innerHTML = "";
+
     const initEditor = () => {
-      if (window.DocsAPI && editorRef.current) {
-        if (instanceRef.current) {
-          instanceRef.current.destroyEditor();
-        }
-        instanceRef.current = new window.DocsAPI.DocEditor(containerId, config);
+      if (window.DocsAPI) {
+        const container = document.getElementById(containerId);
+        if (container) container.innerHTML = "";
+        instanceRef.current = new window.DocsAPI.DocEditor(containerId, {
+          ...config,
+          document: {
+            ...config.document,
+            key: config.document.key + "_" + Date.now(),
+          }
+        });
       }
     };
 
     const existingScript = document.getElementById("onlyoffice-api-script");
     if (existingScript) {
-      initEditor();
+      setTimeout(initEditor, 100);
     } else {
       const script = document.createElement("script");
       script.id = "onlyoffice-api-script";
       script.src = `${ONLYOFFICE_URL}/web-apps/apps/api/documents/api.js`;
-      script.onload = initEditor;
+      script.onload = () => setTimeout(initEditor, 100);
       script.onerror = () => console.error("[OnlyOffice] Error cargando API");
       document.head.appendChild(script);
     }
