@@ -21,7 +21,7 @@ const PortalLogin = () => {
       });
       const data = await res.json();
       if (res.ok && data.token) {
-        localStorage.setItem("portal_token", data.token);
+        sessionStorage.setItem("portal_token", data.token);
         window.location.href = "/portal/oficina";
       } else {
         setError(data.message || "Credenciales incorrectas. Intente nuevamente.");

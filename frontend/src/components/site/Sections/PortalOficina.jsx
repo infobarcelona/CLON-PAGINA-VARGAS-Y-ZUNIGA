@@ -52,13 +52,13 @@ const PortalOficina = () => {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("portal_token");
+    const token = sessionStorage.getItem("portal_token");
     if (!token) { navigate("/portal"); return; }
 
     fetch(`${BACKEND}/api/portal/verify`, { headers: { Authorization: `Bearer ${token}` } })
       .then(r => r.json())
       .then(data => {
-        if (!data.ok) { localStorage.removeItem("portal_token"); navigate("/portal"); return; }
+        if (!data.ok) { sessionStorage.removeItem("portal_token"); navigate("/portal"); return; }
         setNombre(data.nombre);
         const now = new Date();
         setAhora(
@@ -69,13 +69,13 @@ const PortalOficina = () => {
       })
       .then(r => r && r.json())
       .then(data => { if (data && data.ok) setCarpetas(data.carpetas); setLoading(false); })
-      .catch(() => { localStorage.removeItem("portal_token"); navigate("/portal"); });
+      .catch(() => { sessionStorage.removeItem("portal_token"); navigate("/portal"); });
   }, [navigate]);
 
   const cargarArchivos = async (carpeta) => {
     setLoadingArchivos(true);
     try {
-      const token = localStorage.getItem("portal_token");
+      const token = sessionStorage.getItem("portal_token");
       const res = await fetch(`${BACKEND}/api/drive/archivos/${carpeta.id}`, { headers: { Authorization: `Bearer ${token}` } });
       const data = await res.json();
       if (data.ok) setArchivos(data.archivos);
@@ -92,7 +92,7 @@ const PortalOficina = () => {
 
   const volverACarpetas = () => { setCarpetaActual(null); setArchivos([]); setArchivoVisor(null); setBusqueda(""); };
   const abrirArchivo = (archivo) => setArchivoVisor(archivo);
-  const cerrarSesion = () => { localStorage.removeItem("portal_token"); navigate("/portal"); };
+  const cerrarSesion = () => { sessionStorage.removeItem("portal_token"); navigate("/portal"); };
 
   const getViewerUrl = (archivo) => {
     if (archivo.mimeType.startsWith("application/vnd.google-apps")) return archivo.webViewLink;
@@ -103,7 +103,7 @@ const PortalOficina = () => {
     if (!carpetaActual) return;
     setSubiendo(true);
     try {
-      const token = localStorage.getItem("portal_token");
+      const token = sessionStorage.getItem("portal_token");
       const formData = new FormData();
       formData.append("archivo", file);
       const res = await fetch(`${BACKEND}/api/drive/subir/${carpetaActual.id}`, {
@@ -135,7 +135,7 @@ const PortalOficina = () => {
     if (!nuevoNombre.trim() || !carpetaActual) return;
     setCreando(true);
     try {
-      const token = localStorage.getItem("portal_token");
+      const token = sessionStorage.getItem("portal_token");
       const res = await fetch(`${BACKEND}/api/drive/crear/${carpetaActual.id}`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
