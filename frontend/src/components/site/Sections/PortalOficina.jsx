@@ -485,7 +485,7 @@ const PortalOficina = () => {
                   style={{ display: "flex", alignItems: "center", gap: 4, background: "linear-gradient(135deg, #4984e0 0%, #1746a0 100%)", color: "#fff", border: "none", padding: "6px 12px", borderRadius: 8, fontSize: "12px", fontWeight: 600, cursor: "pointer" }}>
                   <Edit size={12} /> {loadingEditor ? "Cargando..." : "Editar"}
                 </button>
-                <a href={`https://drive.google.com/uc?export=download&id=${archivoVisor.id}`} target="_blank" rel="noopener noreferrer"
+                <a href={`https://vargasyzuniga.onrender.com/api/onlyoffice/download/${archivoVisor.id}`} target="_blank" rel="noopener noreferrer"
                   style={{ display: "flex", alignItems: "center", gap: 4, background: "rgba(23,70,160,0.08)", color: "var(--accent-dark)", textDecoration: "none", padding: "6px 12px", borderRadius: 8, fontSize: "12px", fontWeight: 600 }}>
                   <Download size={12} /> Descargar
                 </a>
