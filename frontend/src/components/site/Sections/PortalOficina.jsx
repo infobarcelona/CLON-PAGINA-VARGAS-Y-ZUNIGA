@@ -106,7 +106,14 @@ const PortalOficina = () => {
   const volverACarpetas = () => { setCarpetaActual(null); setArchivos([]); setArchivoVisor(null); setBusqueda(""); };
   const cerrarSesion = () => { sessionStorage.removeItem("portal_token"); navigate("/portal"); };
 
+  const cerrarEditor = () => {
+    setOnlyofficeConfig(null);
+  };
+
   const abrirEditor = async (archivo) => {
+    setOnlyofficeConfig(null);
+    setArchivoVisor(null);
+    await new Promise(r => setTimeout(r, 200));
     setLoadingEditor(true);
     setOnlyofficeConfig(null);
     try {
