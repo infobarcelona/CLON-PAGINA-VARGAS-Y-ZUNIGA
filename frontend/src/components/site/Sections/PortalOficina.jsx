@@ -385,12 +385,19 @@ const PortalOficina = () => {
             style={{ display: "flex", alignItems: "center", gap: 10, width: "100%", padding: "10px 16px", background: "transparent", border: "none", cursor: "pointer", fontSize: "13px", color: "var(--ink)", textAlign: "left" }}>
             ✏️ Renombrar
           </button>
-          <a href={`https://vargasyzuniga.onrender.com/api/onlyoffice/download/${contextMenuItem.item.id}`} target="_blank" rel="noopener noreferrer"
-            style={{ display: "flex", alignItems: "center", gap: 10, width: "100%", padding: "10px 16px", textDecoration: "none", fontSize: "13px", color: "var(--ink)" }}
-            onClick={() => setContextMenuItem(null)}>
-            ⬇️ Descargar
-          </a>
-          <div style={{ height: 1, background: "rgba(23,70,160,0.08)", margin: "4px 0" }} />
+          {contextMenuItem.item.mimeType !== "application/vnd.google-apps.folder" && (
+            <>
+              <a href={`https://vargasyzuniga.onrender.com/api/onlyoffice/download/${contextMenuItem.item.id}`} target="_blank" rel="noopener noreferrer"
+                style={{ display: "flex", alignItems: "center", gap: 10, width: "100%", padding: "10px 16px", textDecoration: "none", fontSize: "13px", color: "var(--ink)" }}
+                onClick={() => setContextMenuItem(null)}>
+                ⬇️ Descargar
+              </a>
+              <div style={{ height: 1, background: "rgba(23,70,160,0.08)", margin: "4px 0" }} />
+            </>
+          )}
+          {contextMenuItem.item.mimeType === "application/vnd.google-apps.folder" && (
+            <div style={{ height: 1, background: "rgba(23,70,160,0.08)", margin: "4px 0" }} />
+          )}
           <button type="button" onClick={() => { setModalEliminar(contextMenuItem.item); setContextMenuItem(null); }}
             style={{ display: "flex", alignItems: "center", gap: 10, width: "100%", padding: "10px 16px", background: "transparent", border: "none", cursor: "pointer", fontSize: "13px", color: "#c0392b", textAlign: "left" }}>
             🗑️ Eliminar
