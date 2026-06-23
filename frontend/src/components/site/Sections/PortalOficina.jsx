@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { LogOut, FolderOpen, Clock, User, Search, ChevronLeft, Download, Edit, Upload, Plus, X, Trash2, FolderPlus, FileText, Table, Presentation } from "lucide-react";
+import OnlyOfficeEditor from "./OnlyOfficeEditor";
 
 const BACKEND = "https://vargasyzuniga.onrender.com";
 
@@ -499,26 +500,7 @@ const PortalOficina = () => {
               </div>
             </div>
             {onlyofficeConfig ? (
-              <div style={{ flex: 1, position: "relative" }}>
-                <iframe
-                  src={`https://onlyoffice-vyz.onrender.com/web-apps/apps/api/documents/api.js`}
-                  style={{ display: "none" }}
-                  title="onlyoffice-api"
-                />
-                <div id="onlyoffice-editor" style={{ width: "100%", height: "100%" }} />
-                <script dangerouslySetInnerHTML={{ __html: `
-                  if (window.DocsAPI) {
-                    new window.DocsAPI.DocEditor("onlyoffice-editor", ${JSON.stringify(onlyofficeConfig)});
-                  } else {
-                    var s = document.createElement('script');
-                    s.src = 'https://onlyoffice-vyz.onrender.com/web-apps/apps/api/documents/api.js';
-                    s.onload = function() {
-                      new window.DocsAPI.DocEditor("onlyoffice-editor", ${JSON.stringify(onlyofficeConfig)});
-                    };
-                    document.head.appendChild(s);
-                  }
-                ` }} />
-              </div>
+              <OnlyOfficeEditor config={onlyofficeConfig} onClose={() => setOnlyofficeConfig(null)} />
             ) : (
               <iframe src={getViewerUrl(archivoVisor)} style={{ flex: 1, border: "none", width: "100%", height: "100%" }} title={archivoVisor.name} allow="autoplay" />
             )}
