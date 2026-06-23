@@ -24,6 +24,7 @@ const PortalOficina = () => {
   const contextMenuRef = useRef(null);
 
   const [nombre, setNombre] = useState("");
+  const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(true);
   const [carpetas, setCarpetas] = useState([]);
   const [busqueda, setBusqueda] = useState("");
@@ -76,6 +77,7 @@ const PortalOficina = () => {
       .then(data => {
         if (!data.ok) { sessionStorage.removeItem("portal_token"); navigate("/portal"); return; }
         setNombre(data.nombre);
+        setEmail(data.email || "");
         const now = new Date();
         setAhora(
           now.toLocaleDateString("es-CL", { weekday: "long", year: "numeric", month: "long", day: "numeric" }) +
@@ -282,10 +284,17 @@ const PortalOficina = () => {
             VARGAS <span style={{ color: "var(--accent)" }}>&amp;</span> ZÚÑIGA
           </span>
         </Link>
-        <button type="button" onClick={cerrarSesion}
-          style={{ display: "flex", alignItems: "center", gap: 6, background: "transparent", border: "1px solid rgba(255,255,255,0.2)", color: "rgba(255,255,255,0.7)", padding: "6px 14px", borderRadius: 8, fontSize: "12.5px", cursor: "pointer" }}>
-          <LogOut size={13} /> Cerrar sesión
-        </button>
+        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          {email === "avargas@vargasyzuniga.cl" && (
+            <Link to="/portal/auditoria" style={{ display: "flex", alignItems: "center", gap: 5, color: "var(--accent)", textDecoration: "none", fontSize: "12.5px", fontWeight: 600 }}>
+              🛡️ Auditoría
+            </Link>
+          )}
+          <button type="button" onClick={cerrarSesion}
+            style={{ display: "flex", alignItems: "center", gap: 6, background: "transparent", border: "1px solid rgba(255,255,255,0.2)", color: "rgba(255,255,255,0.7)", padding: "6px 14px", borderRadius: 8, fontSize: "12.5px", cursor: "pointer" }}>
+            <LogOut size={13} /> Cerrar sesión
+          </button>
+        </div>
       </div>
 
       {/* Mensaje flotante */}
