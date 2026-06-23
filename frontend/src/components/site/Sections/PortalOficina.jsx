@@ -440,7 +440,7 @@ const PortalOficina = () => {
               {elementosFiltrados.map(item => (
                 <div key={item.id} style={{ position: "relative" }} className="portal-item">
                   <button type="button"
-                    onClick={() => carpetaActual ? (item.mimeType === "application/vnd.google-apps.folder" ? abrirCarpeta(item) : archivoVisor?.id === item.id ? setArchivoVisor(null) : setArchivoVisor(item)) : abrirCarpeta(item)}
+                    onClick={() => carpetaActual ? (item.mimeType === "application/vnd.google-apps.folder" ? abrirCarpeta(item) : abrirEditor(item)) : abrirCarpeta(item)}
                     style={{
                       width: "100%", background: archivoVisor?.id === item.id ? "rgba(23,70,160,0.08)" : "#fff",
                       border: `1.5px solid ${archivoVisor?.id === item.id ? "rgba(23,70,160,0.3)" : "rgba(23,70,160,0.08)"}`,
@@ -486,12 +486,9 @@ const PortalOficina = () => {
                 <span style={{ fontSize: "13px", fontWeight: 600, color: "var(--ink)", maxWidth: 200, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{archivoVisor.name}</span>
               </div>
               <div style={{ display: "flex", gap: 8 }}>
-                <button type="button"
-                  onClick={() => abrirEditor(archivoVisor)}
-                  disabled={loadingEditor}
-                  style={{ display: "flex", alignItems: "center", gap: 4, background: "linear-gradient(135deg, #4984e0 0%, #1746a0 100%)", color: "#fff", border: "none", padding: "6px 12px", borderRadius: 8, fontSize: "12px", fontWeight: 600, cursor: "pointer" }}>
-                  <Edit size={12} /> {loadingEditor ? "Cargando..." : "Editar"}
-                </button>
+                {loadingEditor && (
+                  <span style={{ fontSize: "12px", color: "var(--ink-faint)", padding: "6px 12px" }}>Cargando editor...</span>
+                )}
                 <a href={`https://vargasyzuniga.onrender.com/api/onlyoffice/download/${archivoVisor.id}`} target="_blank" rel="noopener noreferrer"
                   style={{ display: "flex", alignItems: "center", gap: 4, background: "rgba(23,70,160,0.08)", color: "var(--accent-dark)", textDecoration: "none", padding: "6px 12px", borderRadius: 8, fontSize: "12px", fontWeight: 600 }}>
                   <Download size={12} /> Descargar
