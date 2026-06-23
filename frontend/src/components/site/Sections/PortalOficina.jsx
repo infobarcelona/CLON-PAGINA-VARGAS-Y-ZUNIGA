@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { LogOut, FolderOpen, Clock, User, Search, ChevronLeft, Download, Edit, Upload, Plus, X, FileText } from "lucide-react";
+import { LogOut, FolderOpen, Clock, User, Search, ChevronLeft, Download, Edit, Upload, Plus, X, Trash2, FolderPlus, FileText, Table, Presentation } from "lucide-react";
 
 const BACKEND = "https://vargasyzuniga.onrender.com";
 
@@ -8,6 +8,7 @@ const MIME_ICONS = {
   "application/vnd.google-apps.document": "📄",
   "application/vnd.google-apps.spreadsheet": "📊",
   "application/vnd.google-apps.presentation": "📑",
+  "application/vnd.google-apps.folder": "📁",
   "application/pdf": "📕",
   "application/vnd.openxmlformats-officedocument.wordprocessingml.document": "📝",
   "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": "📊",
@@ -18,6 +19,9 @@ const MIME_ICONS = {
 const PortalOficina = () => {
   const navigate = useNavigate();
   const fileInputRef = useRef(null);
+  const folderInputRef = useRef(null);
+  const contextMenuRef = useRef(null);
+
   const [nombre, setNombre] = useState("");
   const [loading, setLoading] = useState(true);
   const [carpetas, setCarpetas] = useState([]);
@@ -31,20 +35,14 @@ const PortalOficina = () => {
   const [subiendo, setSubiendo] = useState(false);
   const [dragOver, setDragOver] = useState(false);
   const [modalCrear, setModalCrear] = useState(false);
+  const [modalEliminar, setModalEliminar] = useState(null);
   const [nuevoNombre, setNuevoNombre] = useState("");
   const [nuevoTipo, setNuevoTipo] = useState("doc");
   const [creando, setCreando] = useState(false);
   const [mensaje, setMensaje] = useState(null);
-
-  useEffect(() => {
-    const prevent = (e) => e.preventDefault();
-    window.addEventListener("dragover", prevent);
-    window.addEventListener("drop", prevent);
-    return () => {
-      window.removeEventListener("dragover", prevent);
-      window.removeEventListener("drop", prevent);
-    };
-  }, []);
+  const [contextMenu, setContextMenu] = useState(null);
+  const [modalCarpeta, setModalCarpeta] = useState(false);
+  const [nombreCarpeta, setNombreCarpeta] = useState("");
 
   const mostrarMensaje = (texto, tipo = "ok") => {
     setMensaje({ texto, tipo });
@@ -52,9 +50,21 @@ const PortalOficina = () => {
   };
 
   useEffect(() => {
+    const prevent = (e) => e.preventDefault();
+    window.addEventListener("dragover", prevent);
+    window.addEventListener("drop", prevent);
+    const cerrarMenu = () => setContextMenu(null);
+    window.addEventListener("click", cerrarMenu);
+    return () => {
+      window.removeEventListener("dragover", prevent);
+      window.removeEventListener("drop", prevent);
+      window.removeEventListener("click", cerrarMenu);
+    };
+  }, []);
+
+  useEffect(() => {
     const token = sessionStorage.getItem("portal_token");
     if (!token) { navigate("/portal"); return; }
-
     fetch(`${BACKEND}/api/portal/verify`, { headers: { Authorization: `Bearer ${token}` } })
       .then(r => r.json())
       .then(data => {
@@ -91,7 +101,6 @@ const PortalOficina = () => {
   };
 
   const volverACarpetas = () => { setCarpetaActual(null); setArchivos([]); setArchivoVisor(null); setBusqueda(""); };
-  const abrirArchivo = (archivo) => setArchivoVisor(archivo);
   const cerrarSesion = () => { sessionStorage.removeItem("portal_token"); navigate("/portal"); };
 
   const getViewerUrl = (archivo) => {
@@ -107,28 +116,35 @@ const PortalOficina = () => {
       const formData = new FormData();
       formData.append("archivo", file);
       const res = await fetch(`${BACKEND}/api/drive/subir/${carpetaActual.id}`, {
-        method: "POST",
-        headers: { Authorization: `Bearer ${token}` },
-        body: formData,
+        method: "POST", headers: { Authorization: `Bearer ${token}` }, body: formData,
       });
       const data = await res.json();
-      if (data.ok) {
-        mostrarMensaje(`✓ "${file.name}" subido correctamente`);
-        cargarArchivos(carpetaActual);
-      } else {
-        mostrarMensaje(`Error: ${data.error}`, "error");
-      }
-    } catch (err) {
-      mostrarMensaje("Error al subir el archivo", "error");
-    }
+      if (data.ok) { mostrarMensaje(`✓ "${file.name}" subido correctamente`); cargarArchivos(carpetaActual); }
+      else mostrarMensaje(`Error: ${data.error}`, "error");
+    } catch { mostrarMensaje("Error al subir el archivo", "error"); }
     setSubiendo(false);
   };
 
-  const handleDrop = (e) => {
-    e.preventDefault();
-    setDragOver(false);
-    const files = Array.from(e.dataTransfer.files);
-    if (files.length > 0) subirArchivo(files[0]);
+  const eliminarItem = async (item) => {
+    try {
+      const token = sessionStorage.getItem("portal_token");
+      const res = await fetch(`${BACKEND}/api/drive/eliminar/${item.id}`, {
+        method: "DELETE", headers: { Authorization: `Bearer ${token}` },
+      });
+      const data = await res.json();
+      if (data.ok) {
+        mostrarMensaje(`✓ "${item.name}" eliminado`);
+        setModalEliminar(null);
+        if (archivoVisor?.id === item.id) setArchivoVisor(null);
+        if (carpetaActual) cargarArchivos(carpetaActual);
+        else {
+          const token2 = sessionStorage.getItem("portal_token");
+          const r = await fetch(`${BACKEND}/api/drive/carpetas`, { headers: { Authorization: `Bearer ${token2}` } });
+          const d = await r.json();
+          if (d.ok) setCarpetas(d.carpetas);
+        }
+      } else mostrarMensaje(`Error: ${data.error}`, "error");
+    } catch { mostrarMensaje("Error al eliminar", "error"); }
   };
 
   const crearDocumento = async () => {
@@ -136,38 +152,63 @@ const PortalOficina = () => {
     setCreando(true);
     try {
       const token = sessionStorage.getItem("portal_token");
-      const res = await fetch(`${BACKEND}/api/drive/crear/${carpetaActual.id}`, {
+      const folderId = carpetaActual?.id;
+      const res = await fetch(`${BACKEND}/api/drive/crear/${folderId}`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
         body: JSON.stringify({ nombre: nuevoNombre, tipo: nuevoTipo }),
       });
       const data = await res.json();
       if (data.ok) {
-        mostrarMensaje(`✓ "${data.archivo.name}" creado correctamente`);
-        setModalCrear(false);
-        setNuevoNombre("");
+        mostrarMensaje(`✓ "${data.archivo.name}" creado`);
+        setModalCrear(false); setNuevoNombre("");
         cargarArchivos(carpetaActual);
-        setArchivoVisor(data.archivo);
-      } else {
-        mostrarMensaje(`Error: ${data.error}`, "error");
-      }
-    } catch (err) {
-      mostrarMensaje("Error al crear el documento", "error");
-    }
+        window.open(data.archivo.webViewLink, "_blank");
+      } else mostrarMensaje(`Error: ${data.error}`, "error");
+    } catch { mostrarMensaje("Error al crear", "error"); }
     setCreando(false);
   };
+
+  const crearCarpeta = async () => {
+    if (!nombreCarpeta.trim()) return;
+    try {
+      const token = sessionStorage.getItem("portal_token");
+      const folderId = carpetaActual?.id || "1A_pJ-3Nqe1_1r0zzX7KwZKNp4mN9oNYs";
+      const res = await fetch(`${BACKEND}/api/drive/carpeta/${folderId}`, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+        body: JSON.stringify({ nombre: nombreCarpeta }),
+      });
+      const data = await res.json();
+      if (data.ok) {
+        mostrarMensaje(`✓ Carpeta "${nombreCarpeta}" creada`);
+        setModalCarpeta(false); setNombreCarpeta("");
+        if (carpetaActual) cargarArchivos(carpetaActual);
+        else {
+          const r = await fetch(`${BACKEND}/api/drive/carpetas`, { headers: { Authorization: `Bearer ${token}` } });
+          const d = await r.json();
+          if (d.ok) setCarpetas(d.carpetas);
+        }
+      } else mostrarMensaje(`Error: ${data.error}`, "error");
+    } catch { mostrarMensaje("Error al crear carpeta", "error"); }
+  };
+
+  const handleContextMenu = (e) => {
+    e.preventDefault();
+    setContextMenu({ x: e.clientX, y: e.clientY });
+  };
+
+  const handleDrop = (e) => { e.preventDefault(); setDragOver(false); const files = Array.from(e.dataTransfer.files); if (files.length > 0) subirArchivo(files[0]); };
 
   const elementosFiltrados = carpetaActual
     ? archivos.filter(a => a.name.toLowerCase().includes(busqueda.toLowerCase()))
     : carpetas.filter(c => c.name.toLowerCase().includes(busqueda.toLowerCase()));
 
-  if (loading) {
-    return (
-      <div style={{ minHeight: "100vh", background: "var(--cream)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <div style={{ fontSize: "14px", color: "var(--ink-faint)" }}>Cargando portal...</div>
-      </div>
-    );
-  }
+  if (loading) return (
+    <div style={{ minHeight: "100vh", background: "var(--cream)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <div style={{ fontSize: "14px", color: "var(--ink-faint)" }}>Cargando portal...</div>
+    </div>
+  );
 
   return (
     <div style={{ minHeight: "100vh", height: "100vh", background: "var(--cream)", display: "flex", flexDirection: "column", overflow: "hidden" }}>
@@ -186,19 +227,37 @@ const PortalOficina = () => {
 
       {/* Mensaje flotante */}
       {mensaje && (
-        <div style={{
-          position: "fixed", top: 20, right: 20, zIndex: 1000,
-          background: mensaje.tipo === "error" ? "#c0392b" : "#1746a0",
-          color: "#fff", padding: "12px 20px", borderRadius: 10, fontSize: "13px", fontWeight: 600,
-          boxShadow: "0 4px 20px rgba(0,0,0,0.2)",
-        }}>
+        <div style={{ position: "fixed", top: 20, right: 20, zIndex: 1000, background: mensaje.tipo === "error" ? "#c0392b" : "#1746a0", color: "#fff", padding: "12px 20px", borderRadius: 10, fontSize: "13px", fontWeight: 600, boxShadow: "0 4px 20px rgba(0,0,0,0.2)" }}>
           {mensaje.texto}
+        </div>
+      )}
+
+      {/* Menú contextual */}
+      {contextMenu && (
+        <div ref={contextMenuRef} style={{ position: "fixed", top: contextMenu.y, left: contextMenu.x, background: "#fff", borderRadius: 10, boxShadow: "0 4px 24px rgba(0,0,0,0.15)", border: "1px solid rgba(23,70,160,0.1)", zIndex: 999, minWidth: 200, overflow: "hidden" }}
+          onClick={e => e.stopPropagation()}>
+          {[
+            { icon: "📄", label: "Nuevo documento", action: () => { setNuevoTipo("doc"); setModalCrear(true); setContextMenu(null); }, disabled: !carpetaActual },
+            { icon: "📊", label: "Nueva hoja de cálculo", action: () => { setNuevoTipo("sheet"); setModalCrear(true); setContextMenu(null); }, disabled: !carpetaActual },
+            { icon: "📑", label: "Nueva presentación", action: () => { setNuevoTipo("slide"); setModalCrear(true); setContextMenu(null); }, disabled: !carpetaActual },
+            null,
+            { icon: "📁", label: "Nueva carpeta", action: () => { setModalCarpeta(true); setContextMenu(null); } },
+            null,
+            { icon: "⬆️", label: "Subir archivo", action: () => { fileInputRef.current?.click(); setContextMenu(null); }, disabled: !carpetaActual },
+          ].map((item, i) => item === null ? (
+            <div key={i} style={{ height: 1, background: "rgba(23,70,160,0.08)", margin: "4px 0" }} />
+          ) : (
+            <button key={i} type="button" onClick={item.action} disabled={item.disabled}
+              style={{ display: "flex", alignItems: "center", gap: 10, width: "100%", padding: "10px 16px", background: "transparent", border: "none", cursor: item.disabled ? "not-allowed" : "pointer", fontSize: "13px", color: item.disabled ? "var(--ink-faint)" : "var(--ink)", textAlign: "left" }}>
+              <span>{item.icon}</span> {item.label}
+            </button>
+          ))}
         </div>
       )}
 
       {/* Modal crear documento */}
       {modalCrear && (
-        <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.4)", zIndex: 999, display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.4)", zIndex: 998, display: "flex", alignItems: "center", justifyContent: "center" }}>
           <div style={{ background: "#fff", borderRadius: 16, padding: "32px", width: "100%", maxWidth: 420, boxShadow: "0 8px 40px rgba(0,0,0,0.15)" }}>
             <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 20 }}>
               <h3 style={{ fontFamily: "'Cinzel', serif", fontSize: "16px", color: "var(--ink)", margin: 0 }}>Crear documento</h3>
@@ -206,14 +265,13 @@ const PortalOficina = () => {
             </div>
             <div style={{ marginBottom: 14 }}>
               <label style={{ display: "block", fontSize: "11px", fontWeight: 700, letterSpacing: "0.05em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 6 }}>Nombre</label>
-              <input type="text" value={nuevoNombre} onChange={e => setNuevoNombre(e.target.value)}
-                placeholder="Ej: Contrato de compraventa"
+              <input type="text" value={nuevoNombre} onChange={e => setNuevoNombre(e.target.value)} placeholder="Ej: Contrato de compraventa"
                 style={{ width: "100%", padding: "10px 14px", border: "1.5px solid rgba(23,70,160,0.2)", borderRadius: 8, fontSize: "14px", boxSizing: "border-box", outline: "none" }} />
             </div>
             <div style={{ marginBottom: 24 }}>
               <label style={{ display: "block", fontSize: "11px", fontWeight: 700, letterSpacing: "0.05em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 6 }}>Tipo</label>
               <div style={{ display: "flex", gap: 8 }}>
-                {[{ v: "doc", l: "📄 Documento" }, { v: "sheet", l: "📊 Hoja de cálculo" }, { v: "slide", l: "📑 Presentación" }].map(t => (
+                {[{ v: "doc", l: "📄 Documento" }, { v: "sheet", l: "📊 Hoja" }, { v: "slide", l: "📑 Presentación" }].map(t => (
                   <button key={t.v} type="button" onClick={() => setNuevoTipo(t.v)}
                     style={{ flex: 1, padding: "8px 6px", fontSize: "11.5px", fontWeight: 600, border: `1.5px solid ${nuevoTipo === t.v ? "var(--accent-dark)" : "rgba(23,70,160,0.15)"}`, borderRadius: 8, background: nuevoTipo === t.v ? "rgba(23,70,160,0.08)" : "#fff", color: nuevoTipo === t.v ? "var(--accent-dark)" : "var(--ink-faint)", cursor: "pointer" }}>
                     {t.l}
@@ -223,21 +281,60 @@ const PortalOficina = () => {
             </div>
             <button type="button" onClick={crearDocumento} disabled={!nuevoNombre.trim() || creando}
               style={{ width: "100%", padding: "12px", background: "linear-gradient(135deg, #4984e0 0%, #1746a0 100%)", color: "#fff", border: "none", borderRadius: 10, fontSize: "13.5px", fontWeight: 700, cursor: "pointer" }}>
-              {creando ? "Creando..." : "Crear documento"}
+              {creando ? "Creando..." : "Crear y abrir"}
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* Modal crear carpeta */}
+      {modalCarpeta && (
+        <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.4)", zIndex: 998, display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <div style={{ background: "#fff", borderRadius: 16, padding: "32px", width: "100%", maxWidth: 380, boxShadow: "0 8px 40px rgba(0,0,0,0.15)" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 20 }}>
+              <h3 style={{ fontFamily: "'Cinzel', serif", fontSize: "16px", color: "var(--ink)", margin: 0 }}>Nueva carpeta</h3>
+              <button type="button" onClick={() => setModalCarpeta(false)} style={{ background: "none", border: "none", cursor: "pointer", color: "var(--ink-faint)" }}><X size={18} /></button>
+            </div>
+            <input type="text" value={nombreCarpeta} onChange={e => setNombreCarpeta(e.target.value)} placeholder="Nombre de la carpeta"
+              style={{ width: "100%", padding: "10px 14px", border: "1.5px solid rgba(23,70,160,0.2)", borderRadius: 8, fontSize: "14px", boxSizing: "border-box", outline: "none", marginBottom: 20 }} />
+            <button type="button" onClick={crearCarpeta} disabled={!nombreCarpeta.trim()}
+              style={{ width: "100%", padding: "12px", background: "linear-gradient(135deg, #4984e0 0%, #1746a0 100%)", color: "#fff", border: "none", borderRadius: 10, fontSize: "13.5px", fontWeight: 700, cursor: "pointer" }}>
+              Crear carpeta
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Modal confirmar eliminar */}
+      {modalEliminar && (
+        <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.4)", zIndex: 998, display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <div style={{ background: "#fff", borderRadius: 16, padding: "32px", width: "100%", maxWidth: 380, boxShadow: "0 8px 40px rgba(0,0,0,0.15)" }}>
+            <h3 style={{ fontFamily: "'Cinzel', serif", fontSize: "16px", color: "var(--ink)", margin: "0 0 12px" }}>Eliminar</h3>
+            <p style={{ fontSize: "13.5px", color: "var(--ink-mute)", margin: "0 0 24px", lineHeight: 1.5 }}>
+              ¿Estás seguro que deseas eliminar <b>"{modalEliminar.name}"</b>? Esta acción no se puede deshacer.
+            </p>
+            <div style={{ display: "flex", gap: 10 }}>
+              <button type="button" onClick={() => setModalEliminar(null)}
+                style={{ flex: 1, padding: "10px", background: "transparent", border: "1.5px solid rgba(23,70,160,0.15)", borderRadius: 10, fontSize: "13px", cursor: "pointer", color: "var(--ink)" }}>
+                Cancelar
+              </button>
+              <button type="button" onClick={() => eliminarItem(modalEliminar)}
+                style={{ flex: 1, padding: "10px", background: "#c0392b", color: "#fff", border: "none", borderRadius: 10, fontSize: "13px", fontWeight: 700, cursor: "pointer" }}>
+                Eliminar
+              </button>
+            </div>
           </div>
         </div>
       )}
 
       <div style={{ flex: 1, display: "flex", overflow: "hidden" }}>
         {/* Panel izquierdo */}
-        <div
-          style={{ width: archivoVisor ? 340 : "100%", maxWidth: archivoVisor ? 340 : 1000, margin: archivoVisor ? 0 : "0 auto", padding: "24px", overflowY: "auto", flexShrink: 0, position: "relative" }}
+        <div style={{ width: archivoVisor ? 340 : "100%", maxWidth: archivoVisor ? 340 : 1000, margin: archivoVisor ? 0 : "0 auto", padding: "24px", overflowY: "auto", flexShrink: 0, position: "relative" }}
+          onContextMenu={handleContextMenu}
           onDragOver={carpetaActual ? (e) => { e.preventDefault(); setDragOver(true); } : undefined}
           onDragLeave={carpetaActual ? () => setDragOver(false) : undefined}
-          onDrop={carpetaActual ? handleDrop : undefined}
-        >
-          {/* Overlay drag */}
+          onDrop={carpetaActual ? handleDrop : undefined}>
+
           {dragOver && (
             <div style={{ position: "absolute", inset: 0, background: "rgba(23,70,160,0.08)", border: "2px dashed var(--accent-dark)", borderRadius: 12, zIndex: 10, display: "flex", alignItems: "center", justifyContent: "center" }}>
               <div style={{ textAlign: "center", color: "var(--accent-dark)" }}>
@@ -254,9 +351,7 @@ const PortalOficina = () => {
                 <User size={14} style={{ opacity: 0.8 }} />
                 <span style={{ fontSize: "11px", opacity: 0.8, letterSpacing: "0.05em", textTransform: "uppercase" }}>Portal Abogados</span>
               </div>
-              <h2 style={{ fontFamily: "'Cinzel', serif", fontSize: "18px", fontWeight: 600, margin: "0 0 4px" }}>
-                Bienvenido, {nombre.split(" ")[0]}
-              </h2>
+              <h2 style={{ fontFamily: "'Cinzel', serif", fontSize: "18px", fontWeight: 600, margin: "0 0 4px" }}>Bienvenido, {nombre.split(" ")[0]}</h2>
               <div style={{ display: "flex", alignItems: "center", gap: 6, opacity: 0.75 }}>
                 <Clock size={11} /><span style={{ fontSize: "11px" }}>{ahora}</span>
               </div>
@@ -299,50 +394,48 @@ const PortalOficina = () => {
           {/* Contador + toggle */}
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
             <div style={{ fontSize: "11.5px", color: "var(--ink-faint)" }}>
-              {carpetaActual ? `${elementosFiltrados.length} archivo${elementosFiltrados.length !== 1 ? "s" : ""}` : `${elementosFiltrados.length} causa${elementosFiltrados.length !== 1 ? "s" : ""}`}
-              {carpetaActual && <span style={{ marginLeft: 8, fontSize: "10.5px", opacity: 0.7 }}>— arrastra archivos aquí para subir</span>}
+              {carpetaActual ? `${elementosFiltrados.length} elemento${elementosFiltrados.length !== 1 ? "s" : ""}` : `${elementosFiltrados.length} causa${elementosFiltrados.length !== 1 ? "s" : ""}`}
+              {carpetaActual && <span style={{ marginLeft: 8, fontSize: "10.5px", opacity: 0.7 }}>— clic derecho para más opciones</span>}
             </div>
             <div style={{ display: "flex", gap: 4 }}>
               <button type="button" onClick={() => setVistaGrid(true)}
-                style={{ background: vistaGrid ? "var(--accent-dark)" : "transparent", color: vistaGrid ? "#fff" : "var(--ink-faint)", border: "1.5px solid rgba(23,70,160,0.15)", borderRadius: 6, padding: "4px 8px", fontSize: "11px", cursor: "pointer" }}>
-                ⊞
-              </button>
+                style={{ background: vistaGrid ? "var(--accent-dark)" : "transparent", color: vistaGrid ? "#fff" : "var(--ink-faint)", border: "1.5px solid rgba(23,70,160,0.15)", borderRadius: 6, padding: "4px 8px", fontSize: "11px", cursor: "pointer" }}>⊞</button>
               <button type="button" onClick={() => setVistaGrid(false)}
-                style={{ background: !vistaGrid ? "var(--accent-dark)" : "transparent", color: !vistaGrid ? "#fff" : "var(--ink-faint)", border: "1.5px solid rgba(23,70,160,0.15)", borderRadius: 6, padding: "4px 8px", fontSize: "11px", cursor: "pointer" }}>
-                ☰
-              </button>
+                style={{ background: !vistaGrid ? "var(--accent-dark)" : "transparent", color: !vistaGrid ? "#fff" : "var(--ink-faint)", border: "1.5px solid rgba(23,70,160,0.15)", borderRadius: 6, padding: "4px 8px", fontSize: "11px", cursor: "pointer" }}>☰</button>
             </div>
           </div>
 
           {/* Lista/Grid */}
           {loadingArchivos ? (
-            <div style={{ textAlign: "center", padding: "30px 0", color: "var(--ink-faint)", fontSize: "13px" }}>Cargando archivos...</div>
+            <div style={{ textAlign: "center", padding: "30px 0", color: "var(--ink-faint)", fontSize: "13px" }}>Cargando...</div>
           ) : (
             <div style={vistaGrid ? { display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))", gap: 10 } : { display: "flex", flexDirection: "column", gap: 8 }}>
               {elementosFiltrados.map(item => (
-                <button key={item.id} type="button"
-                  onClick={() => carpetaActual ? abrirArchivo(item) : abrirCarpeta(item)}
-                  style={{
-                    background: archivoVisor?.id === item.id ? "rgba(23,70,160,0.08)" : "#fff",
-                    border: `1.5px solid ${archivoVisor?.id === item.id ? "rgba(23,70,160,0.3)" : "rgba(23,70,160,0.08)"}`,
-                    borderRadius: 10, padding: vistaGrid ? "14px 12px" : "10px 14px",
-                    textAlign: vistaGrid ? "center" : "left", cursor: "pointer",
-                    display: "flex", flexDirection: vistaGrid ? "column" : "row",
-                    alignItems: "center", gap: vistaGrid ? 8 : 10,
-                  }}>
-                  {carpetaActual
-                    ? <span style={{ fontSize: vistaGrid ? "28px" : "16px" }}>{MIME_ICONS[item.mimeType] || "📄"}</span>
-                    : <FolderOpen size={vistaGrid ? 28 : 15} style={{ color: "var(--accent-dark)", flexShrink: 0 }} />
-                  }
-                  <div style={{ flex: vistaGrid ? "none" : 1, minWidth: 0 }}>
-                    <div style={{ fontSize: "12px", fontWeight: 600, color: "var(--ink)", lineHeight: 1.3, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: vistaGrid ? "normal" : "nowrap", wordBreak: vistaGrid ? "break-word" : "normal" }}>
-                      {item.name}
+                <div key={item.id} style={{ position: "relative" }} className="portal-item">
+                  <button type="button"
+                    onClick={() => carpetaActual ? (item.mimeType === "application/vnd.google-apps.folder" ? abrirCarpeta(item) : archivoVisor?.id === item.id ? setArchivoVisor(null) : setArchivoVisor(item)) : abrirCarpeta(item)}
+                    style={{
+                      width: "100%", background: archivoVisor?.id === item.id ? "rgba(23,70,160,0.08)" : "#fff",
+                      border: `1.5px solid ${archivoVisor?.id === item.id ? "rgba(23,70,160,0.3)" : "rgba(23,70,160,0.08)"}`,
+                      borderRadius: 10, padding: vistaGrid ? "14px 12px" : "10px 14px",
+                      textAlign: vistaGrid ? "center" : "left", cursor: "pointer",
+                      display: "flex", flexDirection: vistaGrid ? "column" : "row", alignItems: "center", gap: vistaGrid ? 8 : 10,
+                    }}>
+                    <span style={{ fontSize: vistaGrid ? "28px" : "16px" }}>
+                      {item.mimeType === "application/vnd.google-apps.folder" ? "📁" : (MIME_ICONS[item.mimeType] || "📄")}
+                    </span>
+                    <div style={{ flex: vistaGrid ? "none" : 1, minWidth: 0 }}>
+                      <div style={{ fontSize: "12px", fontWeight: 600, color: "var(--ink)", lineHeight: 1.3, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: vistaGrid ? "normal" : "nowrap", wordBreak: vistaGrid ? "break-word" : "normal" }}>{item.name}</div>
+                      <div style={{ fontSize: "10.5px", color: "var(--ink-faint)", marginTop: 2 }}>{new Date(item.modifiedTime).toLocaleDateString("es-CL")}</div>
                     </div>
-                    <div style={{ fontSize: "10.5px", color: "var(--ink-faint)", marginTop: 2 }}>
-                      {new Date(item.modifiedTime).toLocaleDateString("es-CL")}
-                    </div>
-                  </div>
-                </button>
+                  </button>
+                  {/* Botón eliminar */}
+                  <button type="button" onClick={(e) => { e.stopPropagation(); setModalEliminar(item); }}
+                    style={{ position: "absolute", top: 6, right: 6, background: "rgba(192,57,43,0.08)", border: "none", borderRadius: 6, padding: "4px 5px", cursor: "pointer", opacity: 0, transition: "opacity 0.15s", display: "flex", alignItems: "center" }}
+                    className="delete-btn">
+                    <Trash2 size={11} style={{ color: "#c0392b" }} />
+                  </button>
+                </div>
               ))}
             </div>
           )}
@@ -365,6 +458,10 @@ const PortalOficina = () => {
                   style={{ display: "flex", alignItems: "center", gap: 4, background: "rgba(23,70,160,0.08)", color: "var(--accent-dark)", textDecoration: "none", padding: "6px 12px", borderRadius: 8, fontSize: "12px", fontWeight: 600 }}>
                   <Download size={12} /> Descargar
                 </a>
+                <button type="button" onClick={() => setModalEliminar(archivoVisor)}
+                  style={{ display: "flex", alignItems: "center", gap: 4, background: "rgba(192,57,43,0.08)", color: "#c0392b", border: "none", padding: "6px 12px", borderRadius: 8, fontSize: "12px", fontWeight: 600, cursor: "pointer" }}>
+                  <Trash2 size={12} /> Eliminar
+                </button>
                 <button type="button" onClick={() => setArchivoVisor(null)}
                   style={{ background: "transparent", border: "none", cursor: "pointer", color: "var(--ink-faint)", padding: "6px" }}>
                   <X size={16} />
@@ -375,6 +472,10 @@ const PortalOficina = () => {
           </div>
         )}
       </div>
+
+      <style>{`
+        .portal-item:hover .delete-btn { opacity: 1 !important; }
+      `}</style>
     </div>
   );
 };
