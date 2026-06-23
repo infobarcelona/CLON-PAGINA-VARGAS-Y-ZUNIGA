@@ -31,6 +31,8 @@ const PortalOficina = () => {
   const [archivos, setArchivos] = useState([]);
   const [loadingArchivos, setLoadingArchivos] = useState(false);
   const [archivoVisor, setArchivoVisor] = useState(null);
+  const [onlyofficeConfig, setOnlyofficeConfig] = useState(null);
+  const [loadingEditor, setLoadingEditor] = useState(false);
   const [vistaGrid, setVistaGrid] = useState(true);
   const [subiendo, setSubiendo] = useState(false);
   const [dragOver, setDragOver] = useState(false);
@@ -102,6 +104,23 @@ const PortalOficina = () => {
 
   const volverACarpetas = () => { setCarpetaActual(null); setArchivos([]); setArchivoVisor(null); setBusqueda(""); };
   const cerrarSesion = () => { sessionStorage.removeItem("portal_token"); navigate("/portal"); };
+
+  const abrirEditor = async (archivo) => {
+    setLoadingEditor(true);
+    setOnlyofficeConfig(null);
+    try {
+      const token = sessionStorage.getItem("portal_token");
+      const res = await fetch(`${BACKEND}/api/onlyoffice/token`, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+        body: JSON.stringify({ fileId: archivo.id, fileName: archivo.name, mimeType: archivo.mimeType }),
+      });
+      const data = await res.json();
+      if (data.ok) setOnlyofficeConfig(data.config);
+      else mostrarMensaje(`Error: ${data.error}`, "error");
+    } catch { mostrarMensaje("Error al abrir el editor", "error"); }
+    setLoadingEditor(false);
+  };
 
   const getViewerUrl = (archivo) => {
     if (archivo.mimeType.startsWith("application/vnd.google-apps")) return archivo.webViewLink;
@@ -460,12 +479,10 @@ const PortalOficina = () => {
               </div>
               <div style={{ display: "flex", gap: 8 }}>
                 <button type="button"
-                  onClick={() => {
-                    const w = window.open(archivoVisor.webViewLink, "editor", "width=1100,height=750,left=100,top=80,resizable=yes,scrollbars=yes");
-                    w && w.focus();
-                  }}
+                  onClick={() => abrirEditor(archivoVisor)}
+                  disabled={loadingEditor}
                   style={{ display: "flex", alignItems: "center", gap: 4, background: "linear-gradient(135deg, #4984e0 0%, #1746a0 100%)", color: "#fff", border: "none", padding: "6px 12px", borderRadius: 8, fontSize: "12px", fontWeight: 600, cursor: "pointer" }}>
-                  <Edit size={12} /> Editar
+                  <Edit size={12} /> {loadingEditor ? "Cargando..." : "Editar"}
                 </button>
                 <a href={`https://drive.google.com/uc?export=download&id=${archivoVisor.id}`} target="_blank" rel="noopener noreferrer"
                   style={{ display: "flex", alignItems: "center", gap: 4, background: "rgba(23,70,160,0.08)", color: "var(--accent-dark)", textDecoration: "none", padding: "6px 12px", borderRadius: 8, fontSize: "12px", fontWeight: 600 }}>
@@ -481,7 +498,30 @@ const PortalOficina = () => {
                 </button>
               </div>
             </div>
-            <iframe src={getViewerUrl(archivoVisor)} style={{ flex: 1, border: "none", width: "100%", height: "100%" }} title={archivoVisor.name} allow="autoplay" />
+            {onlyofficeConfig ? (
+              <div style={{ flex: 1, position: "relative" }}>
+                <iframe
+                  src={`https://onlyoffice-vyz.onrender.com/web-apps/apps/api/documents/api.js`}
+                  style={{ display: "none" }}
+                  title="onlyoffice-api"
+                />
+                <div id="onlyoffice-editor" style={{ width: "100%", height: "100%" }} />
+                <script dangerouslySetInnerHTML={{ __html: `
+                  if (window.DocsAPI) {
+                    new window.DocsAPI.DocEditor("onlyoffice-editor", ${JSON.stringify(onlyofficeConfig)});
+                  } else {
+                    var s = document.createElement('script');
+                    s.src = 'https://onlyoffice-vyz.onrender.com/web-apps/apps/api/documents/api.js';
+                    s.onload = function() {
+                      new window.DocsAPI.DocEditor("onlyoffice-editor", ${JSON.stringify(onlyofficeConfig)});
+                    };
+                    document.head.appendChild(s);
+                  }
+                ` }} />
+              </div>
+            ) : (
+              <iframe src={getViewerUrl(archivoVisor)} style={{ flex: 1, border: "none", width: "100%", height: "100%" }} title={archivoVisor.name} allow="autoplay" />
+            )}
           </div>
         )}
       </div>
