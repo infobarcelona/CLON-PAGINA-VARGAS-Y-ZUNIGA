@@ -141,7 +141,7 @@ const PortalLogin = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                placeholder="abogado@vargasyzuniga.cl"
+                placeholder="correo@example.com"
                 style={{
                   width: "100%",
                   padding: "11px 12px 11px 36px",
