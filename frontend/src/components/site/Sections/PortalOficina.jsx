@@ -459,10 +459,14 @@ const PortalOficina = () => {
                 <span style={{ fontSize: "13px", fontWeight: 600, color: "var(--ink)", maxWidth: 200, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{archivoVisor.name}</span>
               </div>
               <div style={{ display: "flex", gap: 8 }}>
-                <a href={archivoVisor.webViewLink} target="_blank" rel="noopener noreferrer"
-                  style={{ display: "flex", alignItems: "center", gap: 4, background: "linear-gradient(135deg, #4984e0 0%, #1746a0 100%)", color: "#fff", textDecoration: "none", padding: "6px 12px", borderRadius: 8, fontSize: "12px", fontWeight: 600 }}>
+                <button type="button"
+                  onClick={() => {
+                    const w = window.open(archivoVisor.webViewLink, "editor", "width=1100,height=750,left=100,top=80,resizable=yes,scrollbars=yes");
+                    w && w.focus();
+                  }}
+                  style={{ display: "flex", alignItems: "center", gap: 4, background: "linear-gradient(135deg, #4984e0 0%, #1746a0 100%)", color: "#fff", border: "none", padding: "6px 12px", borderRadius: 8, fontSize: "12px", fontWeight: 600, cursor: "pointer" }}>
                   <Edit size={12} /> Editar
-                </a>
+                </button>
                 <a href={`https://drive.google.com/uc?export=download&id=${archivoVisor.id}`} target="_blank" rel="noopener noreferrer"
                   style={{ display: "flex", alignItems: "center", gap: 4, background: "rgba(23,70,160,0.08)", color: "var(--accent-dark)", textDecoration: "none", padding: "6px 12px", borderRadius: 8, fontSize: "12px", fontWeight: 600 }}>
                   <Download size={12} /> Descargar
