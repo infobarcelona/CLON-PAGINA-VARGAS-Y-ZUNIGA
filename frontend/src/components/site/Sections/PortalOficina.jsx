@@ -486,7 +486,10 @@ const PortalOficina = () => {
                   <ChevronLeft size={16} /> Causas
                 </button>
                 <span style={{ color: "var(--ink-faint)", fontSize: "13px" }}>→</span>
-                <span style={{ fontSize: "12px", color: "var(--ink)", fontWeight: 600, maxWidth: 150, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{carpetaActual.name}</span>
+                <button type="button" onClick={() => { setOnlyofficeConfig(null); setArchivoVisor(null); }}
+                  style={{ fontSize: "12px", color: "var(--accent-dark)", fontWeight: 600, maxWidth: 150, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", background: "none", border: "none", cursor: "pointer", padding: 0 }}>
+                  {carpetaActual.name}
+                </button>
               </div>
               <div style={{ display: "flex", gap: 6 }}>
                 <button type="button" onClick={() => setModalCrear(true)}
