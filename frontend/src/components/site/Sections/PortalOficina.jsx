@@ -108,11 +108,12 @@ const PortalOficina = () => {
 
   const cerrarEditor = () => {
     setOnlyofficeConfig(null);
+    setArchivoVisor(null);
   };
 
   const abrirEditor = async (archivo) => {
     setOnlyofficeConfig(null);
-    setArchivoVisor(null);
+    setArchivoVisor(archivo);
     await new Promise(r => setTimeout(r, 200));
     setLoadingEditor(true);
     setOnlyofficeConfig(null);
