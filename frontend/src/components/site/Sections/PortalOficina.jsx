@@ -579,7 +579,7 @@ const PortalOficina = () => {
           {loadingArchivos ? (
             <div style={{ textAlign: "center", padding: "30px 0", color: "var(--ink-faint)", fontSize: "13px" }}>Cargando...</div>
           ) : (
-            <div style={vistaGrid ? { display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))", gap: 10 } : { display: "flex", flexDirection: "column", gap: 8 }}>
+            <div style={vistaGrid ? { display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))", gap: 10, minHeight: 300 } : { display: "flex", flexDirection: "column", gap: 8, minHeight: 300 }}>
               {elementosFiltrados.map(item => (
                 <div key={item.id} style={{ position: "relative" }} className="portal-item">
                   <button type="button"
