@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { LogOut, FolderOpen, Clock, User, Search, ChevronLeft, Download, Edit, Upload, Plus, X, Trash2, FolderPlus, FileText, Table, Presentation } from "lucide-react";
 import OnlyOfficeEditor from "./OnlyOfficeEditor";
+import SpotlightBuscador from "./SpotlightBuscador";
 
 const BACKEND = "https://vargasyzuniga.onrender.com";
 
@@ -49,6 +50,7 @@ const PortalOficina = () => {
   const [modalRenombrar, setModalRenombrar] = useState(null);
   const [nuevoNombreItem, setNuevoNombreItem] = useState("");
   const [modalCarpeta, setModalCarpeta] = useState(false);
+  const [spotlight, setSpotlight] = useState(false);
   const [nombreCarpeta, setNombreCarpeta] = useState("");
 
   const mostrarMensaje = (texto, tipo = "ok") => {
@@ -67,6 +69,18 @@ const PortalOficina = () => {
       window.removeEventListener("drop", prevent);
       window.removeEventListener("click", cerrarMenu);
     };
+  }, []);
+
+  // Activar Spotlight con Cmd+K
+  useEffect(() => {
+    const handleKey = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        setSpotlight(true);
+      }
+    };
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
   }, []);
 
   // Enviar token al widget de Renata via postMessage
@@ -523,9 +537,25 @@ const PortalOficina = () => {
             </div>
           )}
 
+          {/* Spotlight */}
+          {spotlight && (
+            <SpotlightBuscador
+              carpetas={carpetas}
+              onSeleccionar={(carpeta) => abrirCarpeta(carpeta)}
+              onCerrar={() => setSpotlight(false)}
+            />
+          )}
+
           {/* Buscador */}
           <div style={{ position: "relative", marginBottom: 12 }}>
             <Search size={14} style={{ position: "absolute", left: 12, top: "50%", transform: "translateY(-50%)", color: "var(--ink-faint)" }} />
+            {!carpetaActual && (
+              <button type="button" onClick={() => setSpotlight(true)}
+                title="Búsqueda rápida (⌘K)"
+                style={{ position: "absolute", right: 10, top: "50%", transform: "translateY(-50%)", background: "rgba(23,70,160,0.07)", border: "1px solid rgba(23,70,160,0.15)", borderRadius: 6, padding: "2px 7px", fontSize: "11px", color: "var(--accent-dark)", cursor: "pointer", fontWeight: 600 }}>
+                ⌘K
+              </button>
+            )}
             <input type="text" placeholder={carpetaActual ? "Buscar archivo..." : "Buscar causa..."}
               value={busqueda} onChange={e => setBusqueda(e.target.value)}
               style={{ width: "100%", padding: "10px 14px 10px 36px", border: "1.5px solid rgba(23,70,160,0.15)", borderRadius: 10, fontSize: "13px", background: "#fff", boxSizing: "border-box", outline: "none" }} />
