@@ -75,11 +75,12 @@ const PortalOficina = () => {
     if (!token) return;
     const enviarToken = () => {
       const iframe = document.getElementById("vyz-widget-iframe");
+      const payload = { type: "VYZ_PORTAL_TOKEN", token, nombre };
       if (iframe && iframe.contentWindow) {
-        iframe.contentWindow.postMessage({ type: "VYZ_PORTAL_TOKEN", token }, "https://vargasyzuniga.onrender.com");
+        iframe.contentWindow.postMessage(payload, "https://vargasyzuniga.onrender.com");
       }
       // También enviarlo al widget launcher por si el iframe no está abierto aún
-      window.postMessage({ type: "VYZ_PORTAL_TOKEN", token }, "*");
+      window.postMessage(payload, "*");
     };
     enviarToken();
     const interval = setInterval(enviarToken, 2000);
