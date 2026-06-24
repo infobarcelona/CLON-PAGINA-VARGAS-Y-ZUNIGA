@@ -561,6 +561,7 @@ const PortalOficina = () => {
               style={{ width: "100%", padding: "10px 14px 10px 36px", border: "1.5px solid rgba(23,70,160,0.15)", borderRadius: 10, fontSize: "13px", background: "#fff", boxSizing: "border-box", outline: "none" }} />
           </div>
 
+          <div style={{ height: 16 }} />
           {/* Contador + toggle */}
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
             <div style={{ fontSize: "11.5px", color: "var(--ink-faint)" }}>
@@ -579,7 +580,7 @@ const PortalOficina = () => {
           {loadingArchivos ? (
             <div style={{ textAlign: "center", padding: "30px 0", color: "var(--ink-faint)", fontSize: "13px" }}>Cargando...</div>
           ) : (
-            <div style={vistaGrid ? { display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))", gap: 10, minHeight: 300 } : { display: "flex", flexDirection: "column", gap: 8, minHeight: 300 }}>
+            <div style={vistaGrid ? { display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))", gap: 10, minHeight: 400, padding: "0 40px" } : { display: "flex", flexDirection: "column", gap: 8, minHeight: 400 }}>
               {elementosFiltrados.map(item => (
                 <div key={item.id} style={{ position: "relative" }} className="portal-item">
                   <button type="button"
