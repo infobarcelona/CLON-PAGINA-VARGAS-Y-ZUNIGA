@@ -128,6 +128,15 @@ const PortalOficina = () => {
         if (!data.ok) { sessionStorage.removeItem("portal_token"); navigate("/portal"); return; }
         setNombre(data.nombre);
         setEmail(data.email || "");
+        // Restaurar archivo activo si venía de sesión expirada
+        const archivoGuardado = sessionStorage.getItem("portal_restaurar");
+        if (archivoGuardado) {
+          try {
+            const archivo = JSON.parse(archivoGuardado);
+            sessionStorage.removeItem("portal_restaurar");
+            setTimeout(() => abrirEditor(archivo), 1500);
+          } catch {}
+        }
         const now = new Date();
         setAhora(
           now.toLocaleDateString("es-CL", { weekday: "long", year: "numeric", month: "long", day: "numeric" }) +
@@ -167,6 +176,8 @@ const PortalOficina = () => {
   };
 
   const abrirEditor = async (archivo, esNuevo = false) => {
+    // Guardar archivo activo para restaurar si la sesión expira
+    sessionStorage.setItem("portal_archivo_activo", JSON.stringify({ id: archivo.id, name: archivo.name, mimeType: archivo.mimeType }));
     setOnlyofficeConfig(null);
     setArchivoVisor(archivo);
     await new Promise(r => setTimeout(r, esNuevo ? 2500 : 300));
@@ -673,7 +684,7 @@ const PortalOficina = () => {
               </div>
             </div>
             {onlyofficeConfig ? (
-              <OnlyOfficeEditor config={onlyofficeConfig} onClose={() => setOnlyofficeConfig(null)} />
+              <OnlyOfficeEditor config={onlyofficeConfig} onClose={() => { setOnlyofficeConfig(null); setArchivoVisor(null); sessionStorage.removeItem("portal_archivo_activo"); }} />
             ) : loadingEditor ? (
               <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: 16, background: "#fff" }}>
                 <div style={{ width: 40, height: 40, border: "3px solid rgba(23,70,160,0.15)", borderTop: "3px solid #1746a0", borderRadius: "50%", animation: "spin 0.8s linear infinite" }} />

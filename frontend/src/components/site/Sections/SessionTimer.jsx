@@ -12,7 +12,17 @@ export default function SessionTimer() {
   const navigate = useNavigate();
 
   const cerrarSesion = useCallback(() => {
+    // Guardar estado actual antes de cerrar (archivo abierto, ruta)
+    const estadoActual = sessionStorage.getItem("portal_estado_previo");
+    if (!estadoActual) {
+      // Capturar el archivo abierto desde el DOM si existe
+      const archivoActivo = sessionStorage.getItem("portal_archivo_activo");
+      if (archivoActivo) {
+        sessionStorage.setItem("portal_restaurar", archivoActivo);
+      }
+    }
     sessionStorage.removeItem("portal_token");
+    sessionStorage.removeItem("portal_archivo_activo");
     navigate("/portal");
   }, [navigate]);
 
