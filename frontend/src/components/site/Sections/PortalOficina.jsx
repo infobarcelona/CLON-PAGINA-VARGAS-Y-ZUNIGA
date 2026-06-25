@@ -36,6 +36,7 @@ const PortalOficina = () => {
   const [archivoVisor, setArchivoVisor] = useState(null);
   const [onlyofficeConfig, setOnlyofficeConfig] = useState(null);
   const archivoVisorRef = useRef(null);
+  const nombreRef = useRef("");
   const [loadingEditor, setLoadingEditor] = useState(false);
   const [vistaGrid, setVistaGrid] = useState(true);
   const [subiendo, setSubiendo] = useState(false);
@@ -89,6 +90,11 @@ const PortalOficina = () => {
     archivoVisorRef.current = archivoVisor;
   }, [archivoVisor]);
 
+  // Mantener el ref del nombre actualizado
+  useEffect(() => {
+    nombreRef.current = nombre;
+  }, [nombre]);
+
   // Enviar token y archivo activo al widget de Renata via postMessage
   useEffect(() => {
     const token = sessionStorage.getItem("portal_token");
@@ -99,7 +105,7 @@ const PortalOficina = () => {
       const payload = { 
         type: "VYZ_PORTAL_TOKEN", 
         token, 
-        nombre,
+        nombre: nombreRef.current,
         archivoActivo: av ? { id: av.id, nombre: av.name, tipo: av.mimeType } : null
       };
       if (iframe && iframe.contentWindow) {
