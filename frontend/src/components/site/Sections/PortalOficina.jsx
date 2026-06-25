@@ -478,7 +478,7 @@ const PortalOficina = () => {
         </div>
       )}
 
-      <div style={{ flex: 1, display: "flex", overflow: "hidden" }} onContextMenu={(e) => { if (e.target === e.currentTarget || e.target.tagName === "DIV") handleContextMenu(e); }}>
+      <div style={{ flex: 1, display: "flex", overflow: "hidden" }}>
         {/* Panel izquierdo */}
         <div style={{ width: archivoVisor ? 340 : "100%", maxWidth: archivoVisor ? 340 : 1000, margin: archivoVisor ? 0 : "0 auto", padding: "24px", overflowY: "auto", flexShrink: 0, position: "relative" }}
           onContextMenu={handleContextMenu}
@@ -487,7 +487,8 @@ const PortalOficina = () => {
           onDrop={carpetaActual ? handleDrop : undefined}>
 
           {/* Fondo invisible para capturar clic derecho en area vacia */}
-          <div style={{ position: "absolute", inset: 0, zIndex: 0 }} onContextMenu={handleContextMenu} />
+          <div style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none" }} />
+          <div style={{ position: "absolute", inset: 0, zIndex: -1 }} onContextMenu={handleContextMenu} />
 
           {dragOver && (
             <div style={{ position: "absolute", inset: 0, background: "rgba(23,70,160,0.08)", border: "2px dashed var(--accent-dark)", borderRadius: 12, zIndex: 10, display: "flex", alignItems: "center", justifyContent: "center" }}>
