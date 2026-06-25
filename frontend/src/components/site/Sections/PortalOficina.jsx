@@ -35,6 +35,7 @@ const PortalOficina = () => {
   const [loadingArchivos, setLoadingArchivos] = useState(false);
   const [archivoVisor, setArchivoVisor] = useState(null);
   const [onlyofficeConfig, setOnlyofficeConfig] = useState(null);
+  const archivoVisorRef = useRef(null);
   const [loadingEditor, setLoadingEditor] = useState(false);
   const [vistaGrid, setVistaGrid] = useState(true);
   const [subiendo, setSubiendo] = useState(false);
@@ -83,17 +84,23 @@ const PortalOficina = () => {
     return () => window.removeEventListener('keydown', handleKey);
   }, []);
 
+  // Mantener el ref del archivo activo actualizado
+  useEffect(() => {
+    archivoVisorRef.current = archivoVisor;
+  }, [archivoVisor]);
+
   // Enviar token y archivo activo al widget de Renata via postMessage
   useEffect(() => {
     const token = sessionStorage.getItem("portal_token");
     if (!token) return;
     const enviarToken = () => {
       const iframe = document.getElementById("vyz-widget-iframe");
+      const av = archivoVisorRef.current;
       const payload = { 
         type: "VYZ_PORTAL_TOKEN", 
         token, 
         nombre,
-        archivoActivo: archivoVisor ? { id: archivoVisor.id, nombre: archivoVisor.name, tipo: archivoVisor.mimeType } : null
+        archivoActivo: av ? { id: av.id, nombre: av.name, tipo: av.mimeType } : null
       };
       if (iframe && iframe.contentWindow) {
         iframe.contentWindow.postMessage(payload, "https://vargasyzuniga.onrender.com");
