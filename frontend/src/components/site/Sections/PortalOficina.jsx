@@ -369,7 +369,7 @@ const PortalOficina = () => {
             </div>
             <div style={{ marginBottom: 14 }}>
               <label style={{ display: "block", fontSize: "11px", fontWeight: 700, letterSpacing: "0.05em", textTransform: "uppercase", color: "var(--ink-faint)", marginBottom: 6 }}>Nombre</label>
-              <input type="text" value={nuevoNombre} onChange={e => setNuevoNombre(e.target.value)} placeholder="Ej: Contrato de compraventa"
+              <input type="text" value={nuevoNombre} onChange={e => setNuevoNombre(e.target.value)} onKeyDown={e => e.key === "Enter" && nuevoNombre.trim() && crearDocumento()} placeholder="Ej: Contrato de compraventa"
                 style={{ width: "100%", padding: "10px 14px", border: "1.5px solid rgba(23,70,160,0.2)", borderRadius: 8, fontSize: "14px", boxSizing: "border-box", outline: "none" }} />
             </div>
             <div style={{ marginBottom: 24 }}>
@@ -445,7 +445,7 @@ const PortalOficina = () => {
               <h3 style={{ fontFamily: "'Cinzel', serif", fontSize: "16px", color: "var(--ink)", margin: 0 }}>Renombrar</h3>
               <button type="button" onClick={() => setModalRenombrar(null)} style={{ background: "none", border: "none", cursor: "pointer", color: "var(--ink-faint)" }}><X size={18} /></button>
             </div>
-            <input type="text" value={nuevoNombreItem} onChange={e => setNuevoNombreItem(e.target.value)}
+            <input type="text" value={nuevoNombreItem} onChange={e => setNuevoNombreItem(e.target.value)} onKeyDown={e => e.key === "Enter" && nuevoNombreItem.trim() && renombrarItem()}
               onKeyDown={e => e.key === "Enter" && renombrarItem()}
               style={{ width: "100%", padding: "10px 14px", border: "1.5px solid rgba(23,70,160,0.2)", borderRadius: 8, fontSize: "14px", boxSizing: "border-box", outline: "none", marginBottom: 20 }} />
             <button type="button" onClick={renombrarItem} disabled={!nuevoNombreItem.trim()}
