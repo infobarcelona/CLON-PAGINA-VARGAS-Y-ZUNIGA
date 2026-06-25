@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { LogOut, FolderOpen, Clock, User, Search, ChevronLeft, Download, Edit, Upload, Plus, X, Trash2, FolderPlus, FileText, Table, Presentation } from "lucide-react";
 import OnlyOfficeEditor from "./OnlyOfficeEditor";
 import SpotlightBuscador from "./SpotlightBuscador";
+import SessionTimer from "./SessionTimer";
 
 const BACKEND = "https://vargasyzuniga.onrender.com";
 
@@ -559,7 +560,8 @@ const PortalOficina = () => {
             </div>
           )}
 
-          {/* Spotlight */}
+          <SessionTimer />
+        {/* Spotlight */}
           {spotlight && (
             <SpotlightBuscador
               carpetas={carpetas}
