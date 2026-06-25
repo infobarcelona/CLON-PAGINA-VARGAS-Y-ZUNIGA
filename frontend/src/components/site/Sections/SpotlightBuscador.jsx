@@ -3,24 +3,56 @@ import { Search, X } from "lucide-react";
 
 const SpotlightBuscador = ({ carpetas, onSeleccionar, onCerrar }) => {
   const [query, setQuery] = useState("");
+  const [seleccionado, setSeleccionado] = useState(0);
   const inputRef = useRef(null);
+  const listaRef = useRef(null);
 
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
 
-  useEffect(() => {
-    const handleKey = (e) => {
-      if (e.key === "Escape") onCerrar();
-    };
-    window.addEventListener("keydown", handleKey);
-    return () => window.removeEventListener("keydown", handleKey);
-  }, [onCerrar]);
-
   const resultados = query.trim().length === 0 ? [] : carpetas.filter(c =>
     c.name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
       .includes(query.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""))
   ).slice(0, 8);
+
+  // Resetear selección cuando cambian los resultados
+  useEffect(() => {
+    setSeleccionado(0);
+  }, [query]);
+
+  // Navegación con teclado
+  useEffect(() => {
+    const handleKey = (e) => {
+      if (e.key === "Escape") {
+        onCerrar();
+        return;
+      }
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        setSeleccionado(prev => Math.min(prev + 1, resultados.length - 1));
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        setSeleccionado(prev => Math.max(prev - 1, 0));
+      } else if (e.key === "Enter") {
+        e.preventDefault();
+        if (resultados[seleccionado]) {
+          onSeleccionar(resultados[seleccionado]);
+          onCerrar();
+        }
+      }
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [resultados, seleccionado, onSeleccionar, onCerrar]);
+
+  // Scroll automático al elemento seleccionado
+  useEffect(() => {
+    if (listaRef.current) {
+      const el = listaRef.current.children[seleccionado];
+      if (el) el.scrollIntoView({ block: "nearest" });
+    }
+  }, [seleccionado]);
 
   return (
     <div
@@ -62,20 +94,21 @@ const SpotlightBuscador = ({ carpetas, onSeleccionar, onCerrar }) => {
 
         {/* Resultados */}
         {resultados.length > 0 && (
-          <div style={{ maxHeight: 340, overflowY: "auto" }}>
+          <div ref={listaRef} style={{ maxHeight: 340, overflowY: "auto" }}>
             {resultados.map((c, i) => (
               <button key={c.id} type="button"
                 onClick={() => { onSeleccionar(c); onCerrar(); }}
+                onMouseEnter={() => setSeleccionado(i)}
                 style={{
                   display: "flex", alignItems: "center", gap: 12,
                   width: "100%", padding: "12px 20px",
-                  background: "transparent", border: "none",
+                  background: i === seleccionado ? "rgba(23,70,160,0.08)" : "transparent",
+                  border: "none",
+                  borderLeft: i === seleccionado ? "3px solid #1746a0" : "3px solid transparent",
                   borderBottom: i < resultados.length - 1 ? "1px solid rgba(23,70,160,0.05)" : "none",
                   cursor: "pointer", textAlign: "left",
                   transition: "background 0.1s",
-                }}
-                onMouseEnter={e => e.currentTarget.style.background = "rgba(23,70,160,0.05)"}
-                onMouseLeave={e => e.currentTarget.style.background = "transparent"}>
+                }}>
                 <svg width="20" height="16" viewBox="0 0 120 95" fill="none">
                   <rect x="0" y="18" width="120" height="77" rx="6" fill="#1746a0"/>
                   <rect x="0" y="10" width="48" height="22" rx="5" fill="#1746a0"/>
@@ -98,9 +131,9 @@ const SpotlightBuscador = ({ carpetas, onSeleccionar, onCerrar }) => {
 
         {/* Footer */}
         <div style={{ padding: "10px 20px", background: "rgba(23,70,160,0.03)", borderTop: "1px solid rgba(23,70,160,0.06)", display: "flex", gap: 16 }}>
+          <span style={{ fontSize: "11px", color: "var(--ink-faint)" }}>↑↓ navegar</span>
           <span style={{ fontSize: "11px", color: "var(--ink-faint)" }}>↵ abrir causa</span>
           <span style={{ fontSize: "11px", color: "var(--ink-faint)" }}>ESC cerrar</span>
-          <span style={{ fontSize: "11px", color: "var(--ink-faint)" }}>⌘K abrir</span>
         </div>
       </div>
     </div>
