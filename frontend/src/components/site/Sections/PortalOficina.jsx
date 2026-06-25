@@ -399,7 +399,7 @@ const PortalOficina = () => {
               <h3 style={{ fontFamily: "'Cinzel', serif", fontSize: "16px", color: "var(--ink)", margin: 0 }}>Nueva carpeta</h3>
               <button type="button" onClick={() => setModalCarpeta(false)} style={{ background: "none", border: "none", cursor: "pointer", color: "var(--ink-faint)" }}><X size={18} /></button>
             </div>
-            <input type="text" value={nombreCarpeta} onChange={e => setNombreCarpeta(e.target.value)} placeholder="Nombre de la carpeta"
+            <input type="text" value={nombreCarpeta} onChange={e => setNombreCarpeta(e.target.value)} onKeyDown={e => e.key === "Enter" && nombreCarpeta.trim() && crearCarpeta()} placeholder="Nombre de la carpeta"
               style={{ width: "100%", padding: "10px 14px", border: "1.5px solid rgba(23,70,160,0.2)", borderRadius: 8, fontSize: "14px", boxSizing: "border-box", outline: "none", marginBottom: 20 }} />
             <button type="button" onClick={crearCarpeta} disabled={!nombreCarpeta.trim()}
               style={{ width: "100%", padding: "12px", background: "linear-gradient(135deg, #4984e0 0%, #1746a0 100%)", color: "#fff", border: "none", borderRadius: 10, fontSize: "13.5px", fontWeight: 700, cursor: "pointer" }}>
