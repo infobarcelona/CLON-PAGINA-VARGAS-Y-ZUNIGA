@@ -148,10 +148,10 @@ const PortalOficina = () => {
     setArchivoVisor(null);
   };
 
-  const abrirEditor = async (archivo) => {
+  const abrirEditor = async (archivo, esNuevo = false) => {
     setOnlyofficeConfig(null);
     setArchivoVisor(archivo);
-    await new Promise(r => setTimeout(r, 200));
+    await new Promise(r => setTimeout(r, esNuevo ? 2500 : 300));
     setLoadingEditor(true);
     setOnlyofficeConfig(null);
     try {
@@ -228,7 +228,7 @@ const PortalOficina = () => {
         mostrarMensaje(`✓ "${data.archivo.name}" creado`);
         setModalCrear(false); setNuevoNombre("");
         cargarArchivos(carpetaActual);
-        window.open(data.archivo.webViewLink, "_blank");
+        abrirEditor(data.archivo, true);
       } else mostrarMensaje(`Error: ${data.error}`, "error");
     } catch { mostrarMensaje("Error al crear", "error"); }
     setCreando(false);
