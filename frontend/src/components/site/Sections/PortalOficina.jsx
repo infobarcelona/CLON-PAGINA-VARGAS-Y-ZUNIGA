@@ -486,6 +486,9 @@ const PortalOficina = () => {
           onDragLeave={carpetaActual ? () => setDragOver(false) : undefined}
           onDrop={carpetaActual ? handleDrop : undefined}>
 
+          {/* Fondo invisible para capturar clic derecho en area vacia */}
+          <div style={{ position: "absolute", inset: 0, zIndex: 0 }} onContextMenu={handleContextMenu} />
+
           {dragOver && (
             <div style={{ position: "absolute", inset: 0, background: "rgba(23,70,160,0.08)", border: "2px dashed var(--accent-dark)", borderRadius: 12, zIndex: 10, display: "flex", alignItems: "center", justifyContent: "center" }}>
               <div style={{ textAlign: "center", color: "var(--accent-dark)" }}>
@@ -580,7 +583,7 @@ const PortalOficina = () => {
           {loadingArchivos ? (
             <div style={{ textAlign: "center", padding: "30px 0", color: "var(--ink-faint)", fontSize: "13px" }}>Cargando...</div>
           ) : (
-            <div style={vistaGrid ? { display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))", gap: 10, minHeight: 400, padding: "0 40px" } : { display: "flex", flexDirection: "column", gap: 8, minHeight: 400 }}>
+            <div style={vistaGrid ? { display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))", gap: 10, minHeight: 400 } : { display: "flex", flexDirection: "column", gap: 8, minHeight: 400 }}>
               {elementosFiltrados.map(item => (
                 <div key={item.id} style={{ position: "relative" }} className="portal-item">
                   <button type="button"
