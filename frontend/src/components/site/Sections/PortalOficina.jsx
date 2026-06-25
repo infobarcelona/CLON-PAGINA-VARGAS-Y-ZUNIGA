@@ -478,7 +478,7 @@ const PortalOficina = () => {
         </div>
       )}
 
-      <div style={{ flex: 1, display: "flex", overflow: "hidden" }} onContextMenu={handleContextMenu}>
+      <div style={{ flex: 1, display: "flex", overflow: "hidden" }} onContextMenu={(e) => { if (e.target === e.currentTarget || e.target.tagName === "DIV") handleContextMenu(e); }}>
         {/* Panel izquierdo */}
         <div style={{ width: archivoVisor ? 340 : "100%", maxWidth: archivoVisor ? 340 : 1000, margin: archivoVisor ? 0 : "0 auto", padding: "24px", overflowY: "auto", flexShrink: 0, position: "relative" }}
           onContextMenu={handleContextMenu}
