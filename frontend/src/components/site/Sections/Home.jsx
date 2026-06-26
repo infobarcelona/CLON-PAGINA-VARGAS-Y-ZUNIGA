@@ -30,11 +30,7 @@ const Home = ({ onNavigate }) => {
                 color: "var(--ink-faint)",
                 marginTop: "6px",
                 fontWeight: 600,
-                width: "fit-content",
-                marginLeft: "auto",
-                marginRight: "auto",
-                position: "relative",
-                left: "-10%",
+                textAlign: "center",
               }}
             >
               Abogados Ltda.
@@ -82,11 +78,11 @@ const Home = ({ onNavigate }) => {
           </div>
 
           {/* Foto de Renata en móvil — aparece ANTES del título */}
-          <div className="block lg:hidden col-span-12 flex justify-center mb-2" style={{ order: -1 }}>
+          <div className="block lg:hidden col-span-12 flex justify-center" style={{ order: -1, marginTop: "-8px", marginBottom: "8px" }}>
             <div
               onClick={openChat}
               style={{
-                width: "92%", maxWidth: 380, borderRadius: 16, overflow: "hidden",
+                width: "92%", maxWidth: 400, borderRadius: 16, overflow: "hidden",
                 boxShadow: "0 6px 24px rgba(0,0,0,0.12)", cursor: "pointer",
               }}
             >
@@ -99,14 +95,17 @@ const Home = ({ onNavigate }) => {
               </div>
               <div style={{
                 background: "linear-gradient(135deg, #4984e0 0%, var(--accent-dark) 50%, #101849 100%)",
-                padding: "10px 12px", textAlign: "center",
+                padding: "20px 18px", textAlign: "center",
               }}>
-                <div style={{ fontSize: "9px", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.75)", fontWeight: 700, marginBottom: 4 }}>
+                <div style={{ fontSize: "10px", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(255,255,255,0.75)", fontWeight: 700, marginBottom: 8 }}>
                   Disponible 24/7
                 </div>
-                <div style={{ fontFamily: "'Cinzel', serif", fontSize: "14px", fontWeight: 600, color: "#fff" }}>
-                  Renata
-                </div>
+                <h4 style={{ fontFamily: "'Cinzel', serif", fontSize: "20px", fontWeight: 600, color: "#fff", margin: "0 0 8px" }}>
+                  Contacta a Renata
+                </h4>
+                <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.92)", lineHeight: 1.55, margin: 0 }}>
+                  Nuestra asistente virtual. Pregúntale lo que necesites saber del estudio: experiencia, áreas de práctica, honorarios o cómo agendar tu reunión.
+                </p>
               </div>
             </div>
           </div>
