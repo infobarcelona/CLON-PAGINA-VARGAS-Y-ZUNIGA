@@ -97,7 +97,7 @@ const Home = ({ onNavigate }) => {
             <div
               onClick={openChat}
               style={{
-                width: "92%", maxWidth: 400, borderRadius: 16, overflow: "hidden",
+                width: "92%", maxWidth: 400, borderRadius: 16,
                 boxShadow: "0 6px 24px rgba(0,0,0,0.12)", cursor: "pointer",
                 position: "relative",
               }}
@@ -153,7 +153,6 @@ const Home = ({ onNavigate }) => {
                 maxWidth: 420,
                 marginLeft: "60px",
                 borderRadius: 22,
-                overflow: "hidden",
                 boxShadow: "0 10px 40px rgba(0,0,0,0.12)",
                 cursor: "pointer",
                 position: "relative",
