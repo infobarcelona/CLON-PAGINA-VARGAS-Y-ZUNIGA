@@ -79,7 +79,7 @@ const Home = ({ onNavigate }) => {
           </div>
 
           {/* Foto de Renata en móvil — aparece ANTES del título */}
-          <div className="block lg:hidden col-span-12 flex justify-center" style={{ order: -1, marginTop: "-8px", marginBottom: "8px" }}>
+          <div className="block lg:hidden col-span-12 flex justify-center" style={{ order: -1, marginTop: "2px", marginBottom: "8px" }}>
             <style>{`
               @keyframes respirar-sutil {
                 0%   { box-shadow: 0 0 0px 0px rgba(73,132,224,0); border-color: rgba(73,132,224,0.15); }
