@@ -81,7 +81,7 @@ const Header = ({ sectionKey, onNavigate, sections }) => {
             data-testid="logo-link"
             className="lg:flex-none"
             style={{
-            style={window.innerWidth < 1024 ? { position: "absolute", left: "50%", transform: "translateX(-50%)", background: "none", border: "none", cursor: "pointer", padding: 0 } : { background: "none", border: "none", cursor: "pointer", padding: 0 }}
+            style={{ background: "none", border: "none", cursor: "pointer", padding: 0 }}
               background: "none", border: "none", cursor: "pointer", padding: 0,
             }}
           >

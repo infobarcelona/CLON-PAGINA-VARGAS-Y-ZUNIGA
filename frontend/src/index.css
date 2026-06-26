@@ -179,6 +179,11 @@ body {
   .section-content {
     padding-top: 2px;
   }
+  [data-testid="logo-link"] {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 .container-x {
   width: 100%;
