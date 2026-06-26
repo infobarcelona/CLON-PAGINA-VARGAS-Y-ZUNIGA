@@ -81,6 +81,37 @@ const Home = ({ onNavigate }) => {
             </div>
           </div>
 
+          {/* Foto de Renata en móvil — aparece ANTES del título */}
+          <div className="block lg:hidden col-span-12 flex justify-center mb-2" style={{ order: -1 }}>
+            <div
+              onClick={openChat}
+              style={{
+                width: 160, borderRadius: 16, overflow: "hidden",
+                boxShadow: "0 6px 24px rgba(0,0,0,0.12)", cursor: "pointer",
+              }}
+            >
+              <div style={{ width: "100%", aspectRatio: "4/4.5", overflow: "hidden" }}>
+                <img
+                  src="/images/team/renata-hero.jpg"
+                  alt="Renata, asistente virtual"
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                />
+              </div>
+              <div style={{
+                background: "linear-gradient(135deg, #4984e0 0%, var(--accent-dark) 50%, #101849 100%)",
+                padding: "10px 12px", textAlign: "center",
+              }}>
+                <div style={{ fontSize: "9px", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.75)", fontWeight: 700, marginBottom: 4 }}>
+                  Disponible 24/7
+                </div>
+                <div style={{ fontFamily: "'Cinzel', serif", fontSize: "14px", fontWeight: 600, color: "#fff" }}>
+                  Renata
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Foto de Renata en desktop — se mantiene igual */}
           <div className="hidden lg:flex col-span-5 items-center justify-center">
             <div
               className="w-full"
