@@ -79,9 +79,9 @@ const Header = ({ sectionKey, onNavigate, sections }) => {
             type="button"
             onClick={() => go("home")}
             data-testid="logo-link"
-            className="lg:flex-none lg:static"
+            className="lg:flex-none"
             style={{
-              position: "absolute", left: "50%", transform: "translateX(-50%)",
+            style={window.innerWidth < 1024 ? { position: "absolute", left: "50%", transform: "translateX(-50%)", background: "none", border: "none", cursor: "pointer", padding: 0 } : { background: "none", border: "none", cursor: "pointer", padding: 0 }}
               background: "none", border: "none", cursor: "pointer", padding: 0,
             }}
           >
