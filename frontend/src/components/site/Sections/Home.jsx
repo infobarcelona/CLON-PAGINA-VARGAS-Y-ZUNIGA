@@ -44,6 +44,7 @@ const Home = ({ onNavigate }) => {
                 fontSize: "clamp(1.6rem, 2.5vw, 2.4rem)",
                 color: "var(--accent-dark)",
                 fontWeight: 700,
+                textAlign: "center",
               }}
               data-testid="home-slogan"
             >
