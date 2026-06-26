@@ -80,13 +80,35 @@ const Home = ({ onNavigate }) => {
 
           {/* Foto de Renata en móvil — aparece ANTES del título */}
           <div className="block lg:hidden col-span-12 flex justify-center" style={{ order: -1, marginTop: "-8px", marginBottom: "8px" }}>
+            <style>{`
+              @keyframes renata-halo {
+                0%   { transform: scale(0.88); opacity: 0.5; }
+                70%  { transform: scale(1.06); opacity: 0; }
+                100% { transform: scale(1.06); opacity: 0; }
+              }
+              .renata-halo::after {
+                content: ''; position: absolute; inset: -6px;
+                border-radius: 20px;
+                background: #1746a0; opacity: 0.4; z-index: 0;
+                animation: renata-halo 2.4s ease-out infinite;
+              }
+              .renata-halo-ring {
+                position: absolute; inset: -3px; border-radius: 19px;
+                border: 1px solid rgba(91,167,229,0.5);
+                animation: renata-halo 2.4s ease-out infinite 0.4s;
+                z-index: 0; pointer-events: none;
+              }
+            `}</style>
             <div
               onClick={openChat}
+              className="renata-halo"
               style={{
                 width: "92%", maxWidth: 400, borderRadius: 16, overflow: "hidden",
                 boxShadow: "0 6px 24px rgba(0,0,0,0.12)", cursor: "pointer",
+                position: "relative",
               }}
             >
+              <div className="renata-halo-ring" />
               <div style={{ width: "100%", aspectRatio: "4/4.5", overflow: "hidden" }}>
                 <img
                   src="/images/team/renata-hero.jpg"
@@ -117,7 +139,7 @@ const Home = ({ onNavigate }) => {
           {/* Foto de Renata en desktop — se mantiene igual */}
           <div className="hidden lg:flex col-span-5 items-center justify-center">
             <div
-              className="w-full"
+              className="w-full renata-halo"
               onClick={openChat}
               style={{
                 maxWidth: 420,
@@ -126,9 +148,11 @@ const Home = ({ onNavigate }) => {
                 overflow: "hidden",
                 boxShadow: "0 10px 40px rgba(0,0,0,0.12)",
                 cursor: "pointer",
+                position: "relative",
               }}
               data-testid="home-renata-card"
             >
+              <div className="renata-halo-ring" style={{ borderRadius: 25 }} />
               <div style={{ width: "100%", aspectRatio: "4/4.5", overflow: "hidden" }}>
                 <img
                   src="/images/team/renata-hero.jpg"
