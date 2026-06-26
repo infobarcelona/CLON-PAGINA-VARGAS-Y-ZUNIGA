@@ -117,7 +117,7 @@ const Home = ({ onNavigate }) => {
               <div className="renata-luz" style={{width:"2px",height:"2px",background:"#c0e4ff",boxShadow:"0 0 2px 1px rgba(192,228,255,0.9)",top:"18%",left:"-1px",animationDelay:"0.05s"}} />
               <div className="renata-luz" style={{width:"2px",height:"2px",background:"#fff",boxShadow:"0 0 2px 1px rgba(255,255,255,0.85)",top:"45%",left:"-1px",animationDelay:"0.02s"}} />
               <div className="renata-luz" style={{width:"2px",height:"2px",background:"#a0d4ff",boxShadow:"0 0 2px 1px rgba(160,212,255,0.9)",top:"72%",left:"-1px",animationDelay:"0.07s"}} />
-              <div style={{ width: "100%", aspectRatio: "4/4.5", overflow: "hidden" }}>
+              <div style={{ width: "100%", aspectRatio: "4/4.5", overflow: "hidden", borderRadius: "22px 22px 0 0" }}>
                 <img
                   src="/images/team/renata-hero.jpg"
                   alt="Renata, asistente virtual"
@@ -126,7 +126,7 @@ const Home = ({ onNavigate }) => {
               </div>
               <div style={{
                 background: "linear-gradient(135deg, #4984e0 0%, var(--accent-dark) 50%, #101849 100%)",
-                padding: "20px 18px", textAlign: "center",
+                padding: "20px 18px", textAlign: "center", borderRadius: "0 0 16px 16px",
               }}>
                 <div style={{ fontSize: "10px", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(255,255,255,0.75)", fontWeight: 700, marginBottom: 8 }}>
                   Disponible 24/7
@@ -165,7 +165,7 @@ const Home = ({ onNavigate }) => {
               <div style={{position:"absolute",borderRadius:"50%",pointerEvents:"none",zIndex:4,width:"2px",height:"2px",background:"#fff",boxShadow:"0 0 2px 1px rgba(255,255,255,0.85)",top:"35%",right:"-1px",animation:"luz-sutil 5s ease-in-out infinite 0.02s"}} />
               <div style={{position:"absolute",borderRadius:"50%",pointerEvents:"none",zIndex:4,width:"2px",height:"2px",background:"#a0d4ff",boxShadow:"0 0 2px 1px rgba(160,212,255,0.9)",bottom:"-1px",left:"40%",animation:"luz-sutil 5s ease-in-out infinite 0.06s"}} />
               <div style={{position:"absolute",borderRadius:"50%",pointerEvents:"none",zIndex:4,width:"2px",height:"2px",background:"#c0e4ff",boxShadow:"0 0 2px 1px rgba(192,228,255,0.9)",top:"60%",left:"-1px",animation:"luz-sutil 5s ease-in-out infinite 0.03s"}} />
-              <div style={{ width: "100%", aspectRatio: "4/4.5", overflow: "hidden" }}>
+              <div style={{ width: "100%", aspectRatio: "4/4.5", overflow: "hidden", borderRadius: "22px 22px 0 0" }}>
                 <img
                   src="/images/team/renata-hero.jpg"
                   alt="Renata, asistente virtual"
@@ -177,6 +177,7 @@ const Home = ({ onNavigate }) => {
                   background: "linear-gradient(135deg, #4984e0 0%, var(--accent-dark) 50%, #101849 100%)",
                   padding: "26px 22px",
                   textAlign: "center",
+                  borderRadius: "0 0 22px 22px",
                 }}
               >
                 <div
