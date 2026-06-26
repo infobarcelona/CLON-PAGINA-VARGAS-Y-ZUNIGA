@@ -80,10 +80,7 @@ const Header = ({ sectionKey, onNavigate, sections }) => {
             onClick={() => go("home")}
             data-testid="logo-link"
             className="lg:flex-none"
-            style={{
             style={{ background: "none", border: "none", cursor: "pointer", padding: 0 }}
-              background: "none", border: "none", cursor: "pointer", padding: 0,
-            }}
           >
             <div
               style={{
