@@ -12,7 +12,7 @@ const Home = ({ onNavigate }) => {
 
             <h1
               className="display-xl mt-5"
-              style={{ fontSize: "clamp(1.8rem, 4.5vw, 4rem)" }}
+              style={{ fontSize: "clamp(1.8rem, 4.5vw, 4rem)", textAlign: "center" }}
               data-testid="home-title"
             >
               {t.brand.name.split(" & ")[0]}
@@ -86,7 +86,7 @@ const Home = ({ onNavigate }) => {
             <div
               onClick={openChat}
               style={{
-                width: 160, borderRadius: 16, overflow: "hidden",
+                width: "92%", maxWidth: 380, borderRadius: 16, overflow: "hidden",
                 boxShadow: "0 6px 24px rgba(0,0,0,0.12)", cursor: "pointer",
               }}
             >
