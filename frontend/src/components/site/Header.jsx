@@ -35,36 +35,50 @@ const Header = ({ sectionKey, onNavigate, sections }) => {
             className="inline-flex items-center gap-2 transition-colors"
             style={{ color: "rgba(255,255,255,0.92)", background: "transparent", border: "none", cursor: "pointer", padding: 0 }}
           >
-            <span style={{ fontSize: "11px", fontWeight: 500, lineHeight: 1.3 }}>Converse con<br/>nuestra asistente</span>
+            {/* Desktop */}
+            <span className="hidden lg:inline" style={{ fontSize: "12.5px", fontWeight: 500 }}>Converse con nuestra asistente</span>
+            {/* Móvil: chip ✦ IA · Renata */}
+            <span className="lg:hidden" style={{ background: "transparent", border: "1px solid rgba(91,167,229,0.5)", borderRadius: 20, padding: "4px 10px", display: "inline-flex", alignItems: "center", gap: 5 }}>
+              <span style={{ fontSize: "11px", color: "#5ba7e5", fontWeight: 800 }}>✦</span>
+              <span style={{ fontSize: "10px", color: "rgba(255,255,255,0.85)", fontWeight: 600, letterSpacing: "0.05em" }}>IA · Renata</span>
+            </span>
           </button>
           <div className="flex items-center gap-4">
             <LanguageToggle />
             <div className="flex items-center gap-3">
-              <span
-                style={{
-                  fontSize: "12.5px",
-                  color: "var(--accent)",
-                  fontWeight: 600,
-                }}
-              >
+              {/* Desktop: Acceso Abogados + Ingresar */}
+              <span className="hidden lg:inline" style={{ fontSize: "12.5px", color: "var(--accent)", fontWeight: 600 }}>
                 Acceso Abogados
               </span>
               <Link
                 to="/portal"
                 data-testid="topbar-portal-link"
+                className="hidden lg:inline"
                 style={{
-                  fontSize: "12.5px",
-                  fontWeight: 700,
-                  color: "#ffffff",
-                  textDecoration: "none",
+                  fontSize: "12.5px", fontWeight: 700, color: "#ffffff", textDecoration: "none",
                   background: "linear-gradient(135deg, #4984e0 0%, #1746a0 100%)",
-                  padding: "6px 16px",
-                  borderRadius: 8,
-                  letterSpacing: "0.02em",
+                  padding: "6px 16px", borderRadius: 8, letterSpacing: "0.02em",
                   boxShadow: "0 2px 8px rgba(23,70,160,0.35)",
                 }}
               >
                 Ingresar
+              </Link>
+              {/* Móvil: chip con candado "Abogados" */}
+              <Link
+                to="/portal"
+                data-testid="topbar-portal-link-mobile"
+                className="lg:hidden"
+                style={{
+                  textDecoration: "none", background: "transparent",
+                  border: "1px solid rgba(255,255,255,0.25)", borderRadius: 20,
+                  padding: "4px 10px", display: "inline-flex", alignItems: "center", gap: 5,
+                }}
+              >
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" strokeWidth="2.5" strokeLinecap="round">
+                  <rect x="3" y="11" width="18" height="11" rx="2"/>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+                <span style={{ fontSize: "10px", color: "rgba(255,255,255,0.85)", fontWeight: 600 }}>Abogados</span>
               </Link>
             </div>
           </div>
