@@ -73,33 +73,35 @@ const Header = ({ sectionKey, onNavigate, sections }) => {
 
       {/* White main nav */}
       <div className="main-nav">
-        <div className="container-x px-5 md:px-10 lg:px-14 py-3 lg:py-4 flex items-center justify-between gap-6">
-          {/* Wordmark logo */}
+        <div className="container-x px-5 md:px-10 lg:px-14 py-3 lg:py-4 flex items-center justify-between gap-6" style={{ position: "relative" }}>
+          {/* Wordmark logo — centrado absoluto en móvil, izquierda en desktop */}
           <button
             type="button"
             onClick={() => go("home")}
             data-testid="logo-link"
-            className="flex items-center gap-3 group flex-shrink-0 lg:flex-none"
-            style={{ flex: 1 }}
+            className="lg:flex-none lg:static"
+            style={{
+              position: "absolute", left: "50%", transform: "translateX(-50%)",
+              background: "none", border: "none", cursor: "pointer", padding: 0,
+            }}
           >
-            <div className="leading-tight w-full" style={{ textAlign: "center" }}
-              onMouseEnter={e => { if(window.innerWidth >= 1024) e.currentTarget.style.textAlign = "left"; }}
+            <div
+              style={{
+                fontFamily: "'Cinzel', serif",
+                fontWeight: 600,
+                fontSize: "20px",
+                color: "var(--ink)",
+                letterSpacing: "0.02em",
+                textTransform: "uppercase",
+                lineHeight: 1,
+                whiteSpace: "nowrap",
+              }}
             >
-              <div
-                style={{
-                  fontFamily: "'Cinzel', serif",
-                  fontWeight: 600,
-                  fontSize: "20px",
-                  color: "var(--ink)",
-                  letterSpacing: "0.02em",
-                  textTransform: "uppercase",
-                  lineHeight: 1,
-                }}
-              >
-                Vargas <span style={{ color: "var(--accent-dark)" }}>&amp;</span> Zúñiga
-              </div>
+              Vargas <span style={{ color: "var(--accent-dark)" }}>&amp;</span> Zúñiga
             </div>
           </button>
+          {/* Spacer para desktop */}
+          <div className="hidden lg:block" style={{ fontFamily: "'Cinzel', serif", fontSize: "20px", opacity: 0, pointerEvents: "none" }}>Vargas &amp; Zúñiga</div>
 
           {/* Desktop nav */}
           <nav className="hidden lg:flex items-center gap-7">
