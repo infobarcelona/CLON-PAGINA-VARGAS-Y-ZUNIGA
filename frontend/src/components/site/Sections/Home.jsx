@@ -81,34 +81,42 @@ const Home = ({ onNavigate }) => {
           {/* Foto de Renata en móvil — aparece ANTES del título */}
           <div className="block lg:hidden col-span-12 flex justify-center" style={{ order: -1, marginTop: "-8px", marginBottom: "8px" }}>
             <style>{`
-              @keyframes renata-halo {
-                0%   { transform: scale(0.88); opacity: 0.5; }
-                70%  { transform: scale(1.06); opacity: 0; }
-                100% { transform: scale(1.06); opacity: 0; }
+              @keyframes respirar-sutil {
+                0%   { box-shadow: 0 0 0px 0px rgba(73,132,224,0); border-color: rgba(73,132,224,0.15); }
+                50%  { box-shadow: 0 0 12px 5px rgba(73,132,224,0.28), 0 0 22px 10px rgba(23,70,160,0.1); border-color: rgba(122,184,245,0.6); }
+                100% { box-shadow: 0 0 0px 0px rgba(73,132,224,0); border-color: rgba(73,132,224,0.15); }
               }
-              .renata-halo::after {
-                content: ''; position: absolute; inset: -6px;
-                border-radius: 20px;
-                background: #1746a0; opacity: 0.4; z-index: 0;
-                animation: renata-halo 2.4s ease-out infinite;
+              @keyframes luz-sutil {
+                0%,30%  { opacity: 0; }
+                50%     { opacity: 1; }
+                70%,100%{ opacity: 0; }
               }
-              .renata-halo-ring {
-                position: absolute; inset: -3px; border-radius: 19px;
-                border: 1px solid rgba(91,167,229,0.5);
-                animation: renata-halo 2.4s ease-out infinite 0.4s;
-                z-index: 0; pointer-events: none;
-              }
+              .renata-marco { position:absolute; inset:0; border-radius:16px; pointer-events:none; z-index:3; border:1px solid rgba(73,132,224,0.15); animation: respirar-sutil 5s ease-in-out infinite; }
+              .renata-luz { position:absolute; border-radius:50%; pointer-events:none; z-index:4; animation: luz-sutil 5s ease-in-out infinite; }
             `}</style>
             <div
               onClick={openChat}
-              className="renata-halo"
               style={{
                 width: "92%", maxWidth: 400, borderRadius: 16, overflow: "hidden",
                 boxShadow: "0 6px 24px rgba(0,0,0,0.12)", cursor: "pointer",
                 position: "relative",
               }}
             >
-              <div className="renata-halo-ring" />
+              <div className="renata-marco" />
+              <div className="renata-luz" style={{width:"2px",height:"2px",background:"#e0f4ff",boxShadow:"0 0 2px 1px rgba(224,244,255,0.95)",top:"-1px",left:"18%",animationDelay:"0s"}} />
+              <div className="renata-luz" style={{width:"2px",height:"2px",background:"#7ab8f5",boxShadow:"0 0 2px 1px rgba(122,184,245,0.9)",top:"-1px",left:"45%",animationDelay:"0.05s"}} />
+              <div className="renata-luz" style={{width:"2px",height:"2px",background:"#fff",boxShadow:"0 0 3px 1px rgba(255,255,255,0.85)",top:"-1px",left:"70%",animationDelay:"0.03s"}} />
+              <div className="renata-luz" style={{width:"2px",height:"2px",background:"#a0d4ff",boxShadow:"0 0 2px 1px rgba(160,212,255,0.9)",top:"-1px",left:"88%",animationDelay:"0.07s"}} />
+              <div className="renata-luz" style={{width:"2px",height:"2px",background:"#c0e4ff",boxShadow:"0 0 2px 1px rgba(192,228,255,0.9)",top:"20%",right:"-1px",animationDelay:"0.04s"}} />
+              <div className="renata-luz" style={{width:"2px",height:"2px",background:"#fff",boxShadow:"0 0 2px 1px rgba(255,255,255,0.85)",top:"48%",right:"-1px",animationDelay:"0.02s"}} />
+              <div className="renata-luz" style={{width:"2px",height:"2px",background:"#7ab8f5",boxShadow:"0 0 2px 1px rgba(122,184,245,0.9)",top:"75%",right:"-1px",animationDelay:"0.06s"}} />
+              <div className="renata-luz" style={{width:"2px",height:"2px",background:"#7ab8f5",boxShadow:"0 0 2px 1px rgba(122,184,245,0.9)",bottom:"-1px",left:"15%",animationDelay:"0.03s"}} />
+              <div className="renata-luz" style={{width:"2px",height:"2px",background:"#e0f4ff",boxShadow:"0 0 3px 1px rgba(224,244,255,0.9)",bottom:"-1px",left:"40%",animationDelay:"0.06s"}} />
+              <div className="renata-luz" style={{width:"2px",height:"2px",background:"#fff",boxShadow:"0 0 2px 1px rgba(255,255,255,0.85)",bottom:"-1px",left:"65%",animationDelay:"0.01s"}} />
+              <div className="renata-luz" style={{width:"2px",height:"2px",background:"#5ba7e5",boxShadow:"0 0 2px 1px rgba(91,167,229,0.9)",bottom:"-1px",left:"85%",animationDelay:"0.08s"}} />
+              <div className="renata-luz" style={{width:"2px",height:"2px",background:"#c0e4ff",boxShadow:"0 0 2px 1px rgba(192,228,255,0.9)",top:"18%",left:"-1px",animationDelay:"0.05s"}} />
+              <div className="renata-luz" style={{width:"2px",height:"2px",background:"#fff",boxShadow:"0 0 2px 1px rgba(255,255,255,0.85)",top:"45%",left:"-1px",animationDelay:"0.02s"}} />
+              <div className="renata-luz" style={{width:"2px",height:"2px",background:"#a0d4ff",boxShadow:"0 0 2px 1px rgba(160,212,255,0.9)",top:"72%",left:"-1px",animationDelay:"0.07s"}} />
               <div style={{ width: "100%", aspectRatio: "4/4.5", overflow: "hidden" }}>
                 <img
                   src="/images/team/renata-hero.jpg"
@@ -139,7 +147,7 @@ const Home = ({ onNavigate }) => {
           {/* Foto de Renata en desktop — se mantiene igual */}
           <div className="hidden lg:flex col-span-5 items-center justify-center">
             <div
-              className="w-full renata-halo"
+              className="w-full"
               onClick={openChat}
               style={{
                 maxWidth: 420,
@@ -152,7 +160,12 @@ const Home = ({ onNavigate }) => {
               }}
               data-testid="home-renata-card"
             >
-              <div className="renata-halo-ring" style={{ borderRadius: 25 }} />
+              <div style={{position:"absolute",inset:0,borderRadius:22,pointerEvents:"none",zIndex:3,border:"1px solid rgba(73,132,224,0.15)",animation:"respirar-sutil 5s ease-in-out infinite"}} />
+              <div style={{position:"absolute",borderRadius:"50%",pointerEvents:"none",zIndex:4,width:"2px",height:"2px",background:"#e0f4ff",boxShadow:"0 0 2px 1px rgba(224,244,255,0.95)",top:"-1px",left:"18%",animation:"luz-sutil 5s ease-in-out infinite"}} />
+              <div style={{position:"absolute",borderRadius:"50%",pointerEvents:"none",zIndex:4,width:"2px",height:"2px",background:"#7ab8f5",boxShadow:"0 0 2px 1px rgba(122,184,245,0.9)",top:"-1px",left:"55%",animation:"luz-sutil 5s ease-in-out infinite 0.04s"}} />
+              <div style={{position:"absolute",borderRadius:"50%",pointerEvents:"none",zIndex:4,width:"2px",height:"2px",background:"#fff",boxShadow:"0 0 2px 1px rgba(255,255,255,0.85)",top:"35%",right:"-1px",animation:"luz-sutil 5s ease-in-out infinite 0.02s"}} />
+              <div style={{position:"absolute",borderRadius:"50%",pointerEvents:"none",zIndex:4,width:"2px",height:"2px",background:"#a0d4ff",boxShadow:"0 0 2px 1px rgba(160,212,255,0.9)",bottom:"-1px",left:"40%",animation:"luz-sutil 5s ease-in-out infinite 0.06s"}} />
+              <div style={{position:"absolute",borderRadius:"50%",pointerEvents:"none",zIndex:4,width:"2px",height:"2px",background:"#c0e4ff",boxShadow:"0 0 2px 1px rgba(192,228,255,0.9)",top:"60%",left:"-1px",animation:"luz-sutil 5s ease-in-out infinite 0.03s"}} />
               <div style={{ width: "100%", aspectRatio: "4/4.5", overflow: "hidden" }}>
                 <img
                   src="/images/team/renata-hero.jpg"
