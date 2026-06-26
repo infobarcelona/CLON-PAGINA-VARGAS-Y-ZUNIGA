@@ -175,6 +175,11 @@ body {
   -webkit-overflow-scrolling: touch;
   padding: 2.5rem clamp(1.25rem, 4vw, 4rem);
 }
+@media (max-width: 767px) {
+  .section-content {
+    padding-top: 2px;
+  }
+}
 .container-x {
   width: 100%;
   max-width: 1320px;
