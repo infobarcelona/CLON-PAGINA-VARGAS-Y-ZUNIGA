@@ -35,7 +35,7 @@ const Header = ({ sectionKey, onNavigate, sections }) => {
             className="inline-flex items-center gap-2 transition-colors"
             style={{ color: "rgba(255,255,255,0.92)", background: "transparent", border: "none", cursor: "pointer", padding: 0 }}
           >
-            <span style={{ fontSize: "12.5px", fontWeight: 500 }}>Converse con nuestra asistente</span>
+            <span style={{ fontSize: "11px", fontWeight: 500, lineHeight: 1.3 }}>Converse con<br/>nuestra asistente</span>
           </button>
           <div className="flex items-center gap-4">
             <LanguageToggle />
@@ -79,9 +79,12 @@ const Header = ({ sectionKey, onNavigate, sections }) => {
             type="button"
             onClick={() => go("home")}
             data-testid="logo-link"
-            className="flex items-center gap-3 group flex-shrink-0"
+            className="flex items-center gap-3 group flex-shrink-0 lg:flex-none"
+            style={{ flex: 1 }}
           >
-            <div className="leading-tight text-left">
+            <div className="leading-tight w-full" style={{ textAlign: "center" }}
+              onMouseEnter={e => { if(window.innerWidth >= 1024) e.currentTarget.style.textAlign = "left"; }}
+            >
               <div
                 style={{
                   fontFamily: "'Cinzel', serif",
@@ -95,7 +98,6 @@ const Header = ({ sectionKey, onNavigate, sections }) => {
               >
                 Vargas <span style={{ color: "var(--accent-dark)" }}>&amp;</span> Zúñiga
               </div>
-
             </div>
           </button>
 
