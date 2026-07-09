@@ -324,7 +324,7 @@ const PortalOficina = () => {
     setContextMenu(null);
   };
 
-  const handleDrop = (e) => { e.preventDefault(); setDragOver(false); const files = Array.from(e.dataTransfer.files); if (files.length > 0) subirArchivo(files[0]); };
+  const handleDrop = (e) => { e.preventDefault(); setDragOver(false); const files = Array.from(e.dataTransfer.files); if (files.length > 0) files.forEach(f => subirArchivo(f)); };
 
   const elementosFiltrados = carpetaActual
     ? archivos.filter(a => a.name.toLowerCase().includes(busqueda.toLowerCase()))
@@ -566,7 +566,7 @@ const PortalOficina = () => {
                   style={{ display: "flex", alignItems: "center", gap: 4, background: "rgba(23,70,160,0.08)", color: "var(--accent-dark)", border: "1.5px solid rgba(23,70,160,0.15)", padding: "6px 10px", borderRadius: 8, fontSize: "11.5px", fontWeight: 600, cursor: "pointer" }}>
                   <Upload size={12} /> {subiendo ? "Subiendo..." : "Subir"}
                 </button>
-                <input ref={fileInputRef} type="file" style={{ display: "none" }} onChange={e => e.target.files[0] && subirArchivo(e.target.files[0])} />
+                <input ref={fileInputRef} type="file" multiple style={{ display: "none" }} onChange={e => { Array.from(e.target.files).forEach(f => subirArchivo(f)); e.target.value = ""; }} />
               </div>
             </div>
           )}
