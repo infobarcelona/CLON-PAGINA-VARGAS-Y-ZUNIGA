@@ -46,23 +46,7 @@ const Header = ({ sectionKey, onNavigate, sections }) => {
           <div className="flex items-center gap-4">
             <LanguageToggle />
             <div className="flex items-center gap-3">
-              {/* Desktop: Acceso Abogados + Ingresar */}
-              <span className="hidden lg:inline" style={{ fontSize: "12.5px", color: "var(--accent)", fontWeight: 600 }}>
-                Acceso Abogados
-              </span>
-              <Link
-                to="/portal"
-                data-testid="topbar-portal-link"
-                className="hidden lg:inline"
-                style={{
-                  fontSize: "12.5px", fontWeight: 700, color: "#ffffff", textDecoration: "none",
-                  background: "linear-gradient(135deg, #4984e0 0%, #1746a0 100%)",
-                  padding: "6px 16px", borderRadius: 8, letterSpacing: "0.02em",
-                  boxShadow: "0 2px 8px rgba(23,70,160,0.35)",
-                }}
-              >
-                Ingresar
-              </Link>
+              {/* Desktop: solo chip Abogados */}
               {/* Móvil: chip con candado "Abogados" */}
               <Link
                 to="/portal"
