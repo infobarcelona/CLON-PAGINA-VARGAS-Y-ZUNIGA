@@ -13,7 +13,7 @@ export const translations = {
     arrows: { prev: "Sección anterior", next: "Sección siguiente" },
     home: {
       eyebrow: "Estudio jurídico · Temuco · Chile",
-      lead: "Asesoramos a personas y empresas en La Araucanía y todo el país con un trato directo, profesional y de largo plazo.",
+      lead: "",
       ctaChat: "Conversar con la asistente",
       ctaSections: "Explorar el sitio",
     },
@@ -26,7 +26,7 @@ export const translations = {
       values: [
         {
           k: "Experiencia",
-          d: "Más de dos décadas de ejercicio profesional en sede civil, tributaria, laboral, de familia y administrativa.",
+          d: "Más de dos décadas de ejercicio profesional en sede civil, tributaria, laboral y de familia.",
         },
         {
           k: "Fidelidad",
@@ -39,11 +39,9 @@ export const translations = {
       ],
     },
     clients: {
-      title: "Clientes",
-      lead:
-        "Asesoramos personas, empresas y entidades sin fines de lucro en todas las áreas de experticia del Estudio.",
-      note:
-        "Algunos de nuestros clientes representativos",
+      title: "Algunos de nuestros clientes representativos",
+      lead: "",
+      note: "",
       groups: [
         { name: "Grupo Plange", kind: "" },
         { name: "Grupo Massmann", kind: "" },
@@ -92,7 +90,7 @@ export const translations = {
           role: "",
           email: "secretaria@vargasyzuniga.cl",
           experience: [
-            "Abogada Universidad Católica de Temuco, titulada en Diciembre de 2025.",
+            "Abogada Universidad Católica de Temuco, titulada en Diciembre de 2025. Diplomada en Derecho Corporativo y Compliance Universidad de Los Andes. (C)",
             "Áreas de conocimiento: Derecho Civil · Regulación de Deuda Tributaria · Derecho Laboral y Corporativo.",
           ],
         },
@@ -110,7 +108,7 @@ export const translations = {
             "Asesoría tributaria",
             "Derecho inmobiliario",
             "Organización patrimonial",
-            "Asesoría contractual y due diligence",
+
           ],
         },
         {
@@ -131,8 +129,8 @@ export const translations = {
             "Prescripción de deuda tributaria",
             "Derechos de aprovechamiento de aguas",
             "Derechos mineros",
-            "Concesiones acuícolas y marítimas",
-            "Sumarios sanitarios",
+
+
           ],
         },
       ],
@@ -187,7 +185,7 @@ export const translations = {
     arrows: { prev: "Previous section", next: "Next section" },
     home: {
       eyebrow: "Law firm · Temuco · Chile",
-      lead: "We advise individuals and companies in La Araucanía and across Chile with a direct, professional and long-standing relationship.",
+      lead: "",
       ctaChat: "Talk to our assistant",
       ctaSections: "Browse the site",
     },
