@@ -137,7 +137,7 @@ const Home = ({ onNavigate }) => {
                   <CerebroNeural width={80} height={69} />
                 </div>
                 <h4 style={{ fontFamily: "'Cinzel', serif", fontSize: "20px", fontWeight: 600, color: "#fff", margin: "0 0 8px" }}>
-                  Contacta a Renata
+                  Contacta a nuestra Asistente
                 </h4>
                 <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.92)", lineHeight: 1.55, margin: 0 }}>
                   Nuestra asistente con inteligencia artificial. Pregúntale lo que necesites sobre el estudio, honorarios o cómo agendar tu reunión.
@@ -206,7 +206,7 @@ const Home = ({ onNavigate }) => {
                     margin: "0 0 10px",
                   }}
                 >
-                  Contacta a Renata
+                  Contacta a nuestra Asistente
                 </h4>
                 <p
                   style={{
