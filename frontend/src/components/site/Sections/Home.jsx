@@ -45,6 +45,7 @@ const Home = ({ onNavigate }) => {
                 color: "var(--accent-dark)",
                 fontWeight: 700,
                 textAlign: "center",
+                fontFamily: "'Cinzel', serif",
               }}
               data-testid="home-slogan"
             >

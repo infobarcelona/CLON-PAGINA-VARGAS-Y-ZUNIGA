@@ -47,6 +47,7 @@ const Studio = () => {
                     color: "var(--ink-mute)",
                     fontSize: "15.5px",
                     lineHeight: 1.7,
+                    textAlign: "justify",
                   }}
                 >
                   {p}
@@ -91,7 +92,7 @@ const Studio = () => {
                   </div>
                   <h3
                     className="heading mt-2"
-                    style={{ fontSize: "clamp(1.15rem, 1.4vw, 1.35rem)" }}
+                    style={{ fontSize: "clamp(1.15rem, 1.4vw, 1.35rem)", fontFamily: "'Cinzel', serif" }}
                   >
                     {v.k}
                   </h3>
