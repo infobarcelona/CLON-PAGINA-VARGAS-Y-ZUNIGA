@@ -196,15 +196,15 @@ export const translations = {
         "We operate with a small, specialized team — every case is attended personally by a partner and every client relationship is built for the long term.",
       ],
       values: [
-        { k: "Experience", d: "Over two decades of practice in civil, tax, labor, family and administrative matters." },
+        { k: "Experience", d: "Over two decades of practice in civil, tax, labor and family matters." },
         { k: "Loyalty", d: "We accompany our clients over time. Each partner attends inquiries personally." },
         { k: "Efficiency", d: "Clear answers, precise strategies and measurable results in every matter." },
       ],
     },
     clients: {
-      title: "Clients",
-      lead: "We advise individuals, small and medium companies and institutions from both the private and public sector.",
-      note: "The full list is subject to confidentiality. References are available in a private meeting.",
+      title: "Some of our representative clients",
+      lead: "",
+      note: "",
       groups: [
         { name: "General Treasury of the Republic", kind: "Public institution · 2006–2010" },
         { name: "Insurance Companies", kind: "Traffic litigation · 13+ years" },
@@ -245,11 +245,22 @@ export const translations = {
             "Candidate, Master's in Private Law, Universidad Autónoma de Chile.",
           ],
         },
+        {
+          initials: "NM",
+          photo: "/images/team/nicole-munoz.jpg",
+          name: "Nicole Muñoz Poblete",
+          role: "",
+          email: "secretaria@vargasyzuniga.cl",
+          experience: [
+            "Lawyer, Universidad Católica de Temuco, graduated December 2025. Diploma in Corporate Law and Compliance, Universidad de Los Andes. (C)",
+            "Areas of expertise: Civil Law · Tax Debt Regulation · Corporate and Labor Law.",
+          ],
+        },
       ],
     },
     areas: {
       title: "Practice Areas",
-      lead: "Three complementary frontiers. Full coverage in private and administrative law.",
+      lead: "",
       groups: [
         {
           num: "I",
@@ -259,7 +270,7 @@ export const translations = {
             "Tax advisory",
             "Real estate law",
             "Wealth structuring",
-            "Contract advisory & due diligence",
+
           ],
         },
         {
@@ -274,8 +285,8 @@ export const translations = {
             "Tax debt prescription",
             "Water-use rights",
             "Mining rights",
-            "Aquaculture & maritime concessions",
-            "Sanitary proceedings",
+
+
           ],
         },
       ],
