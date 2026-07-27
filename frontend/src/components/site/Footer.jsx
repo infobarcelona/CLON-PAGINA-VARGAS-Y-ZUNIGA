@@ -170,7 +170,7 @@ const Footer = ({ sectionIndex, totalSections, onNavigate }) => {
                   fontSize: "12.5px",
                 }}
               >
-                Converse con nuestra asistente
+                {t.renata.converse}
               </button>
             </div>
           </div>

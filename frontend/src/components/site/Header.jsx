@@ -36,7 +36,7 @@ const Header = ({ sectionKey, onNavigate, sections }) => {
             style={{ color: "rgba(255,255,255,0.92)", background: "transparent", border: "none", cursor: "pointer", padding: 0 }}
           >
             {/* Desktop */}
-            <span className="hidden lg:inline" style={{ fontSize: "12.5px", fontWeight: 500 }}>Converse con nuestra asistente</span>
+            <span className="hidden lg:inline" style={{ fontSize: "12.5px", fontWeight: 500 }}>{t.renata.converse}</span>
             {/* Móvil: chip ✦ IA · Renata */}
             <span className="lg:hidden" style={{ background: "transparent", border: "1px solid rgba(91,167,229,0.5)", borderRadius: 20, padding: "4px 10px", display: "inline-flex", alignItems: "center", gap: 5 }}>
               <span style={{ fontSize: "11px", color: "#5ba7e5", fontWeight: 800 }}>✦</span>

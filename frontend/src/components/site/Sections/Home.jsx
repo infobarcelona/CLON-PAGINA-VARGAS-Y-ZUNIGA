@@ -131,13 +131,13 @@ const Home = ({ onNavigate }) => {
                 padding: "20px 18px", textAlign: "center", borderRadius: "0 0 16px 16px",
               }}>
                 <div style={{ fontSize: "10px", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(255,255,255,0.75)", fontWeight: 700, marginBottom: 8 }}>
-                  Disponible 24/7
+                  {t.renata.disponible}
                 </div>
                 <div style={{ display: "flex", justifyContent: "center", marginBottom: 10 }}>
                   <CerebroNeural width={80} height={69} />
                 </div>
                 <h4 style={{ fontFamily: "'Cinzel', serif", fontSize: "20px", fontWeight: 600, color: "#fff", margin: "0 0 8px" }}>
-                  Contacta a nuestra Asistente
+                  {t.renata.contacta}
                 </h4>
                 <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.92)", lineHeight: 1.55, margin: 0 }}>
                   Nuestra asistente con inteligencia artificial. Pregúntale lo que necesites sobre el estudio, honorarios o cómo agendar tu reunión.
@@ -192,7 +192,7 @@ const Home = ({ onNavigate }) => {
                     marginBottom: 8,
                   }}
                 >
-                  Disponible 24/7
+                  {t.renata.disponible}
                 </div>
                 <div style={{ display: "flex", justifyContent: "center", marginBottom: 12 }}>
                   <CerebroNeural width={100} height={86} />
@@ -206,7 +206,7 @@ const Home = ({ onNavigate }) => {
                     margin: "0 0 10px",
                   }}
                 >
-                  Contacta a nuestra Asistente
+                  {t.renata.contacta}
                 </h4>
                 <p
                   style={{

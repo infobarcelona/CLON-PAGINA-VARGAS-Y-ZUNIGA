@@ -135,6 +135,11 @@ export const translations = {
         },
       ],
     },
+    renata: {
+      disponible: "Disponible 24/7",
+      contacta: "Contacta a nuestra Asistente",
+      converse: "Converse con nuestra asistente",
+    },
     contact: {
       title: "Contacto",
       subtitle: "Abogados Ltda.",
@@ -290,6 +295,11 @@ export const translations = {
           ],
         },
       ],
+    },
+    renata: {
+      disponible: "Available 24/7",
+      contacta: "Contact our Assistant",
+      converse: "Chat with our assistant",
     },
     contact: {
       title: "Contact",
