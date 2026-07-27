@@ -108,9 +108,9 @@ const Contact = () => {
                 }}
                 data-testid="contact-chat-title"
               >
-                AGENDA TU HORA
+                {t.renata.agendaTuHora}
                 <br />
-                CUÉNTANOS TU CASO
+                {t.renata.cuentanosCase}
               </h3>
 
               <button
@@ -134,7 +134,7 @@ const Contact = () => {
                 }}
               >
                 <MessageSquare size={16} strokeWidth={1.9} />
-                <span>Conversar con la asistente</span>
+                <span>{t.renata.conversarAsistente}</span>
               </button>
             </div>
           </div>

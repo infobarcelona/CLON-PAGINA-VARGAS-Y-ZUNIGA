@@ -139,6 +139,9 @@ export const translations = {
       disponible: "Disponible 24/7",
       contacta: "Contacta a nuestra Asistente",
       converse: "Converse con nuestra asistente",
+      agendaTuHora: "AGENDA TU HORA",
+      cuentanosCase: "CUÉNTANOS TU CASO",
+      conversarAsistente: "Conversar con la asistente",
     },
     contact: {
       title: "Contacto",
@@ -300,6 +303,9 @@ export const translations = {
       disponible: "Available 24/7",
       contacta: "Contact our Assistant",
       converse: "Chat with our assistant",
+      agendaTuHora: "BOOK YOUR APPOINTMENT",
+      cuentanosCase: "TELL US YOUR CASE",
+      conversarAsistente: "Chat with our assistant",
     },
     contact: {
       title: "Contact",
