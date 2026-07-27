@@ -142,6 +142,7 @@ export const translations = {
       agendaTuHora: "AGENDA TU HORA",
       cuentanosCase: "CUÉNTANOS TU CASO",
       conversarAsistente: "Conversar con la asistente",
+      reservaAbogado: "Reserva una reunión contactando a nuestra asistente",
     },
     contact: {
       title: "Contacto",
@@ -233,8 +234,8 @@ export const translations = {
           email: "avargas@vargasyzuniga.cl",
           experience: [
             "Universidad Católica de Temuco — graduated with distinction, 2003.",
-            "Franco & Cía. law firm, 2005: civil banking and regional corporate proceedings.",
-            "Regional Attorney, General Treasury of the Republic — La Araucanía, 2006–2010. Over 7,000 executive collections sponsored.",
+            "Franco & Cía. law firm, 2005: civil, banking and corporate litigation.",
+            "Regional Attorney, General Treasury of the Republic — La Araucanía, 2006–2010. Over 7,000 enforcement proceedings handled.",
             "Professor of Civil Procedural Law, UC Temuco.",
             "Candidate, Master's in Private Law, Universidad Autónoma de Chile.",
           ],
@@ -247,9 +248,9 @@ export const translations = {
           email: "mzuniga@vargasyzuniga.cl",
           experience: [
             "Universidad Católica de Temuco, 2003.",
-            "Diplomas in Criminal Procedure Reform and Business Law, UC Temuco, 2005.",
+            "Specialization in Criminal Procedure Reform and Business Law, UC Temuco, 2005.",
             "Professor of Political Law, Universidad Arturo Prat — Victoria, 2006–2008.",
-            "Counsel for Insurance Companies in traffic litigation across infringement, civil and criminal venues — 13+ years.",
+            "Legal counsel for insurance companies in traffic litigation across administrative, civil and criminal courts — 13+ years.",
             "Candidate, Master's in Private Law, Universidad Autónoma de Chile.",
           ],
         },
@@ -306,6 +307,7 @@ export const translations = {
       agendaTuHora: "BOOK YOUR APPOINTMENT",
       cuentanosCase: "TELL US YOUR CASE",
       conversarAsistente: "Chat with our assistant",
+      reservaAbogado: "Book a meeting with our assistant",
     },
     contact: {
       title: "Contact",
