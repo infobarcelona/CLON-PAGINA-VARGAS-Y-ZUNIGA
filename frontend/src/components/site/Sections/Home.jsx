@@ -140,7 +140,7 @@ const Home = ({ onNavigate }) => {
                   {t.renata.contacta}
                 </h4>
                 <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.92)", lineHeight: 1.55, margin: 0 }}>
-                  Nuestra asistente con inteligencia artificial. Pregúntale lo que necesites sobre el estudio, honorarios o cómo agendar tu reunión.
+                  {t.renata.descCorta}
                 </p>
               </div>
             </div>
@@ -216,9 +216,7 @@ const Home = ({ onNavigate }) => {
                     margin: "0 0 18px",
                   }}
                 >
-                  Nuestra asistente con inteligencia artificial. Pregúntale lo que necesites
-                  saber del estudio: experiencia, áreas de práctica,
-                  honorarios o cómo agendar tu reunión.
+                  {t.renata.descLarga}
                 </p>
 
               </div>

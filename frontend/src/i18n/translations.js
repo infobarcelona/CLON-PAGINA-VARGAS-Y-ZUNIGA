@@ -143,6 +143,8 @@ export const translations = {
       cuentanosCase: "CUÉNTANOS TU CASO",
       conversarAsistente: "Conversar con la asistente",
       reservaAbogado: "Reserva una reunión contactando a nuestra asistente",
+      descCorta: "Nuestra asistente con inteligencia artificial. Pregúntale lo que necesites sobre el estudio, honorarios o cómo agendar tu reunión.",
+      descLarga: "Nuestra asistente con inteligencia artificial. Pregúntale lo que necesites saber del estudio: experiencia, áreas de práctica, honorarios o cómo agendar tu reunión.",
     },
     contact: {
       title: "Contacto",
@@ -215,12 +217,12 @@ export const translations = {
       lead: "",
       note: "",
       groups: [
-        { name: "General Treasury of the Republic", kind: "Public institution · 2006–2010" },
-        { name: "Insurance Companies", kind: "Traffic litigation · 13+ years" },
-        { name: "Hydroelectric operators", kind: "Water-use rights" },
-        { name: "Regional businesses", kind: "Debt recovery · Collection" },
-        { name: "Law firms", kind: "Judicial sponsorship in La Araucanía" },
-        { name: "Individuals", kind: "Family · Estate · Tax" },
+        { name: "Grupo Plange", kind: "" },
+        { name: "Grupo Massmann", kind: "" },
+        { name: "Frontel", kind: "" },
+        { name: "SAESA", kind: "" },
+        { name: "DRS Ltda.", kind: "" },
+        { name: "Conavicoop", kind: "" },
       ],
     },
     lawyers: {
@@ -308,6 +310,8 @@ export const translations = {
       cuentanosCase: "TELL US YOUR CASE",
       conversarAsistente: "Chat with our assistant",
       reservaAbogado: "Book a meeting with our assistant",
+      descCorta: "Our AI-powered assistant. Ask anything about the firm, fees, or how to schedule your appointment.",
+      descLarga: "Our AI-powered assistant. Ask anything you need to know about the firm: experience, practice areas, fees, or how to schedule your appointment.",
     },
     contact: {
       title: "Contact",
