@@ -39,7 +39,7 @@ const Header = ({ sectionKey, onNavigate, sections }) => {
             <span className="hidden lg:inline" style={{ fontSize: "12.5px", fontWeight: 500 }}>{t.renata.converse}</span>
             {/* Móvil: chip ✦ IA · Renata */}
             <span className="lg:hidden" style={{ background: "transparent", border: "1px solid rgba(91,167,229,0.5)", borderRadius: 20, padding: "4px 10px", display: "inline-flex", alignItems: "center", gap: 5 }}>
-              <span style={{ fontSize: "11px", color: "#5ba7e5", fontWeight: 800 }}>✦</span>
+              <span style={{ fontSize: "11px", color: "#dd281e", fontWeight: 800 }}>✦</span>
               <span style={{ fontSize: "10px", color: "rgba(255,255,255,0.85)", fontWeight: 600, letterSpacing: "0.05em" }}>IA · Renata</span>
             </span>
           </button>
