@@ -85,7 +85,7 @@ const Home = ({ onNavigate }) => {
             <style>{`
               @keyframes respirar-sutil {
                 0%   { box-shadow: 0 0 0px 0px rgba(73,132,224,0); border-color: rgba(73,132,224,0.15); }
-                50%  { box-shadow: 0 0 12px 5px rgba(73,132,224,0.28), 0 0 22px 10px rgba(23,70,160,0.1); border-color: rgba(122,184,245,0.6); }
+                50%  { box-shadow: 0 0 12px 5px rgba(73,132,224,0.28), 0 0 22px 10px rgba(23,70,160,0.1); border-color: rgba(245,122,122,0.6); }
                 100% { box-shadow: 0 0 0px 0px rgba(73,132,224,0); border-color: rgba(73,132,224,0.15); }
               }
               @keyframes luz-sutil {
@@ -105,20 +105,20 @@ const Home = ({ onNavigate }) => {
               }}
             >
               <div className="renata-marco" />
-              <div className="renata-luz" style={{width:"2px",height:"2px",background:"#e0f4ff",boxShadow:"0 0 2px 1px rgba(224,244,255,0.95)",top:"-1px",left:"18%",animationDelay:"0s"}} />
-              <div className="renata-luz" style={{width:"2px",height:"2px",background:"#7ab8f5",boxShadow:"0 0 2px 1px rgba(122,184,245,0.9)",top:"-1px",left:"45%",animationDelay:"0.05s"}} />
+              <div className="renata-luz" style={{width:"2px",height:"2px",background:"#ffe0de",boxShadow:"0 0 2px 1px rgba(255,224,222,0.95)",top:"-1px",left:"18%",animationDelay:"0s"}} />
+              <div className="renata-luz" style={{width:"2px",height:"2px",background:"#f57a7a",boxShadow:"0 0 2px 1px rgba(245,122,122,0.9)",top:"-1px",left:"45%",animationDelay:"0.05s"}} />
               <div className="renata-luz" style={{width:"2px",height:"2px",background:"#fff",boxShadow:"0 0 3px 1px rgba(255,255,255,0.85)",top:"-1px",left:"70%",animationDelay:"0.03s"}} />
-              <div className="renata-luz" style={{width:"2px",height:"2px",background:"#a0d4ff",boxShadow:"0 0 2px 1px rgba(160,212,255,0.9)",top:"-1px",left:"88%",animationDelay:"0.07s"}} />
-              <div className="renata-luz" style={{width:"2px",height:"2px",background:"#c0e4ff",boxShadow:"0 0 2px 1px rgba(192,228,255,0.9)",top:"20%",right:"-1px",animationDelay:"0.04s"}} />
+              <div className="renata-luz" style={{width:"2px",height:"2px",background:"#ffb0ae",boxShadow:"0 0 2px 1px rgba(255,176,174,0.9)",top:"-1px",left:"88%",animationDelay:"0.07s"}} />
+              <div className="renata-luz" style={{width:"2px",height:"2px",background:"#ffc0be",boxShadow:"0 0 2px 1px rgba(255,192,190,0.9)",top:"20%",right:"-1px",animationDelay:"0.04s"}} />
               <div className="renata-luz" style={{width:"2px",height:"2px",background:"#fff",boxShadow:"0 0 2px 1px rgba(255,255,255,0.85)",top:"48%",right:"-1px",animationDelay:"0.02s"}} />
-              <div className="renata-luz" style={{width:"2px",height:"2px",background:"#7ab8f5",boxShadow:"0 0 2px 1px rgba(122,184,245,0.9)",top:"75%",right:"-1px",animationDelay:"0.06s"}} />
-              <div className="renata-luz" style={{width:"2px",height:"2px",background:"#7ab8f5",boxShadow:"0 0 2px 1px rgba(122,184,245,0.9)",bottom:"-1px",left:"15%",animationDelay:"0.03s"}} />
-              <div className="renata-luz" style={{width:"2px",height:"2px",background:"#e0f4ff",boxShadow:"0 0 3px 1px rgba(224,244,255,0.9)",bottom:"-1px",left:"40%",animationDelay:"0.06s"}} />
+              <div className="renata-luz" style={{width:"2px",height:"2px",background:"#f57a7a",boxShadow:"0 0 2px 1px rgba(245,122,122,0.9)",top:"75%",right:"-1px",animationDelay:"0.06s"}} />
+              <div className="renata-luz" style={{width:"2px",height:"2px",background:"#f57a7a",boxShadow:"0 0 2px 1px rgba(245,122,122,0.9)",bottom:"-1px",left:"15%",animationDelay:"0.03s"}} />
+              <div className="renata-luz" style={{width:"2px",height:"2px",background:"#ffe0de",boxShadow:"0 0 3px 1px rgba(255,224,222,0.9)",bottom:"-1px",left:"40%",animationDelay:"0.06s"}} />
               <div className="renata-luz" style={{width:"2px",height:"2px",background:"#fff",boxShadow:"0 0 2px 1px rgba(255,255,255,0.85)",bottom:"-1px",left:"65%",animationDelay:"0.01s"}} />
-              <div className="renata-luz" style={{width:"2px",height:"2px",background:"#5ba7e5",boxShadow:"0 0 2px 1px rgba(91,167,229,0.9)",bottom:"-1px",left:"85%",animationDelay:"0.08s"}} />
-              <div className="renata-luz" style={{width:"2px",height:"2px",background:"#c0e4ff",boxShadow:"0 0 2px 1px rgba(192,228,255,0.9)",top:"18%",left:"-1px",animationDelay:"0.05s"}} />
+              <div className="renata-luz" style={{width:"2px",height:"2px",background:"#e55b5b",boxShadow:"0 0 2px 1px rgba(229,91,91,0.9)",bottom:"-1px",left:"85%",animationDelay:"0.08s"}} />
+              <div className="renata-luz" style={{width:"2px",height:"2px",background:"#ffc0be",boxShadow:"0 0 2px 1px rgba(255,192,190,0.9)",top:"18%",left:"-1px",animationDelay:"0.05s"}} />
               <div className="renata-luz" style={{width:"2px",height:"2px",background:"#fff",boxShadow:"0 0 2px 1px rgba(255,255,255,0.85)",top:"45%",left:"-1px",animationDelay:"0.02s"}} />
-              <div className="renata-luz" style={{width:"2px",height:"2px",background:"#a0d4ff",boxShadow:"0 0 2px 1px rgba(160,212,255,0.9)",top:"72%",left:"-1px",animationDelay:"0.07s"}} />
+              <div className="renata-luz" style={{width:"2px",height:"2px",background:"#ffb0ae",boxShadow:"0 0 2px 1px rgba(255,176,174,0.9)",top:"72%",left:"-1px",animationDelay:"0.07s"}} />
               <div style={{ width: "100%", aspectRatio: "4/4.5", overflow: "hidden", borderRadius: "22px 22px 0 0" }}>
                 <img
                   src="/images/team/renata-hero.jpg"
@@ -127,7 +127,7 @@ const Home = ({ onNavigate }) => {
                 />
               </div>
               <div style={{
-                background: "linear-gradient(135deg, #dd281e 0%, var(--accent-dark) 50%, #101849 100%)",
+                background: "linear-gradient(135deg, #dd281e 0%, #c82c25 50%, #0c0c0c 100%)",
                 padding: "20px 18px", textAlign: "center", borderRadius: "0 0 16px 16px",
               }}>
                 <div style={{ fontSize: "10px", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(255,255,255,0.75)", fontWeight: 700, marginBottom: 8 }}>
@@ -162,11 +162,11 @@ const Home = ({ onNavigate }) => {
               data-testid="home-renata-card"
             >
               <div style={{position:"absolute",inset:0,borderRadius:22,pointerEvents:"none",zIndex:3,border:"1px solid rgba(73,132,224,0.15)",animation:"respirar-sutil 5s ease-in-out infinite"}} />
-              <div style={{position:"absolute",borderRadius:"50%",pointerEvents:"none",zIndex:4,width:"2px",height:"2px",background:"#e0f4ff",boxShadow:"0 0 2px 1px rgba(224,244,255,0.95)",top:"-1px",left:"18%",animation:"luz-sutil 5s ease-in-out infinite"}} />
-              <div style={{position:"absolute",borderRadius:"50%",pointerEvents:"none",zIndex:4,width:"2px",height:"2px",background:"#7ab8f5",boxShadow:"0 0 2px 1px rgba(122,184,245,0.9)",top:"-1px",left:"55%",animation:"luz-sutil 5s ease-in-out infinite 0.04s"}} />
+              <div style={{position:"absolute",borderRadius:"50%",pointerEvents:"none",zIndex:4,width:"2px",height:"2px",background:"#ffe0de",boxShadow:"0 0 2px 1px rgba(255,224,222,0.95)",top:"-1px",left:"18%",animation:"luz-sutil 5s ease-in-out infinite"}} />
+              <div style={{position:"absolute",borderRadius:"50%",pointerEvents:"none",zIndex:4,width:"2px",height:"2px",background:"#f57a7a",boxShadow:"0 0 2px 1px rgba(245,122,122,0.9)",top:"-1px",left:"55%",animation:"luz-sutil 5s ease-in-out infinite 0.04s"}} />
               <div style={{position:"absolute",borderRadius:"50%",pointerEvents:"none",zIndex:4,width:"2px",height:"2px",background:"#fff",boxShadow:"0 0 2px 1px rgba(255,255,255,0.85)",top:"35%",right:"-1px",animation:"luz-sutil 5s ease-in-out infinite 0.02s"}} />
-              <div style={{position:"absolute",borderRadius:"50%",pointerEvents:"none",zIndex:4,width:"2px",height:"2px",background:"#a0d4ff",boxShadow:"0 0 2px 1px rgba(160,212,255,0.9)",bottom:"-1px",left:"40%",animation:"luz-sutil 5s ease-in-out infinite 0.06s"}} />
-              <div style={{position:"absolute",borderRadius:"50%",pointerEvents:"none",zIndex:4,width:"2px",height:"2px",background:"#c0e4ff",boxShadow:"0 0 2px 1px rgba(192,228,255,0.9)",top:"60%",left:"-1px",animation:"luz-sutil 5s ease-in-out infinite 0.03s"}} />
+              <div style={{position:"absolute",borderRadius:"50%",pointerEvents:"none",zIndex:4,width:"2px",height:"2px",background:"#ffb0ae",boxShadow:"0 0 2px 1px rgba(255,176,174,0.9)",bottom:"-1px",left:"40%",animation:"luz-sutil 5s ease-in-out infinite 0.06s"}} />
+              <div style={{position:"absolute",borderRadius:"50%",pointerEvents:"none",zIndex:4,width:"2px",height:"2px",background:"#ffc0be",boxShadow:"0 0 2px 1px rgba(255,192,190,0.9)",top:"60%",left:"-1px",animation:"luz-sutil 5s ease-in-out infinite 0.03s"}} />
               <div style={{ width: "100%", aspectRatio: "4/4.5", overflow: "hidden", borderRadius: "22px 22px 0 0" }}>
                 <img
                   src="/images/team/renata-hero.jpg"
@@ -176,7 +176,7 @@ const Home = ({ onNavigate }) => {
               </div>
               <div
                 style={{
-                  background: "linear-gradient(135deg, #dd281e 0%, var(--accent-dark) 50%, #101849 100%)",
+                  background: "linear-gradient(135deg, #dd281e 0%, #c82c25 50%, #0c0c0c 100%)",
                   padding: "26px 22px",
                   textAlign: "center",
                   borderRadius: "0 0 22px 22px",
