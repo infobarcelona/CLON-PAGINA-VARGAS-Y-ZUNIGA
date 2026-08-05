@@ -143,8 +143,8 @@ export const translations = {
       cuentanosCase: "CUÉNTANOS TU CASO",
       conversarAsistente: "Conversar con la asistente",
       reservaAbogado: "Reserva una reunión contactando a nuestra asistente",
-      descCorta: "Nuestra asistente con inteligencia artificial. Pregúntale lo que necesites sobre el estudio, honorarios o cómo agendar tu reunión.",
-      descLarga: "Nuestra asistente con inteligencia artificial. Pregúntale lo que necesites saber del estudio: experiencia, áreas de práctica, honorarios o cómo agendar tu reunión.",
+      descCorta: "Agenda una reunión. Consulta tus dudas.",
+      descLarga: "Agenda una reunión. Consulta tus dudas.",
     },
     contact: {
       title: "Contacto",
@@ -310,8 +310,8 @@ export const translations = {
       cuentanosCase: "TELL US YOUR CASE",
       conversarAsistente: "Chat with our assistant",
       reservaAbogado: "Book a meeting with our assistant",
-      descCorta: "Our AI-powered assistant. Ask anything about the firm, fees, or how to schedule your appointment.",
-      descLarga: "Our AI-powered assistant. Ask anything you need to know about the firm: experience, practice areas, fees, or how to schedule your appointment.",
+      descCorta: "Schedule a meeting. Ask your questions.",
+      descLarga: "Schedule a meeting. Ask your questions.",
     },
     contact: {
       title: "Contact",

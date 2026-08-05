@@ -90,7 +90,7 @@ const Contact = () => {
             </div>
             <div
               style={{
-                background: "linear-gradient(135deg, #dd281e 0%, #24398c 55%, #101849 100%)",
+                background: "linear-gradient(135deg, #dd281e 0%, #6b2020 55%, #0c0c0c 100%)",
                 borderRadius: 16,
                 padding: "40px 32px",
                 textAlign: "center",
