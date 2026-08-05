@@ -6,18 +6,18 @@
 
 :root {
   /* Alessandri-inspired palette */
-  --ink: #1d1d1b;
+  --ink: #0c0c0c;
   --ink-soft: #2a2a26;
   --ink-mute: #5b5b59;
   --ink-faint: #8a8a87;
-  --cream: #f1edeb;
+  --cream: #f3efe6;
   --cream-deep: #e9e3df;
   --cream-edge: #d8d2c5;
   --paper: #ffffff;
-  --accent: #5ba7e5;
-  --accent-hover: #2e63b8;
-  --accent-soft: #8cc4ee;
-  --accent-dark: #1746a0;
+  --accent: #dd281e;
+  --accent-hover: #c82c25;
+  --accent-soft: #e87c75;
+  --accent-dark: #c82c25;
 
   --background: 24 19% 93%;
   --foreground: 60 4% 11%;

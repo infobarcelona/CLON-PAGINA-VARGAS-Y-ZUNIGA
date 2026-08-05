@@ -104,15 +104,15 @@ const SpotlightBuscador = ({ carpetas, onSeleccionar, onCerrar }) => {
                   width: "100%", padding: "12px 20px",
                   background: i === seleccionado ? "rgba(23,70,160,0.08)" : "transparent",
                   border: "none",
-                  borderLeft: i === seleccionado ? "3px solid #1746a0" : "3px solid transparent",
+                  borderLeft: i === seleccionado ? "3px solid #c82c25" : "3px solid transparent",
                   borderBottom: i < resultados.length - 1 ? "1px solid rgba(23,70,160,0.05)" : "none",
                   cursor: "pointer", textAlign: "left",
                   transition: "background 0.1s",
                 }}>
                 <svg width="20" height="16" viewBox="0 0 120 95" fill="none">
-                  <rect x="0" y="18" width="120" height="77" rx="6" fill="#1746a0"/>
-                  <rect x="0" y="10" width="48" height="22" rx="5" fill="#1746a0"/>
-                  <rect x="2" y="20" width="116" height="73" rx="5" fill="#4984e0"/>
+                  <rect x="0" y="18" width="120" height="77" rx="6" fill="#c82c25"/>
+                  <rect x="0" y="10" width="48" height="22" rx="5" fill="#c82c25"/>
+                  <rect x="2" y="20" width="116" height="73" rx="5" fill="#dd281e"/>
                   <rect x="8" y="34" width="104" height="4" rx="2" fill="rgba(255,255,255,0.3)"/>
                   <rect x="8" y="44" width="80" height="4" rx="2" fill="rgba(255,255,255,0.2)"/>
                 </svg>

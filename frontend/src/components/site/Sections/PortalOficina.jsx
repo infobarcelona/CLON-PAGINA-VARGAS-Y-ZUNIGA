@@ -360,7 +360,7 @@ const PortalOficina = () => {
 
       {/* Mensaje flotante */}
       {mensaje && (
-        <div style={{ position: "fixed", top: 20, right: 20, zIndex: 1000, background: mensaje.tipo === "error" ? "#c0392b" : "#1746a0", color: "#fff", padding: "12px 20px", borderRadius: 10, fontSize: "13px", fontWeight: 600, boxShadow: "0 4px 20px rgba(0,0,0,0.2)" }}>
+        <div style={{ position: "fixed", top: 20, right: 20, zIndex: 1000, background: mensaje.tipo === "error" ? "#c0392b" : "#c82c25", color: "#fff", padding: "12px 20px", borderRadius: 10, fontSize: "13px", fontWeight: 600, boxShadow: "0 4px 20px rgba(0,0,0,0.2)" }}>
           {mensaje.texto}
         </div>
       )}
@@ -413,7 +413,7 @@ const PortalOficina = () => {
               </div>
             </div>
             <button type="button" onClick={crearDocumento} disabled={!nuevoNombre.trim() || creando}
-              style={{ width: "100%", padding: "12px", background: "linear-gradient(135deg, #4984e0 0%, #1746a0 100%)", color: "#fff", border: "none", borderRadius: 10, fontSize: "13.5px", fontWeight: 700, cursor: "pointer" }}>
+              style={{ width: "100%", padding: "12px", background: "linear-gradient(135deg, #dd281e 0%, #c82c25 100%)", color: "#fff", border: "none", borderRadius: 10, fontSize: "13.5px", fontWeight: 700, cursor: "pointer" }}>
               {creando ? "Creando..." : "Crear y abrir"}
             </button>
           </div>
@@ -431,7 +431,7 @@ const PortalOficina = () => {
             <input type="text" value={nombreCarpeta} onChange={e => setNombreCarpeta(e.target.value)} onKeyDown={e => e.key === "Enter" && nombreCarpeta.trim() && crearCarpeta()} placeholder="Nombre de la carpeta"
               style={{ width: "100%", padding: "10px 14px", border: "1.5px solid rgba(23,70,160,0.2)", borderRadius: 8, fontSize: "14px", boxSizing: "border-box", outline: "none", marginBottom: 20 }} />
             <button type="button" onClick={crearCarpeta} disabled={!nombreCarpeta.trim()}
-              style={{ width: "100%", padding: "12px", background: "linear-gradient(135deg, #4984e0 0%, #1746a0 100%)", color: "#fff", border: "none", borderRadius: 10, fontSize: "13.5px", fontWeight: 700, cursor: "pointer" }}>
+              style={{ width: "100%", padding: "12px", background: "linear-gradient(135deg, #dd281e 0%, #c82c25 100%)", color: "#fff", border: "none", borderRadius: 10, fontSize: "13.5px", fontWeight: 700, cursor: "pointer" }}>
               Crear carpeta
             </button>
           </div>
@@ -478,7 +478,7 @@ const PortalOficina = () => {
               onKeyDown={e => e.key === "Enter" && renombrarItem()}
               style={{ width: "100%", padding: "10px 14px", border: "1.5px solid rgba(23,70,160,0.2)", borderRadius: 8, fontSize: "14px", boxSizing: "border-box", outline: "none", marginBottom: 20 }} />
             <button type="button" onClick={renombrarItem} disabled={!nuevoNombreItem.trim()}
-              style={{ width: "100%", padding: "12px", background: "linear-gradient(135deg, #4984e0 0%, #1746a0 100%)", color: "#fff", border: "none", borderRadius: 10, fontSize: "13.5px", fontWeight: 700, cursor: "pointer" }}>
+              style={{ width: "100%", padding: "12px", background: "linear-gradient(135deg, #dd281e 0%, #c82c25 100%)", color: "#fff", border: "none", borderRadius: 10, fontSize: "13.5px", fontWeight: 700, cursor: "pointer" }}>
               Guardar
             </button>
           </div>
@@ -531,7 +531,7 @@ const PortalOficina = () => {
 
           {/* Bienvenida */}
           {!carpetaActual && (
-            <div style={{ background: "linear-gradient(135deg, #4984e0 0%, #1746a0 100%)", borderRadius: 16, padding: "20px 24px", marginBottom: 20, color: "#fff" }}>
+            <div style={{ background: "linear-gradient(135deg, #dd281e 0%, #c82c25 100%)", borderRadius: 16, padding: "20px 24px", marginBottom: 20, color: "#fff" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
                 <User size={14} style={{ opacity: 0.8 }} />
                 <span style={{ fontSize: "11px", opacity: 0.8, letterSpacing: "0.05em", textTransform: "uppercase" }}>Portal Abogados</span>
@@ -559,7 +559,7 @@ const PortalOficina = () => {
               </div>
               <div style={{ display: "flex", gap: 6 }}>
                 <button type="button" onClick={() => setModalCrear(true)}
-                  style={{ display: "flex", alignItems: "center", gap: 4, background: "linear-gradient(135deg, #4984e0 0%, #1746a0 100%)", color: "#fff", border: "none", padding: "6px 10px", borderRadius: 8, fontSize: "11.5px", fontWeight: 600, cursor: "pointer" }}>
+                  style={{ display: "flex", alignItems: "center", gap: 4, background: "linear-gradient(135deg, #dd281e 0%, #c82c25 100%)", color: "#fff", border: "none", padding: "6px 10px", borderRadius: 8, fontSize: "11.5px", fontWeight: 600, cursor: "pointer" }}>
                   <Plus size={12} /> Nuevo
                 </button>
                 <button type="button" onClick={() => fileInputRef.current?.click()} disabled={subiendo}
@@ -630,9 +630,9 @@ const PortalOficina = () => {
                     }}>
                     {item.mimeType === "application/vnd.google-apps.folder" ? (
                       <svg width={vistaGrid ? 48 : 22} height={vistaGrid ? 38 : 18} viewBox="0 0 120 95" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="0" y="18" width="120" height="77" rx="6" fill="#1746a0"/>
-                        <rect x="0" y="10" width="48" height="22" rx="5" fill="#1746a0"/>
-                        <rect x="2" y="20" width="116" height="73" rx="5" fill="#4984e0"/>
+                        <rect x="0" y="18" width="120" height="77" rx="6" fill="#c82c25"/>
+                        <rect x="0" y="10" width="48" height="22" rx="5" fill="#c82c25"/>
+                        <rect x="2" y="20" width="116" height="73" rx="5" fill="#dd281e"/>
                         <rect x="8" y="34" width="104" height="4" rx="2" fill="rgba(255,255,255,0.3)"/>
                         <rect x="8" y="44" width="80" height="4" rx="2" fill="rgba(255,255,255,0.2)"/>
                         <rect x="8" y="54" width="90" height="4" rx="2" fill="rgba(255,255,255,0.2)"/>
@@ -687,7 +687,7 @@ const PortalOficina = () => {
               <OnlyOfficeEditor config={onlyofficeConfig} onClose={() => { setOnlyofficeConfig(null); setArchivoVisor(null); sessionStorage.removeItem("portal_archivo_activo"); }} />
             ) : loadingEditor ? (
               <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: 16, background: "#fff" }}>
-                <div style={{ width: 40, height: 40, border: "3px solid rgba(23,70,160,0.15)", borderTop: "3px solid #1746a0", borderRadius: "50%", animation: "spin 0.8s linear infinite" }} />
+                <div style={{ width: 40, height: 40, border: "3px solid rgba(23,70,160,0.15)", borderTop: "3px solid #c82c25", borderRadius: "50%", animation: "spin 0.8s linear infinite" }} />
                 <div style={{ fontSize: "13px", color: "var(--ink-faint)" }}>Cargando editor...</div>
                 <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
               </div>

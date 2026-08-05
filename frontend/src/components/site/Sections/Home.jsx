@@ -127,7 +127,7 @@ const Home = ({ onNavigate }) => {
                 />
               </div>
               <div style={{
-                background: "linear-gradient(135deg, #4984e0 0%, var(--accent-dark) 50%, #101849 100%)",
+                background: "linear-gradient(135deg, #dd281e 0%, var(--accent-dark) 50%, #101849 100%)",
                 padding: "20px 18px", textAlign: "center", borderRadius: "0 0 16px 16px",
               }}>
                 <div style={{ fontSize: "10px", letterSpacing: "0.15em", textTransform: "uppercase", color: "rgba(255,255,255,0.75)", fontWeight: 700, marginBottom: 8 }}>
@@ -176,7 +176,7 @@ const Home = ({ onNavigate }) => {
               </div>
               <div
                 style={{
-                  background: "linear-gradient(135deg, #4984e0 0%, var(--accent-dark) 50%, #101849 100%)",
+                  background: "linear-gradient(135deg, #dd281e 0%, var(--accent-dark) 50%, #101849 100%)",
                   padding: "26px 22px",
                   textAlign: "center",
                   borderRadius: "0 0 22px 22px",

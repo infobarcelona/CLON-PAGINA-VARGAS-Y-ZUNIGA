@@ -105,7 +105,7 @@ export default function SessionTimer() {
 
         {/* Cuenta regresiva */}
         <div style={{
-          fontSize: 48, fontWeight: 800, color: cuenta <= 10 ? "#e53e3e" : "#1746a0",
+          fontSize: 48, fontWeight: 800, color: cuenta <= 10 ? "#e53e3e" : "#c82c25",
           margin: "0 0 24px", lineHeight: 1,
           transition: "color 0.3s"
         }}>
@@ -118,7 +118,7 @@ export default function SessionTimer() {
             onClick={cerrarSesion}
             style={{
               padding: "10px 20px", borderRadius: 8, border: "1.5px solid rgba(23,70,160,0.2)",
-              background: "transparent", color: "#1746a0", fontWeight: 600,
+              background: "transparent", color: "#c82c25", fontWeight: 600,
               fontSize: 14, cursor: "pointer"
             }}>
             Cerrar sesión
@@ -127,7 +127,7 @@ export default function SessionTimer() {
             onClick={mantenerSesion}
             style={{
               padding: "10px 24px", borderRadius: 8, border: "none",
-              background: "#1746a0", color: "#fff", fontWeight: 600,
+              background: "#c82c25", color: "#fff", fontWeight: 600,
               fontSize: 14, cursor: "pointer"
             }}>
             Mantener sesión
